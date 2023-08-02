@@ -12,6 +12,7 @@
 		E431A7352A7A49D6007723DD /* EssentialFeedJorge.h in Headers */ = {isa = PBXBuildFile; fileRef = E431A7292A7A49D6007723DD /* EssentialFeedJorge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E431A73F2A7A49F5007723DD /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431A73E2A7A49F5007723DD /* FeedItem.swift */; };
 		E431A7412A7A4A93007723DD /* FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431A7402A7A4A93007723DD /* FeedLoader.swift */; };
+		E431A7462A7A68C8007723DD /* RemoteFeedLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431A7452A7A68C8007723DD /* RemoteFeedLoaderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		E431A7332A7A49D6007723DD /* EssentialFeedJorgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedJorgeTests.swift; sourceTree = "<group>"; };
 		E431A73E2A7A49F5007723DD /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 		E431A7402A7A4A93007723DD /* FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoader.swift; sourceTree = "<group>"; };
+		E431A7452A7A68C8007723DD /* RemoteFeedLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoaderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				E431A7332A7A49D6007723DD /* EssentialFeedJorgeTests.swift */,
+				E431A7452A7A68C8007723DD /* RemoteFeedLoaderTests.swift */,
 			);
 			path = EssentialFeedJorgeTests;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E431A7462A7A68C8007723DD /* RemoteFeedLoaderTests.swift in Sources */,
 				E431A7342A7A49D6007723DD /* EssentialFeedJorgeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
