@@ -41,12 +41,14 @@ final class RemoteFeedLoaderTests: XCTestCase {
         /* Old code
         let url = URL(string: "https://a-url.com")!
         let client = HTTPClientSpy()
-        let _ = RemoteFeedLoader(url: url, client: client)  // SUT not used in this case */
+        _ = RemoteFeedLoader(url: url, client: client)  // SUT not used in this case */
         
         // ACT: When we invoke sut.load()
         // In this case is not invoked
         
-        // ASSERT: Then assert that a URL request was initiated in the client
+        // ASSERT: Then assert that a URL request was initiated in the client.
+        // Here, we assert that it wasn't done a URL Request since that only
+        // happens when .load() is invoked
         XCTAssertNil(client.requestedURL)
     }
     
@@ -57,7 +59,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let (sut, client) = makeSUT(url: url) // HTTPClientSpy()
         // let sut = RemoteFeedLoader(url: url, client: client)
         
-        // ACT: When we invoke sut.load()
+        // ACT: When we invoke sut.load(), a URL Request is made.
         sut.load()
         
         // ASSERT: Then assert that a URL request was initiated in the client
