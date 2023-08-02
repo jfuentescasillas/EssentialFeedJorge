@@ -11,6 +11,7 @@
 		E431A7342A7A49D6007723DD /* EssentialFeedJorgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431A7332A7A49D6007723DD /* EssentialFeedJorgeTests.swift */; };
 		E431A7352A7A49D6007723DD /* EssentialFeedJorge.h in Headers */ = {isa = PBXBuildFile; fileRef = E431A7292A7A49D6007723DD /* EssentialFeedJorge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E431A73F2A7A49F5007723DD /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431A73E2A7A49F5007723DD /* FeedItem.swift */; };
+		E431A7412A7A4A93007723DD /* FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431A7402A7A4A93007723DD /* FeedLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		E431A72E2A7A49D6007723DD /* EssentialFeedJorgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedJorgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E431A7332A7A49D6007723DD /* EssentialFeedJorgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedJorgeTests.swift; sourceTree = "<group>"; };
 		E431A73E2A7A49F5007723DD /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
+		E431A7402A7A4A93007723DD /* FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				E431A7292A7A49D6007723DD /* EssentialFeedJorge.h */,
 				E431A73E2A7A49F5007723DD /* FeedItem.swift */,
+				E431A7402A7A4A93007723DD /* FeedLoader.swift */,
 			);
 			path = EssentialFeedJorge;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E431A7412A7A4A93007723DD /* FeedLoader.swift in Sources */,
 				E431A73F2A7A49F5007723DD /* FeedItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
