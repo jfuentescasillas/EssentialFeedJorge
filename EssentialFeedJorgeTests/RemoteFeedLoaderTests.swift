@@ -71,13 +71,14 @@ final class RemoteFeedLoaderTests: XCTestCase {
         // ARRANGE: Given a SUT (System Under Test) and a client
         let (sut, client) = makeSUT()
         client.error = NSError(domain: "Test", code: 0)
-        var capturedError: RemoteFeedLoader.Error?
+        
+        var capturedErrors = [RemoteFeedLoader.Error]()
         
         // ACT: When we invoke sut.load() it's asynchronous so we pass a completion block
-        sut.load { error in capturedError = error }
+        sut.load { capturedErrors.append($0) }
         
         // ASSERT: Then assert that the type of error is .connectivity
-        XCTAssertEqual(capturedError, .connectivity)
+        XCTAssertEqual(capturedErrors, [.connectivity])
     }
     
     
