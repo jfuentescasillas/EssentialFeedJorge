@@ -7,29 +7,7 @@
 
 
 import XCTest
-
-
-// MARK: - RemoteFeedLoader
-class RemoteFeedLoader {
-    let url: URL
-    let client: HTTPClient
-    
-    init(url: URL, client: HTTPClient) {
-        self.url = url
-        self.client = client
-    }
-    
-    
-    func load() {
-        client.get(from: url)
-    }
-}
-
-
-// MARK: - HTTPClient
-protocol HTTPClient {
-    func get(from url: URL?)
-}
+import EssentialFeedJorge
 
 
 // MARK: - Tests Class
@@ -37,11 +15,6 @@ final class RemoteFeedLoaderTests: XCTestCase {
     func test_init_doesNotRequestDataFromURL() {
         // ARRANGE: Given a SUT (System Under Test) and a client
         let (_, client) = makeSUT()
-        
-        /* Old code
-        let url = URL(string: "https://a-url.com")!
-        let client = HTTPClientSpy()
-        _ = RemoteFeedLoader(url: url, client: client)  // SUT not used in this case */
         
         // ACT: When we invoke sut.load()
         // In this case is not invoked
@@ -57,7 +30,6 @@ final class RemoteFeedLoaderTests: XCTestCase {
         // ARRANGE: Given a SUT (System Under Test) and a client
         let url = URL(string: "https://a-given-url.com")!
         let (sut, client) = makeSUT(url: url) // HTTPClientSpy()
-        // let sut = RemoteFeedLoader(url: url, client: client)
         
         // ACT: When we invoke sut.load(), a URL Request is made.
         sut.load()
@@ -71,7 +43,6 @@ final class RemoteFeedLoaderTests: XCTestCase {
         // ARRANGE: Given a SUT (System Under Test) and a client
         let url = URL(string: "https://a-given-url.com")!
         let (sut, client) = makeSUT(url: url) // HTTPClientSpy()
-        // let sut = RemoteFeedLoader(url: url, client: client)
         
         // ACT: When we invoke sut.load()
         sut.load()

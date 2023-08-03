@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E4209EB32A7B9D70009D6000 /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4209EB22A7B9D70009D6000 /* RemoteFeedLoader.swift */; };
 		E431A72F2A7A49D6007723DD /* EssentialFeedJorge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E431A7262A7A49D6007723DD /* EssentialFeedJorge.framework */; };
 		E431A7342A7A49D6007723DD /* EssentialFeedJorgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431A7332A7A49D6007723DD /* EssentialFeedJorgeTests.swift */; };
 		E431A7352A7A49D6007723DD /* EssentialFeedJorge.h in Headers */ = {isa = PBXBuildFile; fileRef = E431A7292A7A49D6007723DD /* EssentialFeedJorge.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E4209EB22A7B9D70009D6000 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 		E431A7262A7A49D6007723DD /* EssentialFeedJorge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeedJorge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E431A7292A7A49D6007723DD /* EssentialFeedJorge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EssentialFeedJorge.h; sourceTree = "<group>"; };
 		E431A72E2A7A49D6007723DD /* EssentialFeedJorgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedJorgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +56,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E4209EB12A7B9C77009D6000 /* FeedAPI */ = {
+			isa = PBXGroup;
+			children = (
+				E4209EB22A7B9D70009D6000 /* RemoteFeedLoader.swift */,
+			);
+			path = FeedAPI;
+			sourceTree = "<group>";
+		};
 		E431A71C2A7A49D6007723DD = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				E431A7292A7A49D6007723DD /* EssentialFeedJorge.h */,
+				E4209EB12A7B9C77009D6000 /* FeedAPI */,
 				E431A7422A7A4B8B007723DD /* FeedFeature */,
 			);
 			path = EssentialFeedJorge;
@@ -210,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E431A7412A7A4A93007723DD /* FeedLoader.swift in Sources */,
+				E4209EB32A7B9D70009D6000 /* RemoteFeedLoader.swift in Sources */,
 				E431A73F2A7A49F5007723DD /* FeedItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
