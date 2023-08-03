@@ -33,7 +33,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let (sut, client) = makeSUT(url: url) // HTTPClientSpy()
         
         // ACT: When we invoke sut.load(), a URL Request is made.
-        sut.load()
+        sut.load { _ in }
         
         // ASSERT: Then assert that a URL request was initiated in the client
         XCTAssertNotNil(client.requestedURL)
@@ -46,7 +46,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let (sut, client) = makeSUT(url: url) // HTTPClientSpy()
         
         // ACT: When we invoke sut.load()
-        sut.load()
+        sut.load { _ in }
         
         // ASSERT: Then assert that a URL request was initiated in the client
         XCTAssertEqual(client.requestedURL, url)
@@ -59,8 +59,8 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let (sut, client) = makeSUT(url: url) // HTTPClientSpy()
         
         // ACT: When we invoke sut.load() twice
-        sut.load()
-        sut.load()
+        sut.load { _ in }
+        sut.load { _ in }
 
         // ASSERT: Then assert that the same amount of URL calls (2 calls) are the same. With this we make sure that the RemoteFeedLoader.load(...) is called once per each call
         XCTAssertEqual(client.requestedURLs, [url, url])
