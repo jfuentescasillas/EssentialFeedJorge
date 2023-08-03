@@ -58,12 +58,26 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let url = URL(string: "https://a-given-url.com")!
         let (sut, client) = makeSUT(url: url) // HTTPClientSpy()
         
-        // ACT: When we invoke sut.load()
+        // ACT: When we invoke sut.load() twice
         sut.load()
         sut.load()
 
-        // ASSERT: Then assert that a URL request was initiated in the client
+        // ASSERT: Then assert that the same amount of URL calls (2 calls) are the same. With this we make sure that the RemoteFeedLoader.load(...) is called once per each call
         XCTAssertEqual(client.requestedURLs, [url, url])
+    }
+    
+    
+    func test_load_deliversErrorOnClientError() {
+        // ARRANGE: Given a SUT (System Under Test) and a client
+        let (sut, client) = makeSUT()
+        client.error = NSError(domain: "Test", code: 0)
+        var capturedError: RemoteFeedLoader.Error?
+        
+        // ACT: When we invoke sut.load() it's asynchronous so we pass a completion block
+        sut.load { error in capturedError = error }
+        
+        // ASSERT: Then assert that the type of error is .connectivity
+        XCTAssertEqual(capturedError, .connectivity)
     }
     
     
@@ -71,9 +85,14 @@ final class RemoteFeedLoaderTests: XCTestCase {
     class HTTPClientSpy: HTTPClient {
         var requestedURL: URL?
         var requestedURLs = [URL]()
+        var error: Error?
         
         
-        func get(from url: URL) {
+        func get(from url: URL, completion: @escaping (Error) -> Void) {
+            if let error {
+                completion(error)
+            }
+            
             requestedURL = url
             requestedURLs.append(url)
         }
