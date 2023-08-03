@@ -90,13 +90,17 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         // ACT: When we invoke sut.load() it's asynchronous so we pass a completion block
-        var capturedErrors = [RemoteFeedLoader.Error]()
-        sut.load { capturedErrors.append($0) }
-        
-        client.complete(with: 400)
-        
-        // ASSERT: Then assert that the type of error is .connectivity
-        XCTAssertEqual(capturedErrors, [.invalidData])
+        let codeSamples: [Int] = [199, 201, 300, 400, 500]
+        codeSamples.enumerated().forEach { idx, code in
+            var capturedErrors = [RemoteFeedLoader.Error]()
+            sut.load { capturedErrors.append($0) }
+            
+            client.complete(with: code, at: idx)
+            
+            
+            // ASSERT: Then assert that the type of error is .connectivity
+            XCTAssertEqual(capturedErrors, [.invalidData])
+        }
     }
     
     
