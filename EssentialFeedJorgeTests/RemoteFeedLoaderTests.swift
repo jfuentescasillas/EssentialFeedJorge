@@ -75,7 +75,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         
         // Call the ACT and ASSERT with "expect()" method
         expect(arrangeSUT: sut,
-               toCompleteWithError: .connectivity,
+               toCompleteWithResult: .failure(.connectivity),
                whenAction: {
             let clientError = NSError(domain: "Test", code: 0)
             client.complete(with: clientError)
@@ -91,7 +91,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let codeSamples: [Int] = [199, 201, 300, 400, 500]
         codeSamples.enumerated().forEach { idx, code in
             expect(arrangeSUT: sut,
-                   toCompleteWithError: .invalidData,
+                   toCompleteWithResult: .failure(.invalidData),
                    whenAction: {
                 client.complete(withStatusCode: code,
                                 at: idx)
@@ -106,7 +106,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         
         // Call the ACT and ASSERT: When we invoke sut.load() it's asynchronous so we pass a completion block
         expect(arrangeSUT: sut,
-               toCompleteWithError: .invalidData,
+               toCompleteWithResult: .failure(.invalidData),
                whenAction: {
             let invalidJSON = Data("invalid JSON".utf8)
             client.complete(withStatusCode: 200, data: invalidJSON)
@@ -114,18 +114,17 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
     
     
-    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyList() {
+    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
         // ARRANGE: Given a SUT (System Under Test) and a client
         let (sut, client) = makeSUT()
         
         // Call the ACT and ASSERT
-        var capturedResults = [RemoteFeedLoader.Result]()
-        sut.load { capturedResults.append($0) }
-        
-        let emptyListJSON = Data("{\"items\": []}".utf8)
-        client.complete(withStatusCode: 200, data: emptyListJSON)
-        
-        XCTAssertEqual(capturedResults, [.success([])])
+        expect(arrangeSUT: sut,
+               toCompleteWithResult: .success([]),
+               whenAction: {
+            let emptyListJSON = Data("{\"items\": []}".utf8)
+            client.complete(withStatusCode: 200, data: emptyListJSON)
+        })
     }
     
     
@@ -139,7 +138,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
     
     
-    private func expect(arrangeSUT sut: RemoteFeedLoader, toCompleteWithError error: RemoteFeedLoader.Error, whenAction action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    private func expect(arrangeSUT sut: RemoteFeedLoader, toCompleteWithResult result: RemoteFeedLoader.Result, whenAction action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         // ACT: When we invoke sut.load() it's asynchronous so we pass a completion block
         var capturedResults = [RemoteFeedLoader.Result]()
         sut.load { capturedResults.append($0) }
@@ -147,7 +146,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         action()
         
         // ASSERT: Then assert that the type of error is .connectivity
-        XCTAssertEqual(capturedResults, [.failure(error)], file: file, line: line)
+        XCTAssertEqual(capturedResults, [result], file: file, line: line)
     }
     
     
