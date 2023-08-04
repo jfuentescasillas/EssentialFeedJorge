@@ -114,6 +114,15 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
     
     
+    /* func test_load_deliversNoItemsOn200HTTPResponseWithEmptyList() {
+        // ARRANGE: Given a SUT (System Under Test) and a client
+        let (sut, client) = makeSUT()
+        
+        // Call the ACT and ASSERT
+        
+    } */
+    
+    
     // MARK: - Helper Methods
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!) ->
     (sut: RemoteFeedLoader, client: HTTPClientSpy) {
@@ -126,13 +135,13 @@ final class RemoteFeedLoaderTests: XCTestCase {
     
     private func expect(arrangeSUT sut: RemoteFeedLoader, toCompleteWithError error: RemoteFeedLoader.Error, whenAction action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         // ACT: When we invoke sut.load() it's asynchronous so we pass a completion block
-        var capturedErrors = [RemoteFeedLoader.Error]()
-        sut.load { capturedErrors.append($0) }
+        var capturedResults = [RemoteFeedLoader.Result]()
+        sut.load { capturedResults.append($0) }
         
         action()
         
         // ASSERT: Then assert that the type of error is .connectivity
-        XCTAssertEqual(capturedErrors, [error], file: file, line: line)
+        XCTAssertEqual(capturedResults, [.failure(error)], file: file, line: line)
     }
     
     
