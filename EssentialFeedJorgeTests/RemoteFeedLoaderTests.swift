@@ -95,7 +95,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
             var capturedErrors = [RemoteFeedLoader.Error]()
             sut.load { capturedErrors.append($0) }
             
-            client.complete(with: code, at: idx)
+            client.complete(withStatusCode: code, at: idx)
             
             
             // ASSERT: Then assert that the type of error is .connectivity
@@ -104,7 +104,23 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
     
     
-    // MARK: - Private Helpers
+    func test_load_deliverErrorOn200HTTPResponseWithInvalidJSON() {
+        // ARRANGE: Given a SUT (System Under Test) and a client
+        let (sut, client) = makeSUT()
+        
+        // ACT: When we invoke sut.load() it's asynchronous so we pass a completion block
+        var capturedErrors = [RemoteFeedLoader.Error]()
+        sut.load { capturedErrors.append($0) }
+        
+        let invalidJSON = Data("Invalid JSON".utf8)
+        client.complete(withStatusCode: 200, data: invalidJSON)
+        
+        // ASSERT: Then assert that the type of error is .connectivity
+        XCTAssertEqual(capturedErrors, [.invalidData])
+    }
+    
+    
+    // MARK: - Helpers
     class HTTPClientSpy: HTTPClient {
         var requestedURL: URL?
         
@@ -126,15 +142,15 @@ final class RemoteFeedLoaderTests: XCTestCase {
         }
         
         
-        func complete(with statusCode: Int, at index: Int = 0) {
+        func complete(withStatusCode: Int, data: Data = Data(), at index: Int = 0) {
             let response = HTTPURLResponse(
                 url: requestedURLs[index],
-                statusCode: statusCode,
+                statusCode: withStatusCode,
                 httpVersion: nil,
                 headerFields: nil
             )!
             
-            messages[index].completion(.success(response))
+            messages[index].completion(.success(data, response))
         }
     }
     
