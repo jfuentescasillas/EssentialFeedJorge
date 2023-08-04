@@ -48,7 +48,7 @@ public final class RemoteFeedLoader {
             switch result {
             case .success:
                 completion(.invalidData)
-            
+
             case .failure:
                 completion(.connectivity)
             }

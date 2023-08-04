@@ -73,15 +73,13 @@ final class RemoteFeedLoaderTests: XCTestCase {
         // ARRANGE: Given a SUT (System Under Test) and a client
         let (sut, client) = makeSUT()
         
-        // ACT: When we invoke sut.load() it's asynchronous so we pass a completion block
-        var capturedErrors = [RemoteFeedLoader.Error]()
-        sut.load { capturedErrors.append($0) }
-        
-        let clientError = NSError(domain: "Test", code: 0)
-        client.complete(with: clientError)
-        
-        // ASSERT: Then assert that the type of error is .connectivity
-        XCTAssertEqual(capturedErrors, [.connectivity])
+        // Call the ACT and ASSERT with "expect()" method
+        expect(arrangeSUT: sut,
+               toCompleteWithError: .connectivity,
+               whenAction: {
+            let clientError = NSError(domain: "Test", code: 0)
+            client.complete(with: clientError)
+        })
     }
     
     
@@ -89,17 +87,15 @@ final class RemoteFeedLoaderTests: XCTestCase {
         // ARRANGE: Given a SUT (System Under Test) and a client
         let (sut, client) = makeSUT()
         
-        // ACT: When we invoke sut.load() it's asynchronous so we pass a completion block
+        // Call the ACT and ASSERT with "expect()" method
         let codeSamples: [Int] = [199, 201, 300, 400, 500]
         codeSamples.enumerated().forEach { idx, code in
-            var capturedErrors = [RemoteFeedLoader.Error]()
-            sut.load { capturedErrors.append($0) }
-            
-            client.complete(withStatusCode: code, at: idx)
-            
-            
-            // ASSERT: Then assert that the type of error is .connectivity
-            XCTAssertEqual(capturedErrors, [.invalidData])
+            expect(arrangeSUT: sut,
+                   toCompleteWithError: .invalidData,
+                   whenAction: {
+                client.complete(withStatusCode: code,
+                                at: idx)
+            })
         }
     }
     
@@ -108,19 +104,39 @@ final class RemoteFeedLoaderTests: XCTestCase {
         // ARRANGE: Given a SUT (System Under Test) and a client
         let (sut, client) = makeSUT()
         
+        // Call the ACT and ASSERT: When we invoke sut.load() it's asynchronous so we pass a completion block
+        expect(arrangeSUT: sut,
+               toCompleteWithError: .invalidData,
+               whenAction: {
+            let invalidJSON = Data("invalid JSON".utf8)
+            client.complete(withStatusCode: 200, data: invalidJSON)
+        })
+    }
+    
+    
+    // MARK: - Helper Methods
+    private func makeSUT(url: URL = URL(string: "https://a-url.com")!) ->
+    (sut: RemoteFeedLoader, client: HTTPClientSpy) {
+        let client = HTTPClientSpy()
+        let sut = RemoteFeedLoader(url: url, client: client)
+        
+        return (sut, client)
+    }
+    
+    
+    private func expect(arrangeSUT sut: RemoteFeedLoader, toCompleteWithError error: RemoteFeedLoader.Error, whenAction action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         // ACT: When we invoke sut.load() it's asynchronous so we pass a completion block
         var capturedErrors = [RemoteFeedLoader.Error]()
         sut.load { capturedErrors.append($0) }
         
-        let invalidJSON = Data("Invalid JSON".utf8)
-        client.complete(withStatusCode: 200, data: invalidJSON)
+        action()
         
         // ASSERT: Then assert that the type of error is .connectivity
-        XCTAssertEqual(capturedErrors, [.invalidData])
+        XCTAssertEqual(capturedErrors, [error], file: file, line: line)
     }
     
     
-    // MARK: - Helpers
+    // MARK: - Helper Class
     class HTTPClientSpy: HTTPClient {
         var requestedURL: URL?
         
@@ -152,14 +168,5 @@ final class RemoteFeedLoaderTests: XCTestCase {
             
             messages[index].completion(.success(data, response))
         }
-    }
-    
-    
-    private func makeSUT(url: URL = URL(string: "https://a-url.com")!) ->
-    (sut: RemoteFeedLoader, client: HTTPClientSpy) {
-        let client = HTTPClientSpy()
-        let sut = RemoteFeedLoader(url: url, client: client)
-        
-        return (sut, client)
     }
 }
