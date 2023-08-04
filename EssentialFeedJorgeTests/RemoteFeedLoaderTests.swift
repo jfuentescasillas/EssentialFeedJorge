@@ -62,7 +62,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         // ACT: When we invoke sut.load() twice
         sut.load { _ in }
         sut.load { _ in }
-
+        
         // ASSERT: Then assert that the same amount of URL calls (2 calls) are the same. With this we make sure that the RemoteFeedLoader.load(...) is called once per each call
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
@@ -177,10 +177,10 @@ final class RemoteFeedLoaderTests: XCTestCase {
             "location": item.location,
             "image": item.imageURL.absoluteString
         ].reduce(into: [String: Any]()) { (accumulated, element) in
-                if let value = element.value {
-                    accumulated[element.key] = value
-                }
+            if let value = element.value {
+                accumulated[element.key] = value
             }
+        }
         
         return (item, json)
     }
@@ -210,9 +210,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
     class HTTPClientSpy: HTTPClient {
         // MARK: - Properties
         var requestedURL: URL?
-        
         private var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
-        
         var requestedURLs: [URL] {
             return messages.map { $0.url }
         }
