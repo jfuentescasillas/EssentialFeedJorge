@@ -14,7 +14,7 @@ public final class RemoteFeedLoader: FeedLoaderProtocol {
     // MARK: - Properties
     private let url: URL
     private let client: HTTPClient
-    public typealias Result = LoadFeedResult<Error>
+    public typealias Result = LoadFeedResult
     
     
     // MARK: - Enums
@@ -41,7 +41,7 @@ public final class RemoteFeedLoader: FeedLoaderProtocol {
                 completion(FeedItemsMapper.map(data, from: response))
 
             case .failure:
-                completion(.failure(.connectivity))
+                completion(.failure(Error.connectivity))
             }
         }
     }    

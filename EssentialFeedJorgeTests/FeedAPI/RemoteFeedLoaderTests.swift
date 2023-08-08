@@ -75,7 +75,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         
         // Call the ACT and ASSERT with "expect()" method
         expect(arrangeSUT: sut,
-               toCompleteWithResult: .failure(.connectivity),
+               toCompleteWithResult: .failure(RemoteFeedLoader.Error.connectivity),
                whenAction: {
             let clientError = NSError(domain: "Test", code: 0)
             client.complete(with: clientError)
@@ -91,7 +91,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let codeSamples: [Int] = [199, 201, 300, 400, 500]
         codeSamples.enumerated().forEach { idx, code in
             expect(arrangeSUT: sut,
-                   toCompleteWithResult: .failure(.invalidData),
+                   toCompleteWithResult: .failure(RemoteFeedLoader.Error.invalidData),
                    whenAction: {
                 let jsonData = makeItemsJSON(with: [])
                 client.complete(withStatusCode: code,
@@ -108,7 +108,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         
         // Call the ACT and ASSERT: When we invoke sut.load() it's asynchronous so we pass a completion block
         expect(arrangeSUT: sut,
-               toCompleteWithResult: .failure(.invalidData),
+               toCompleteWithResult: .failure(RemoteFeedLoader.Error.invalidData),
                whenAction: {
             let invalidJSON = Data("invalid JSON".utf8)
             client.complete(withStatusCode: 200, data: invalidJSON)
@@ -231,11 +231,12 @@ final class RemoteFeedLoaderTests: XCTestCase {
             case let (.success(receivedItems), .success(expectedItems)):
                 XCTAssertEqual(receivedItems, expectedItems, file: file, line: line)
                 
-            case let (.failure(receivedError), .failure(expectedError)):
+            case let (.failure(receivedError as RemoteFeedLoader.Error),
+                      .failure(expectedError as RemoteFeedLoader.Error)):
                 XCTAssertEqual(receivedError, expectedError, file: file, line: line)
                 
             default:
-                XCTFail("Expected result \(expectedResult) but got \(receivedResult)", file: file, line: line)
+                XCTFail("Expected result: \(expectedResult); but got \(receivedResult)", file: file, line: line)
             }
             
             exp.fulfill()
