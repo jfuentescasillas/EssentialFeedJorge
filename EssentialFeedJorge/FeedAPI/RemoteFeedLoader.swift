@@ -11,22 +11,18 @@ import Foundation
 
 // MARK: - RemoteFeedLoader
 public final class RemoteFeedLoader {
+    // MARK: - Properties
+    private let url: URL
+    private let client: HTTPClient
+    public typealias Result = LoadFeedResult<Error>
+    
+    
     // MARK: - Enums
     public enum Error: Swift.Error {
         case connectivity
         case invalidData
     }
     
-    
-    public enum Result: Equatable {
-        case success([FeedItem])
-        case failure(Error)
-    }
-
-
-    // MARK: - Properties
-    private let url: URL
-    private let client: HTTPClient
     
     // MARK: - Inits
     public init(url: URL, client: HTTPClient) {
