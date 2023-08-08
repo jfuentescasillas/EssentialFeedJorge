@@ -75,7 +75,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         
         // Call the ACT and ASSERT with "expect()" method
         expect(arrangeSUT: sut,
-               toCompleteWithResult: .failure(RemoteFeedLoader.Error.connectivity),
+               toCompleteWithResult: failure(.connectivity),
                whenAction: {
             let clientError = NSError(domain: "Test", code: 0)
             client.complete(with: clientError)
@@ -91,7 +91,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let codeSamples: [Int] = [199, 201, 300, 400, 500]
         codeSamples.enumerated().forEach { idx, code in
             expect(arrangeSUT: sut,
-                   toCompleteWithResult: .failure(RemoteFeedLoader.Error.invalidData),
+                   toCompleteWithResult: failure(.invalidData),
                    whenAction: {
                 let jsonData = makeItemsJSON(with: [])
                 client.complete(withStatusCode: code,
@@ -108,7 +108,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         
         // Call the ACT and ASSERT: When we invoke sut.load() it's asynchronous so we pass a completion block
         expect(arrangeSUT: sut,
-               toCompleteWithResult: .failure(RemoteFeedLoader.Error.invalidData),
+               toCompleteWithResult: failure(.invalidData),
                whenAction: {
             let invalidJSON = Data("invalid JSON".utf8)
             client.complete(withStatusCode: 200, data: invalidJSON)
@@ -245,6 +245,11 @@ final class RemoteFeedLoaderTests: XCTestCase {
         action()
         
         wait(for: [exp], timeout: 1)
+    }
+    
+    
+    private func failure(_ error: RemoteFeedLoader.Error) -> RemoteFeedLoader.Result {
+        return .failure(error)
     }
     
     
