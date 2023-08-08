@@ -10,7 +10,7 @@ import Foundation
 
 
 // MARK: - RemoteFeedLoader
-public final class RemoteFeedLoader {
+public final class RemoteFeedLoader: FeedLoaderProtocol {
     // MARK: - Properties
     private let url: URL
     private let client: HTTPClient
