@@ -176,11 +176,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
             "description": item.description,
             "location": item.location,
             "image": item.imageURL.absoluteString
-        ].reduce(into: [String: Any]()) { (accumulated, element) in
-            if let value = element.value {
-                accumulated[element.key] = value
-            }
-        }
+        ].compactMapValues { $0 }  // Eliminate nil values
         
         return (item, json)
     }
