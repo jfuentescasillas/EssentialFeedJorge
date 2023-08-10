@@ -22,7 +22,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         super.tearDown()
         
         URLProtocolStub.stopInterceptingRequest()
-}
+    }
     
     func test_getFromURL_performsGETRequestWithURL() {
         // Used "expectation" when the block is asynchronously invoked
@@ -77,7 +77,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         // ASSERT: Then
         XCTAssertEqual(receivedValues?.data, data)
         XCTAssertEqual(receivedValues?.response.url, response.url)
-        XCTAssertEqual(receivedValues?.response.statusCode, response.statusCode)    
+        XCTAssertEqual(receivedValues?.response.statusCode, response.statusCode)
     }
     
     
@@ -97,6 +97,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     
     // MARK: - Helpers
+    // MARK: Private Methods
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> HTTPClient {
         let sut = URLSessionHTTPClient()
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -127,7 +128,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     private func resultErrorFor(data: Data?, response: URLResponse?, error: Error?, file: StaticString = #filePath, line: UInt = #line) -> Error? {
         let result = resultFor(data: data, response: response, error: error, file: file, line: line)
-
+        
         switch result {
         case let .failure(error):
             return error
@@ -163,7 +164,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         // Used "expectation" when the block is asynchronously invoked
         let exp = expectation(description: "Waiting for completion")
         var receivedResult: HTTPClientResult!
-
+        
         sut.get(from: anyURL()) { result in
             receivedResult = result
             
@@ -180,7 +181,8 @@ class URLSessionHTTPClientTests: XCTestCase {
         return URL(string: "https://any-url.com")!
     }
     
-
+    
+    // MARK: - Private Class
     private class URLProtocolStub: URLProtocol {
         private static var stub: Stub?
         private static var requestObserver: ((URLRequest) -> Void)?
