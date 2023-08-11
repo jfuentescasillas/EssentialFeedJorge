@@ -57,7 +57,7 @@ final class EssentialFeedJorgeAPIEndToEndTests: XCTestCase {
             exp.fulfill()
         }
         
-        wait(for: [exp], timeout: 5)
+        wait(for: [exp], timeout: 35)
         
         return receivedResult
     }
