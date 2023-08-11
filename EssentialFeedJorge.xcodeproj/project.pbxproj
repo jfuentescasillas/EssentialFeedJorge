@@ -57,6 +57,7 @@
 		E4A448D42A824D9C001E12FD /* FeedItemsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsMapper.swift; sourceTree = "<group>"; };
 		E4DF32EC2A8625D200A4F272 /* EssentialFeedJorgeAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedJorgeAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4DF32EE2A8625D200A4F272 /* EssentialFeedJorgeAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedJorgeAPIEndToEndTests.swift; sourceTree = "<group>"; };
+		E4DF32F72A863FC400A4F272 /* CI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +101,7 @@
 		E431A71C2A7A49D6007723DD = {
 			isa = PBXGroup;
 			children = (
+				E4DF32F72A863FC400A4F272 /* CI.xctestplan */,
 				E431A7282A7A49D6007723DD /* EssentialFeedJorge */,
 				E431A7322A7A49D6007723DD /* EssentialFeedJorgeTests */,
 				E4DF32ED2A8625D200A4F272 /* EssentialFeedJorgeAPIEndToEndTests */,
