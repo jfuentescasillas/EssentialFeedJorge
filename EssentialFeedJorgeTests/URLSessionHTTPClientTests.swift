@@ -161,7 +161,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         
         let sut = makeSUT(file: file, line: line)
         
-        // Used "expectation" when the block is asynchronously invoked
+        // Use "expectation" when the block is asynchronously invoked
         let exp = expectation(description: "Waiting for completion")
         var receivedResult: HTTPClientResult!
         
