@@ -217,8 +217,6 @@ class URLSessionHTTPClientTests: XCTestCase {
         
         
         override class func canInit(with request: URLRequest) -> Bool {
-            requestObserver?(request)
-            
             return true
         }
         
@@ -229,6 +227,15 @@ class URLSessionHTTPClientTests: XCTestCase {
         
         
         override func startLoading() {
+            /* This if let requestObserver prevents "data races". This is: every request is finished
+               before the test method using the URLProtocolStub returns, so we won't have any 
+               requests running in background threads concurrently with other test methods.       */
+            if let requestObserver = URLProtocolStub.requestObserver {
+                client?.urlProtocolDidFinishLoading(self)
+                
+                return requestObserver(request)
+            }
+
             if let data = URLProtocolStub.stub?.data {
                 client?.urlProtocol(self, didLoad: data)
             }
