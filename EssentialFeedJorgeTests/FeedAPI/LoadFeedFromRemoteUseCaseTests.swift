@@ -1,5 +1,5 @@
 //
-//  RemoteFeedLoaderTests.swift
+//  LoadFeedFromRemoteUseCaseTests.swift
 //  EssentialFeedJorgeTests
 //
 //  Created by jfuentescasillas on 02/08/23.
@@ -11,7 +11,7 @@ import EssentialFeedJorge
 
 
 // MARK: - Tests Class
-final class RemoteFeedLoaderTests: XCTestCase {
+final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     // MARK: - Methods to Request Data From URL
     func test_init_doesNotRequestDataFromURL() {
         // ARRANGE: Given a SUT (System Under Test) and a client
