@@ -134,8 +134,8 @@
 		E431A7322A7A49D6007723DD /* EssentialFeedJorgeTests */ = {
 			isa = PBXGroup;
 			children = (
-				E46856F82A8CED040040C5F5 /* FeedCache */,
 				E462FCBA2A84D3C600A1B9F8 /* Helpers */,
+				E46856F82A8CED040040C5F5 /* FeedCache */,
 				E431A7332A7A49D6007723DD /* EssentialFeedJorgeTests.swift */,
 				E471C5882A83813300148917 /* URLSessionHTTPClientTests.swift */,
 				E471C5872A825D7200148917 /* FeedAPI */,
