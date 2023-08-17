@@ -9,7 +9,7 @@
 import Foundation
 
 
-// MARK: - Protocol. FeedStore
+// MARK: - FeedStoreProtocol
 public protocol FeedStoreProtocol {
     typealias DeletionCompletion = (Error?) -> Void
     typealias InsertionCompletion = (Error?) -> Void
@@ -20,6 +20,7 @@ public protocol FeedStoreProtocol {
 }
 
 
+// MARK: - LocalFeedItem
 public struct LocalFeedItem: Equatable {
     public let id: UUID
     public let description: String?
