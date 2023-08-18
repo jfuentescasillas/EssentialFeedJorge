@@ -14,6 +14,7 @@ import EssentialFeedJorge
 public class FeedStoreSpy: FeedStoreProtocol {
     private var deletionCompletions = [DeletionCompletion]()
     private var insertionCompletions = [InsertionCompletion]()
+    private var retrievalCompletions = [RetrievalCompletion]()
     private(set) var receivedMsgs = [ReceivedMsg]()
     
     
@@ -59,7 +60,13 @@ public class FeedStoreSpy: FeedStoreProtocol {
     
     
     // MARK: Retrieve Methods
-    public func retrieve() {
+    public func retrieve(completion: @escaping RetrievalCompletion) {
+        retrievalCompletions.append(completion)
         receivedMsgs.append(.retrieve)
+    }
+    
+    
+    func completeRetrieval(with error: Error, at index: Int = 0) {
+        retrievalCompletions[index](error)
     }
 }
