@@ -20,6 +20,7 @@ public class FeedStoreSpy: FeedStoreProtocol {
     enum ReceivedMsg: Equatable {
         case deleteCachedFile
         case insert([LocalFeedImage], Date)
+        case retrieve
     }
     
     
@@ -54,5 +55,11 @@ public class FeedStoreSpy: FeedStoreProtocol {
     
     func completeInsertionSuccessfully(at index: Int = 0) {
         insertionCompletions[index](nil)
+    }
+    
+    
+    // MARK: Retrieve Methods
+    public func retrieve() {
+        receivedMsgs.append(.retrieve)
     }
 }
