@@ -75,6 +75,20 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
         
         XCTAssertEqual(store.receivedMsgs, [.retrieve, .deleteCachedFeed])
     }
+    
+    
+    func test_validatesCache_doesNotDeleteInvalidCacheAfterSUTInstanceHasBeenDeallocated() {
+        // This Method triggers when "unowned self" is used instead of "weak self"
+        let store = FeedStoreSpy()
+        var sut: LocalFeedLoader? = LocalFeedLoader(store: store, currentDate: Date.init)
+        
+        sut?.validateCache()
+        sut = nil
+        
+        store.completeRetrieval(with: anyNSError())
+        
+        XCTAssertEqual(store.receivedMsgs, [.retrieve])
+    }
 
 
     // MARK: - Helper Methods
