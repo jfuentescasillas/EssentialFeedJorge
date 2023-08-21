@@ -41,7 +41,7 @@ public final class LocalFeedLoader {
 
 
 // MARK: - Extension. LocalFeedLoader. Save
-extension LocalFeedLoader {
+extension LocalFeedLoader: FeedLoaderProtocol {
     public func save(feed: [FeedImage], completion: @escaping (SaveResult) -> Void) {
         store.deleteCachedFeed { [weak self] error in
             guard let self else { return }
