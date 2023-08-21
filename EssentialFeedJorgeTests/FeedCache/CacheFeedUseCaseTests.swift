@@ -24,7 +24,7 @@ final class CacheFeedUseCaseTests: XCTestCase {
         
         sut.save(feed: uniqueImageFeed().models) { _ in }
         
-        XCTAssertEqual(store.receivedMsgs, [.deleteCachedFile])
+        XCTAssertEqual(store.receivedMsgs, [.deleteCachedFeed])
     }
     
     
@@ -35,7 +35,7 @@ final class CacheFeedUseCaseTests: XCTestCase {
         sut.save(feed: uniqueImageFeed().models) { _ in }
         store.completeDeletion(with: deletionError)
         
-        XCTAssertEqual(store.receivedMsgs, [.deleteCachedFile])
+        XCTAssertEqual(store.receivedMsgs, [.deleteCachedFeed])
     }
     
     
@@ -47,7 +47,7 @@ final class CacheFeedUseCaseTests: XCTestCase {
         sut.save(feed: feed.models) { _ in }
         store.completeDeletionSuccessfully()
         
-        XCTAssertEqual(store.receivedMsgs, [.deleteCachedFile, .insert(feed.locals, timestamp)])
+        XCTAssertEqual(store.receivedMsgs, [.deleteCachedFeed, .insert(feed.locals, timestamp)])
     }
     
     

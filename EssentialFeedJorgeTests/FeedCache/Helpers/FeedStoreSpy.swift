@@ -19,7 +19,7 @@ public class FeedStoreSpy: FeedStoreProtocol {
     
     
     enum ReceivedMsg: Equatable {
-        case deleteCachedFile
+        case deleteCachedFeed
         case insert([LocalFeedImage], Date)
         case retrieve
     }
@@ -28,7 +28,7 @@ public class FeedStoreSpy: FeedStoreProtocol {
     // MARK: Deletion Methods
     public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
         deletionCompletions.append(completion)
-        receivedMsgs.append(.deleteCachedFile)
+        receivedMsgs.append(.deleteCachedFeed)
     }
     
     
