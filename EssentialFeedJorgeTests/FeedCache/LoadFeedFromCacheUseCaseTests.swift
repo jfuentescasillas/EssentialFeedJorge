@@ -178,7 +178,7 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
                 XCTAssertEqual(receivedError, expectedError, file: file, line: line)
                 
             default:
-                XCTFail("Expected \(expectedResult), got \(String(describing: receivedResult))) instead.")
+                XCTFail("Expected \(expectedResult), got \(String(describing: receivedResult))) instead.", file: file, line: line)
             }
             
             exp.fulfill()

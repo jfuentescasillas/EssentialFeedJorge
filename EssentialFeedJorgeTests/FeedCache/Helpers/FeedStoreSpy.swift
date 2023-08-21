@@ -1,5 +1,5 @@
 //
-//  FeedStorySpy.swift
+//  FeedStoreSpy.swift
 //  EssentialFeedJorgeTests
 //
 //  Created by jfuentescasillas on 18/08/23.
