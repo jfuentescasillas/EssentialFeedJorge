@@ -11,9 +11,6 @@ import Foundation
 
 // MARK: - LocalFeedLoader Class
 public final class LocalFeedLoader {
-    public typealias SaveResult = Error?
-    public typealias LoadResult = LoadFeedResult
-    
     private let store: FeedStoreProtocol
     private let currentDate: () -> Date
     private let calendar = Calendar(identifier: .gregorian)
@@ -42,6 +39,9 @@ public final class LocalFeedLoader {
 
 // MARK: - Extension. LocalFeedLoader. Save
 extension LocalFeedLoader: FeedLoaderProtocol {
+    public typealias SaveResult = Error?
+
+    
     public func save(feed: [FeedImage], completion: @escaping (SaveResult) -> Void) {
         store.deleteCachedFeed { [weak self] error in
             guard let self else { return }
@@ -68,6 +68,9 @@ extension LocalFeedLoader: FeedLoaderProtocol {
     
 // MARK: - Extension. LocalFeedLoader. Load
 extension LocalFeedLoader {
+    public typealias LoadResult = LoadFeedResult
+
+    
     public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { [weak self] result in
             guard let self else { return }
