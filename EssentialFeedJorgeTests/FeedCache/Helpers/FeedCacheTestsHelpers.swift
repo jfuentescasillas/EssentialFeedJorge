@@ -29,8 +29,13 @@ func uniqueImageFeed() -> (models: [FeedImage], locals: [LocalFeedImage]) {
 
 // MARK: - Extension. Date
 extension Date {
+    private var feedCacheMaxAgeInDays: Int {
+        return 7
+    }
+    
+    
     func minusFeedCacheMaxAge() -> Date {
-        return adding(days: -7)
+        return adding(days: -feedCacheMaxAgeInDays)
     }
     
     
