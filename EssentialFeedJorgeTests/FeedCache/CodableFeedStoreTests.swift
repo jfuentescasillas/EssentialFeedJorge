@@ -76,6 +76,11 @@ class CodableFeedStore {
             completion(error)
         }
     }
+    
+    
+    func deleteCachedFeed(completion: @escaping FeedStoreProtocol.DeletionCompletion) {
+        completion(nil)
+    }
 }
 
 
@@ -171,6 +176,7 @@ final class CodableFeedStoreTests: XCTestCase {
         let latestInsertionError = insert((latestFeed, latestTimestamp), to: sut)
         
         XCTAssertNil(latestInsertionError, "Expected to override cache successfully")
+       
         expect(sut, toRetrieve: .found(feed: latestFeed, timestamp: latestTimestamp))
     }
     
@@ -183,7 +189,44 @@ final class CodableFeedStoreTests: XCTestCase {
         let insertionError = insert((feed, timestamp), to: sut)
         
         XCTAssertNotNil(insertionError, "Expected cache insertion to fail with an error")
+        
+        expect(sut, toRetrieve: .empty)
     }
+    
+    
+    func test_delete_hasNoSideEffectsOnEmptyCache() {
+            let sut = makeSUT()
+            let exp = expectation(description: "Wait for cache deletion")
+
+            sut.deleteCachedFeed { deletionError in
+                XCTAssertNil(deletionError, "Expected empty cache deletion to succeed")
+                exp.fulfill()
+            }
+            wait(for: [exp], timeout: 1.0)
+
+            expect(sut, toRetrieve: .empty)
+        }
+    
+    
+    /* func test_delete_emptiesPreviouslyInsertedCache() {
+        let sut = makeSUT ( )
+        insert((uniqueImageFeed().locals, Date()), to: sut)
+        
+        let deletionError = deleteCache(from: sut)
+        
+        XCTAssertNil(deletionError, "Expected non-empty cache deletion to succeed")
+        
+        expect (sut, toRetrieve: .empty)
+    }
+    
+    
+    func test_delete_deliversErrorOnDeletionError() {
+        let noDeletePermissionURL = cachesDirectory()
+        let sut = makeSUT(storeURL: noDeletePermissionURL)
+        let deletionError = deleteCache(from: sut)
+        
+        XCTAssertNotNil(deletionError, "Expected cache deletion to fail")
+    } */
     
     
     // MARK: - Helper Methods
