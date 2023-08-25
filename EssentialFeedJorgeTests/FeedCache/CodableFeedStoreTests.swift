@@ -10,45 +10,8 @@ import XCTest
 import EssentialFeedJorge
 
 
-protocol FeedStoreSpecsProtocol {
-    func test_retrieve_deliversEmptyOnEmptyCache()
-    func test_retrieve_hasNoSideEffectsOnEmptyCache()
-    func test_retrieve_deliversFoundValuesOnNonEmptyCache()
-    func test_retrieve_hasNoSideEffectOnNonEmptyCache()
-    
-    func test_insert_deliversNoErrorOnEmptyCache()
-    func test_insert_deliversNoErrornNonEmptyCache()
-    func test_insert_overridesPreviouslyInsertedCacheValues()
-    
-    func test_delete_deliversNoErrorOnEmptyCache()
-    func test_delete_hasNoSideEffectsOnEmptyCache()
-    func test_delete_deliversNoErrornNonEmptyCache()
-    func test_delete_emptiesPreviouslyInsertedCache()
-    
-    func test_storeSideEffects_runSerially()
-}
-
-
-protocol FailableRetrieveFeedStoreSpecs {
-    func test_retrieve_deliversFailureOnRetrievalErTOI()
-    func test_retrieve_hasNoSideEffectsOnFailure()
-}
-
-
-protocol FailableInsertFeedStoreSpecs {
-    func test_insert_deliversErrorOnInsertionError()
-    func test_insert_hasNoSideEffectsOnInsertionError()
-}
-
-
-protocol FailableDeleteFeedStoreSpecsProtocol {
-    func test_delete_deliversNoErrorOnNonEmptyCache()
-    func test_delete_hasNoSideEffectsOnDeletionError()
-}
-
-
 // MARK: - CodableFeedStoreTests
-final class CodableFeedStoreTests: XCTestCase {
+final class CodableFeedStoreTests: XCTestCase, FailableFeedStoreProtocols {
     // Setup is invoked BEFORE every test method execution
     override func setUp() {
         super.setUp()
@@ -91,7 +54,7 @@ final class CodableFeedStoreTests: XCTestCase {
     }
     
     
-    func test_retrieve_hasNoSideEffectOnNonEmptyCache() {
+    func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
         // GIVEN...
         let sut = makeSUT()
         let feed = uniqueImageFeed().locals
@@ -143,6 +106,19 @@ final class CodableFeedStoreTests: XCTestCase {
         let insertionError = insert((uniqueImageFeed().locals, Date()), to: sut)
         
         XCTAssertNil(insertionError, "Expected to override cache successfully")
+    }
+    
+    
+    func test_insert_overridesPreviouslyInsertedCacheValues() {
+        let sut = makeSUT()
+        insert((uniqueImageFeed().locals, Date()), to: sut)
+        
+        let latestFeed = uniqueImageFeed().locals
+        let latestTimestamp = Date()
+        
+        insert((latestFeed, latestTimestamp), to: sut)
+        
+        expect(sut, toRetrieve: .found(feed: latestFeed, timestamp: latestTimestamp))
     }
     
     
