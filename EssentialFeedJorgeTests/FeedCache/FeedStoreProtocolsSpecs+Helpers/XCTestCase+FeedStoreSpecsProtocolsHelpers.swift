@@ -1,5 +1,5 @@
 //
-//  XCTestCase+FeedStoreSpecsProtocol.swift
+//  XCTestCase+FeedStoreSpecsProtocolsHelpers.swift
 //  EssentialFeedJorgeTests
 //
 //  Created by jfuentescasillas on 25/08/23.
