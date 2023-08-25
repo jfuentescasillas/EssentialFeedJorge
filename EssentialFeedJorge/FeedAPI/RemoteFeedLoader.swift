@@ -13,7 +13,7 @@ import Foundation
 public final class RemoteFeedLoader: FeedLoaderProtocol {
     // MARK: - Properties
     private let url: URL
-    private let client: HTTPClient
+    private let client: HTTPClientProtocol
     public typealias Result = LoadFeedResult
     
     
@@ -25,7 +25,7 @@ public final class RemoteFeedLoader: FeedLoaderProtocol {
     
     
     // MARK: - Inits
-    public init(url: URL, client: HTTPClient) {
+    public init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
     }

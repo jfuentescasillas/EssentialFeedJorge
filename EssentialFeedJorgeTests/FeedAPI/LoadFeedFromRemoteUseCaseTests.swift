@@ -247,7 +247,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     
     
     // MARK: - Helper Class
-    class HTTPClientSpy: HTTPClient {
+    class HTTPClientSpy: HTTPClientProtocol {
         // MARK: - Properties
         var requestedURL: URL?
         private var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
