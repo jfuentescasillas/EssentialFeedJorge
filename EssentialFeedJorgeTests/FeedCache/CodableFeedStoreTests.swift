@@ -239,82 +239,6 @@ final class CodableFeedStoreTests: XCTestCase, FailableFeedStoreProtocols {
     }
     
     
-    @discardableResult
-    private func insert(_ cache: (feed: [LocalFeedImage], timestamp: Date), to sut: FeedStoreProtocol) -> Error? {
-        let exp = expectation(description: "Wait for cache insertion")
-        var insertionError: Error?
-        
-        sut.insert(cache.feed, timestamp: cache.timestamp) { receivedInsertionError in
-            insertionError = receivedInsertionError
-            
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1)
-        
-        return insertionError
-    }
-    
-    
-    @discardableResult
-    private func deleteCache(from sut: FeedStoreProtocol) -> Error? {
-        let exp = expectation(description: "Wait for cache deletion")
-        var deletionError: Error?
-        
-        sut.deleteCachedFeed { receivedDeletionError in
-            deletionError = receivedDeletionError
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 4)
-        
-        return deletionError
-    }
-    
-    
-    private func cachesDirectory() -> URL {
-        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
-    }
-    
-    
-    private func expect(_ sut: FeedStoreProtocol, toRetrieve expectedResult: RetrievedCachedFeedResult, file: StaticString = #file, line: UInt = #line) {
-        let exp = expectation (description: "Wait for cache retrieval")
-        
-        sut.retrieve { retrievedResult in
-            switch (expectedResult, retrievedResult) {
-            case (.empty, .empty),
-                (.failure, .failure):
-                break
-                
-            case let (.found(expectedFeed, expectedTimestamp), .found(retrievedFeed, retrievedTimestamp)):
-                XCTAssertEqual(retrievedFeed, expectedFeed, file: file, line: line)
-                XCTAssertEqual(retrievedTimestamp, expectedTimestamp, file: file, line: line)
-                
-            default:
-                XCTFail("Expected to retrieve \(expectedResult), got \(retrievedResult) instead",
-                        file: file, line: line)
-            }
-            
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1.0)
-    }
-    
-    
-    private func expect(_ sut: FeedStoreProtocol, toRetrieveTwice expectedResult: RetrievedCachedFeedResult, file: StaticString = #file, line: UInt = #line) {
-        expect(sut, toRetrieve: expectedResult)
-        expect(sut, toRetrieve: expectedResult)
-    }
-    
-    
-    private func testSpecificStoreURL() -> URL {
-        let storeURL = cachesDirectory().appendingPathComponent("\(type(of: self)).store")
-        
-        return storeURL
-    }
-    
-    
     private func setupEmptyStoreState() {
         deleteStoreArtifacts()
     }
@@ -327,5 +251,17 @@ final class CodableFeedStoreTests: XCTestCase, FailableFeedStoreProtocols {
     
     private func deleteStoreArtifacts() {
         try? FileManager.default.removeItem(at: testSpecificStoreURL())
+    }
+    
+    
+    private func testSpecificStoreURL() -> URL {
+        let storeURL = cachesDirectory().appendingPathComponent("\(type(of: self)).store")
+        
+        return storeURL
+    }
+    
+    
+    private func cachesDirectory() -> URL {
+        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
     }
 }
