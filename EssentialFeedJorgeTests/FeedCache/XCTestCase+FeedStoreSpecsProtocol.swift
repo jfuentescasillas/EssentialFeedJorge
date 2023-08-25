@@ -10,7 +10,24 @@ import XCTest
 import EssentialFeedJorge
 
 
-// MARK: - Extension. FeedStoreSpecsProtocol. Assertions on Error
+// MARK: - Extension. FailableInsertFeedStoreSpecsProtocol. Assertions
+extension FailableInsertFeedStoreSpecsProtocol where Self: XCTestCase {
+    func assertThatInsertDeliversErrorOnInsertionError(on sut: FeedStoreProtocol, file: StaticString = #file, line: UInt = #line) {
+        let insertionError = insert((uniqueImageFeed().locals, Date()), to: sut)
+
+        XCTAssertNotNil(insertionError, "Expected cache insertion to fail with an error", file: file, line: line)
+    }
+    
+
+    func assertThatInsertHasNoSideEffectsOnInsertionError(on sut: FeedStoreProtocol, file: StaticString = #file, line: UInt = #line) {
+        insert((uniqueImageFeed().locals, Date()), to: sut)
+
+        expect(sut, toRetrieve: .empty, file: file, line: line)
+    }
+}
+
+
+// MARK: - Extension. FailableRetrieveFeedStoreSpecsProtocol. Assertions
 extension FailableRetrieveFeedStoreSpecsProtocol where Self: XCTestCase {
     func assertThatRetrieveDeliversFailureOnRetrievalError(on sut: FeedStoreProtocol, file: StaticString = #file, line: UInt = #line) {
         expect(sut, toRetrieve: .failure(anyNSError()), file: file, line: line)
