@@ -10,6 +10,23 @@ import XCTest
 import EssentialFeedJorge
 
 
+// MARK: - Extension. FailableDeleteFeedStoreSpecsProtocol. Assertions
+extension FailableDeleteFeedStoreSpecsProtocol where Self: XCTestCase {
+    func assertThatDeleteDeliversErrorOnDeletionError(on sut: FeedStoreProtocol, file: StaticString = #file, line: UInt = #line) {
+        let deletionError = deleteCache(from: sut)
+
+        XCTAssertNotNil(deletionError, "Expected cache deletion to fail", file: file, line: line)
+    }
+    
+
+    func assertThatDeleteHasNoSideEffectsOnDeletionError(on sut: FeedStoreProtocol, file: StaticString = #file, line: UInt = #line) {
+        deleteCache(from: sut)
+
+        expect(sut, toRetrieve: .empty, file: file, line: line)
+    }
+}
+
+
 // MARK: - Extension. FailableInsertFeedStoreSpecsProtocol. Assertions
 extension FailableInsertFeedStoreSpecsProtocol where Self: XCTestCase {
     func assertThatInsertDeliversErrorOnInsertionError(on sut: FeedStoreProtocol, file: StaticString = #file, line: UInt = #line) {
