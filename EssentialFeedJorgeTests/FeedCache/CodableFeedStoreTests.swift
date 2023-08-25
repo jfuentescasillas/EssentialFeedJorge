@@ -66,7 +66,7 @@ final class CodableFeedStoreTests: XCTestCase, FailableFeedStoreProtocols {
         try! "invalid data".write(to: storeURL, atomically: false, encoding: .utf8)
         
         // THEN...
-        expect(sut, toRetrieve: .failure(anyNSError()))
+        assertThatRetrieveDeliversFailureOnRetrievalError(on: sut)
     }
     
     
@@ -76,7 +76,7 @@ final class CodableFeedStoreTests: XCTestCase, FailableFeedStoreProtocols {
         
         try! "invalid data".write(to: storeURL, atomically: false, encoding: .utf8)
         
-        expect(sut, toRetrieveTwice: .failure(anyNSError()))
+        assertThatRetrieveHasNoSideEffectsOnFailure(on: sut)
     }
     
     

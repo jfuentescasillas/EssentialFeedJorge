@@ -10,6 +10,19 @@ import XCTest
 import EssentialFeedJorge
 
 
+// MARK: - Extension. FeedStoreSpecsProtocol. Assertions on Error
+extension FailableRetrieveFeedStoreSpecsProtocol where Self: XCTestCase {
+    func assertThatRetrieveDeliversFailureOnRetrievalError(on sut: FeedStoreProtocol, file: StaticString = #file, line: UInt = #line) {
+        expect(sut, toRetrieve: .failure(anyNSError()), file: file, line: line)
+    }
+    
+
+    func assertThatRetrieveHasNoSideEffectsOnFailure(on sut: FeedStoreProtocol, file: StaticString = #file, line: UInt = #line) {
+        expect(sut, toRetrieveTwice: .failure(anyNSError()), file: file, line: line)
+    }
+}
+
+
 // MARK: - Extension. FeedStoreSpecsProtocol. Assertions
 extension FeedStoreSpecsProtocol where Self: XCTestCase {
     func assertThatRetrieveDeliversEmptyOnEmptyCache(on sut: FeedStoreProtocol, file: StaticString = #file, line: UInt = #line) {
