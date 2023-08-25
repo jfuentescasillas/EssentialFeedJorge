@@ -99,10 +99,7 @@ public class CodableFeedStore: FeedStoreProtocol {
                 completion(nil)
             } catch {
                 completion(error)
-            }            
+            }
         }
     }
 }
-
-
-

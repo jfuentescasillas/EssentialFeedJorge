@@ -102,7 +102,7 @@ final class CodableFeedStoreTests: XCTestCase {
         let latestInsertionError = insert((latestFeed, latestTimestamp), to: sut)
         
         XCTAssertNil(latestInsertionError, "Expected to override cache successfully")
-       
+        
         expect(sut, toRetrieve: .found(feed: latestFeed, timestamp: latestTimestamp))
     }
     
@@ -134,7 +134,7 @@ final class CodableFeedStoreTests: XCTestCase {
         insert((uniqueImageFeed().locals, Date()), to: sut)
         
         let deletionError = deleteCache(from: sut)
-
+        
         XCTAssertNil(deletionError, "Expected non-empty cache deletion to succeed")
         
         expect(sut, toRetrieve: .empty)
@@ -196,10 +196,10 @@ final class CodableFeedStoreTests: XCTestCase {
         
         sut.insert(cache.feed, timestamp: cache.timestamp) { receivedInsertionError in
             insertionError = receivedInsertionError
-
+            
             exp.fulfill()
         }
-     
+        
         wait(for: [exp], timeout: 1)
         
         return insertionError
@@ -265,7 +265,7 @@ final class CodableFeedStoreTests: XCTestCase {
     
     
     private func setupEmptyStoreState() {
-        deleteStoreArtifacts() 
+        deleteStoreArtifacts()
     }
     
     
