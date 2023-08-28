@@ -39,6 +39,7 @@
 		E4EC076F2A8E455F00CEAF0D /* RemoteFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC076E2A8E455F00CEAF0D /* RemoteFeedItem.swift */; };
 		E4EC07712A8E460600CEAF0D /* LocalFeedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC07702A8E460600CEAF0D /* LocalFeedImage.swift */; };
 		E4EEFC262A9C8A0900924EB6 /* CoreDataFeedStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EEFC252A9C8A0900924EB6 /* CoreDataFeedStoreTests.swift */; };
+		E4EEFC292A9C907100924EB6 /* CoreDataFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EEFC272A9C903300924EB6 /* CoreDataFeedStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		E4EC076E2A8E455F00CEAF0D /* RemoteFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedItem.swift; sourceTree = "<group>"; };
 		E4EC07702A8E460600CEAF0D /* LocalFeedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFeedImage.swift; sourceTree = "<group>"; };
 		E4EEFC252A9C8A0900924EB6 /* CoreDataFeedStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStoreTests.swift; sourceTree = "<group>"; };
+		E4EEFC272A9C903300924EB6 /* CoreDataFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 				E4EC076C2A8E2F6200CEAF0D /* FeedStoreProtocol.swift */,
 				E4EC07702A8E460600CEAF0D /* LocalFeedImage.swift */,
 				E4AA41F42A9782FC00E520C9 /* CodableFeedStore.swift */,
+				E4EEFC272A9C903300924EB6 /* CoreDataFeedStore.swift */,
 			);
 			path = FeedCache;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				E4EC076D2A8E2F6200CEAF0D /* FeedStoreProtocol.swift in Sources */,
 				E431A73F2A7A49F5007723DD /* FeedImage.swift in Sources */,
 				E49276612A8514980009E424 /* URLSessionHTTPClient.swift in Sources */,
+				E4EEFC292A9C907100924EB6 /* CoreDataFeedStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
