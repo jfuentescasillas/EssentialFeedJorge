@@ -61,7 +61,9 @@ final class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecsProtocol {
     
     
     func test_delete_deliversNoErrorOnEmptyCache() {
+        let sut = makeSUT()
         
+        assertThatDeleteDeliversNoErrorOnEmptyCache(on: sut)        
     }
     
     

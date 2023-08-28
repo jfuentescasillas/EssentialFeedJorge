@@ -56,7 +56,7 @@ public final class CoreDataFeedStore: FeedStoreProtocol {
     
     
     public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
-        
+        completion(nil)
     }
 }
 
