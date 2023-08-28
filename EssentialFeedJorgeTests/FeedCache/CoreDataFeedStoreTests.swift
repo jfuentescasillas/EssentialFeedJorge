@@ -54,7 +54,9 @@ final class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecsProtocol {
     
     
     func test_insert_overridesPreviouslyInsertedCacheValues() {
+        let sut = makeSUT()
         
+        assertThatInsertOverridesPreviouslyInsertedCacheValues(on: sut)
     }
     
     
