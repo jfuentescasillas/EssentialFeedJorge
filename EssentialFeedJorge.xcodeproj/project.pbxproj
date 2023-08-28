@@ -38,6 +38,7 @@
 		E4EC076D2A8E2F6200CEAF0D /* FeedStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC076C2A8E2F6200CEAF0D /* FeedStoreProtocol.swift */; };
 		E4EC076F2A8E455F00CEAF0D /* RemoteFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC076E2A8E455F00CEAF0D /* RemoteFeedItem.swift */; };
 		E4EC07712A8E460600CEAF0D /* LocalFeedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC07702A8E460600CEAF0D /* LocalFeedImage.swift */; };
+		E4EEFC262A9C8A0900924EB6 /* CoreDataFeedStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EEFC252A9C8A0900924EB6 /* CoreDataFeedStoreTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		E4EC076C2A8E2F6200CEAF0D /* FeedStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStoreProtocol.swift; sourceTree = "<group>"; };
 		E4EC076E2A8E455F00CEAF0D /* RemoteFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedItem.swift; sourceTree = "<group>"; };
 		E4EC07702A8E460600CEAF0D /* LocalFeedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFeedImage.swift; sourceTree = "<group>"; };
+		E4EEFC252A9C8A0900924EB6 /* CoreDataFeedStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStoreTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 				E4862A072A9388F8007C2ACD /* ValidateFeedCacheUseCaseTests.swift */,
 				E4B723782A96169D002A866D /* CodableFeedStoreTests.swift */,
 				E42B04362A98DC34006139EB /* FeedStoreProtocolsSpecs+Helpers */,
+				E4EEFC252A9C8A0900924EB6 /* CoreDataFeedStoreTests.swift */,
 			);
 			path = FeedCache;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				E462FCBC2A84D3FB00A1B9F8 /* XCTestCase+MemoryLeakTracker.swift in Sources */,
 				E471C5892A83813300148917 /* URLSessionHTTPClientTests.swift in Sources */,
 				E46856FA2A8CED2A0040C5F5 /* CacheFeedUseCaseTests.swift in Sources */,
+				E4EEFC262A9C8A0900924EB6 /* CoreDataFeedStoreTests.swift in Sources */,
 				E4862A082A9388F8007C2ACD /* ValidateFeedCacheUseCaseTests.swift in Sources */,
 				E42B04352A98D3E9006139EB /* XCTestCase+FeedStoreSpecsProtocolsHelpers.swift in Sources */,
 				E42F7CBA2A8F5BD1007BEE78 /* FeedStoreSpy.swift in Sources */,
