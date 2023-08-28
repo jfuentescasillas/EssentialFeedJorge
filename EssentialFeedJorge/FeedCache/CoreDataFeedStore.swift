@@ -12,10 +12,12 @@ import CoreData
 // MARK: - CoreDataFeedStore class
 public final class CoreDataFeedStore: FeedStoreProtocol {
     private let container: NSPersistentContainer
+    private let context: NSManagedObjectContext
     
     
     public init(bundle: Bundle = .main) throws {
         container = try NSPersistentContainer.load(modelName: "FeedStore", in: bundle)
+        context = container.newBackgroundContext()
     }
     
     
