@@ -63,12 +63,14 @@ final class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecsProtocol {
     func test_delete_deliversNoErrorOnEmptyCache() {
         let sut = makeSUT()
         
-        assertThatDeleteDeliversNoErrorOnEmptyCache(on: sut)        
+        assertThatDeleteDeliversNoErrorOnEmptyCache(on: sut)
     }
     
     
     func test_delete_hasNoSideEffectsOnEmptyCache() {
-        
+        let sut = makeSUT()
+
+        assertThatDeleteHasNoSideEffectsOnEmptyCache(on: sut)        
     }
     
     
