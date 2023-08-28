@@ -82,7 +82,9 @@ final class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecsProtocol {
     
     
     func test_delete_emptiesPreviouslyInsertedCache() {
+        let sut = makeSUT()
         
+        assertThatDeleteEmptiesPreviouslyInsertedCache(on: sut)
     }
     
     
