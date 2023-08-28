@@ -20,7 +20,7 @@ final class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecsProtocol {
     
     func test_retrieve_hasNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
-
+        
         assertThatRetrieveHasNoSideEffectsOnEmptyCache(on: sut)
     }
     
@@ -28,13 +28,13 @@ final class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecsProtocol {
     func test_retrieve_deliversFoundValuesOnNonEmptyCache() {
         let sut = makeSUT()
         
-        assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(on: sut)        
+        assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(on: sut)
     }
     
     
     func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
         let sut = makeSUT()
-
+        
         assertThatRetrieveHasNoSideEffectsOnNonEmptyCache(on: sut)
     }
     
@@ -69,13 +69,15 @@ final class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecsProtocol {
     
     func test_delete_hasNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
-
-        assertThatDeleteHasNoSideEffectsOnEmptyCache(on: sut)        
+        
+        assertThatDeleteHasNoSideEffectsOnEmptyCache(on: sut)
     }
     
     
     func test_delete_deliversNoErrorOnNonEmptyCache() {
+        let sut = makeSUT()
         
+        assertThatDeleteDeliversNoErrorOnNonEmptyCache(on: sut)
     }
     
     
