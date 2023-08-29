@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class URLSessionHTTPClient: HTTPClient {
+public class URLSessionHTTPClient: HTTPClientProtocol {
     private let session: URLSession
     
     
