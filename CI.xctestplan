@@ -34,6 +34,13 @@
         "identifier" : "E4DF32EB2A8625D200A4F272",
         "name" : "EssentialFeedJorgeAPIEndToEndTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:EssentialFeedJorge.xcodeproj",
+        "identifier" : "E442DBE32A9DDDC3001AA1E7",
+        "name" : "EssentialFeedJorgeCacheIntegrationTests"
+      }
     }
   ],
   "version" : 1
