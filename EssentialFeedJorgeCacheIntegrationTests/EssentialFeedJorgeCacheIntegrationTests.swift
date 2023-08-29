@@ -52,6 +52,33 @@ final class EssentialFeedJorgeCacheIntegrationTests: XCTestCase {
     }
     
     
+    func test_save_overridesItemsSavedOnASperateInstance() {
+        let sutToPerformFirstSave = makeSUT()
+        let sutToPerformLastSave = makeSUT()
+        let sutToPerformLoad = makeSUT()
+        let firstFeed = uniqueImageFeed().models
+        let latestFeed = uniqueImageFeed().models
+        
+        let saveExp1 = expectation(description: "Wait for save completion")
+        sutToPerformFirstSave.save(feed: firstFeed) { saveError in
+            XCTAssertNil(saveError, "Expected to save feed successfully")
+            saveExp1.fulfill()
+        }
+        
+        wait(for: [saveExp1], timeout: 1)
+        
+        let saveExp2 = expectation (description: "Wait for save completion" )
+        sutToPerformLastSave.save(feed: latestFeed) { saveError in
+            XCTAssertNil(saveError, "Expected to save feed successfully")
+            saveExp2.fulfill()
+        }
+        
+        wait(for: [saveExp2], timeout: 1)
+
+        expect(sutToPerformLoad, toLoad: latestFeed)
+    }
+    
+    
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> LocalFeedLoader {
         let storeBundle = Bundle(for: CoreDataFeedStore.self)
