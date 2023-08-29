@@ -11,6 +11,23 @@ import EssentialFeedJorge
 
 
 final class EssentialFeedJorgeCacheIntegrationTests: XCTestCase {
+    // Setup is invoked BEFORE every test method execution
+    override func setUp() {
+        super.setUp()
+        
+        setupEmptyStoreState()
+    }
+    
+    
+    // Setup is invoked AFTER every test method execution
+    override func tearDown() {
+        super.tearDown()
+        
+        undoStoreSideEffects()
+    }
+    
+    
+    // MARK: - Testing Methods
     func test_load_deliversNoItemsOnEmptyCache() {
         let sut = makeSUT()
         let exp = expectation(description: "Wait for load completion")
@@ -72,6 +89,21 @@ final class EssentialFeedJorgeCacheIntegrationTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return sut
+    }
+    
+    
+    private func setupEmptyStoreState() {
+        deleteStoreArtifacts()
+    }
+    
+    
+    private func undoStoreSideEffects() {
+        deleteStoreArtifacts()
+    }
+    
+    
+    private func deleteStoreArtifacts() {
+        try? FileManager.default.removeItem(at: testSpecificStoreURL())
     }
     
     
