@@ -17,7 +17,7 @@ final class EssentialFeedJorgeCacheIntegrationTests: XCTestCase {
         
         sut.load { result in
             switch result {
-            case let .success (imageFeed) :
+            case let .success (imageFeed):
                 XCTAssertEqual(imageFeed, [], "Expected empty feed")
                 
             case let .failure (error):
