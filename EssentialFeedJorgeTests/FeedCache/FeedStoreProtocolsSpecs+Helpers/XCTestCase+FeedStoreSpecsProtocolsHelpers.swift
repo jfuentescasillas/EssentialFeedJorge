@@ -212,7 +212,7 @@ extension FeedStoreSpecsProtocol where Self: XCTestCase {
     
     
     func expect(_ sut: FeedStoreProtocol, toRetrieve expectedResult: RetrievedCachedFeedResult, file: StaticString = #file, line: UInt = #line) {
-        let exp = expectation (description: "Wait for cache retrieval")
+        let exp = expectation(description: "Wait for cache retrieval")
         
         sut.retrieve { retrievedResult in
             switch (expectedResult, retrievedResult) {
