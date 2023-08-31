@@ -23,7 +23,7 @@ public final class LocalFeedLoader {
 
 
 // MARK: - Extension. LocalFeedLoader. Save
-extension LocalFeedLoader: FeedLoaderProtocol {
+extension LocalFeedLoader {
     public typealias SaveResult = Error?
 
     
@@ -52,7 +52,7 @@ extension LocalFeedLoader: FeedLoaderProtocol {
     
     
 // MARK: - Extension. LocalFeedLoader. Load
-extension LocalFeedLoader {
+extension LocalFeedLoader: FeedLoaderProtocol {
     public typealias LoadResult = LoadFeedResult
 
     
