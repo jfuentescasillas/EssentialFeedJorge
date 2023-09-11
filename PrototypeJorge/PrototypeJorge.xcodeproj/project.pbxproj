@@ -12,6 +12,7 @@
 		E437E3902AAF0460007EF65D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E437E38E2AAF0460007EF65D /* Main.storyboard */; };
 		E437E3922AAF0461007EF65D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E437E3912AAF0461007EF65D /* Assets.xcassets */; };
 		E437E3952AAF0461007EF65D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E437E3932AAF0461007EF65D /* LaunchScreen.storyboard */; };
+		E437E39D2AAF171A007EF65D /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E437E39C2AAF171A007EF65D /* FeedTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		E437E3912AAF0461007EF65D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E437E3942AAF0461007EF65D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E437E3962AAF0461007EF65D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E437E39C2AAF171A007EF65D /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				E437E3882AAF0460007EF65D /* AppDelegate.swift */,
 				E437E38A2AAF0460007EF65D /* SceneDelegate.swift */,
 				E437E38E2AAF0460007EF65D /* Main.storyboard */,
+				E437E39C2AAF171A007EF65D /* FeedTableViewController.swift */,
 				E437E3912AAF0461007EF65D /* Assets.xcassets */,
 				E437E3932AAF0461007EF65D /* LaunchScreen.storyboard */,
 				E437E3962AAF0461007EF65D /* Info.plist */,
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E437E3892AAF0460007EF65D /* AppDelegate.swift in Sources */,
+				E437E39D2AAF171A007EF65D /* FeedTableViewController.swift in Sources */,
 				E437E38B2AAF0460007EF65D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
