@@ -18,17 +18,18 @@ class FeedImageTableViewCell: UITableViewCell {
     @IBOutlet private(set) var descriptionLabel: UILabel!
 
     
-    // MARK: - Default Methods
+    // MARK: - Override Methods
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        feedImageView.alpha = 0
     }
     
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        feedImageView.alpha = 0
     }
     
     
@@ -40,6 +41,18 @@ class FeedImageTableViewCell: UITableViewCell {
         descriptionLabel.text = model.description
         descriptionLabel.isHidden = model.description == nil
         
-        feedImageView.image = UIImage(named: model.imageName)
+        fadeIn(UIImage(named: model.imageName))
+    }
+    
+    
+    public func fadeIn(_ image: UIImage?) {
+        feedImageView.image = image
+        
+        UIView.animate(withDuration: 0.3,
+                       delay: 0.3,
+                       options: [],
+                       animations: {
+            self.feedImageView.alpha = 1
+        })
     }
 }

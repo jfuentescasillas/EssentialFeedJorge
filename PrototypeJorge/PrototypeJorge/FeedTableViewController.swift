@@ -20,6 +20,7 @@ class FeedTableViewController: UITableViewController {
     // MARK: - Properties
     private let feed = FeedImageViewModel.prototypeFeed
     
+    
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,7 @@ class FeedTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
