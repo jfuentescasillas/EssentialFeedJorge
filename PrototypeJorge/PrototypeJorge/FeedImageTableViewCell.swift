@@ -30,5 +30,16 @@ class FeedImageTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    
+    // MARK: - Custom Methods
+    public func configure(with model: FeedImageViewModel) {
+        locationLabel.text = model.location
+        locationContainer.isHidden = model.location == nil
+        
+        descriptionLabel.text = model.description
+        descriptionLabel.isHidden = model.description == nil
+        
+        feedImageView.image = UIImage(named: model.imageName)
+    }
 }

@@ -17,9 +17,14 @@ struct FeedImageViewModel {
 
 
 class FeedTableViewController: UITableViewController {
+    // MARK: - Properties
+    private let feed = FeedImageViewModel.prototypeFeed
+    
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -28,12 +33,15 @@ class FeedTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
+        return feed.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedImageCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedImageCell", for: indexPath) as! FeedImageTableViewCell
+        let model = feed[indexPath.row]
+        
+        cell.configure(with: model)
 
         return cell
     }
