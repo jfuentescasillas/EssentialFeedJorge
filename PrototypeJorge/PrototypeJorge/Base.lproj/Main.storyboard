@@ -26,7 +26,7 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedImageCell" rowHeight="580" id="D5m-f2-xBV">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedImageCell" rowHeight="580" id="D5m-f2-xBV" customClass="FeedImageTableViewCell" customModule="PrototypeJorge" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="66" width="393" height="580"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D5m-f2-xBV" id="5UJ-pH-NOS">
@@ -59,7 +59,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPa-hV-UHO">
                                                             <rect key="frame" x="18" y="0.0" width="63" height="36"/>
                                                             <string key="text">Location,
-Location </string>
+Location</string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -109,6 +109,13 @@ Location </string>
                                         <constraint firstItem="M3W-6h-FQ4" firstAttribute="leading" secondItem="5UJ-pH-NOS" secondAttribute="leadingMargin" id="zrz-Aa-D18"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="XPp-Sd-Cce" id="hoz-qC-pBU"/>
+                                    <outlet property="feedImageContainer" destination="yBF-OZ-7hb" id="5av-fF-70w"/>
+                                    <outlet property="feedImageView" destination="0xx-ZK-T2a" id="GN0-zv-nV9"/>
+                                    <outlet property="locationContainer" destination="vTx-XS-Y7j" id="PZD-wp-pqS"/>
+                                    <outlet property="locationLabel" destination="cPa-hV-UHO" id="1ln-ix-3XW"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
