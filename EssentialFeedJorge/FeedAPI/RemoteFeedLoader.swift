@@ -14,7 +14,7 @@ public final class RemoteFeedLoader: FeedLoaderProtocol {
     // MARK: - Properties
     private let url: URL
     private let client: HTTPClientProtocol
-    public typealias Result = LoadFeedResult
+    public typealias Result = FeedLoaderProtocol.Result
     
     
     // MARK: - Enums
@@ -37,7 +37,7 @@ public final class RemoteFeedLoader: FeedLoaderProtocol {
             guard self != nil else { return }
             
             switch result {
-            case let .success(data, response):
+            case let .success((data, response)):
                 completion(RemoteFeedLoader.map(data, from: response))
                 
             case .failure:
