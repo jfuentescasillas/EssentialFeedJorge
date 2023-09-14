@@ -10,15 +10,22 @@ import UIKit
 import EssentialFeedJorge
 
 
+public protocol FeedImageDataLoaderProtocol {
+    func loadImageData(from url: URL)
+}
+
+
 // MARK: - FeedViewController Class
 final public class FeedViewController: UITableViewController {
-    private var loader: FeedLoaderProtocol?
+    private var feedLoader: FeedLoaderProtocol?
+    private var imageLoader: FeedImageDataLoaderProtocol?
     private var tableModel = [FeedImage]()
     
     
-    public convenience init(loader: FeedLoaderProtocol) {
+    public convenience init(feedLoader: FeedLoaderProtocol, imageLoader: FeedImageDataLoaderProtocol) {
         self.init()
-        self.loader = loader
+        self.feedLoader = feedLoader
+        self.imageLoader = imageLoader
     }
     
     
@@ -34,8 +41,8 @@ final public class FeedViewController: UITableViewController {
     
     @objc private func load() {
         refreshControl?.beginRefreshing()
-
-        loader?.load { [weak self] result in
+        
+        feedLoader?.load { [weak self] result in
             guard let self else { return }
             
             if let feed = try? result.get() {
@@ -60,6 +67,8 @@ final public class FeedViewController: UITableViewController {
         cell.locationLabel.text = cellModel.location
         cell.descriptionLabel.text = cellModel.description
         
-        return cell        
+        imageLoader?.loadImageData(from: cellModel.url)
+        
+        return cell
     }
 }
