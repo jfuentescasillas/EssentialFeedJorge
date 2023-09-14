@@ -346,6 +346,7 @@ final class FeedViewControllerTests: XCTestCase {
         
         func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoaderProtocol.Result) -> Void) -> FeedImageDataLoaderTask {
             imageRequests.append((url, completion))
+            
             return TaskSpy { [weak self] in self?.cancelledImageURLs.append(url) }
         }
         
