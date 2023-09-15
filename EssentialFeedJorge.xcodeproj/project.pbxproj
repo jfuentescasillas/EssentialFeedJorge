@@ -66,6 +66,7 @@
 		E4FA2DC32AB465C900CFE6CA /* FeedRefreshViewController.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DC22AB465C900CFE6CA /* FeedRefreshViewController.swift .swift */; };
 		E4FA2DC52AB4690900CFE6CA /* FeedImageCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DC42AB4690900CFE6CA /* FeedImageCellController.swift */; };
 		E4FA2DC82AB46BBB00CFE6CA /* FeedUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DC72AB46BBB00CFE6CA /* FeedUIComposer.swift */; };
+		E4FA2DCB2AB48B9400CFE6CA /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DCA2AB48B9400CFE6CA /* FeedViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +180,7 @@
 		E4FA2DC22AB465C900CFE6CA /* FeedRefreshViewController.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedRefreshViewController.swift .swift"; sourceTree = "<group>"; };
 		E4FA2DC42AB4690900CFE6CA /* FeedImageCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageCellController.swift; sourceTree = "<group>"; };
 		E4FA2DC72AB46BBB00CFE6CA /* FeedUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUIComposer.swift; sourceTree = "<group>"; };
+		E4FA2DCA2AB48B9400CFE6CA /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -470,6 +472,7 @@
 		E4FA2DB62AB460F400CFE6CA /* FeedUI */ = {
 			isa = PBXGroup;
 			children = (
+				E4FA2DC92AB48B7B00CFE6CA /* Models */,
 				E4FA2DC62AB46BB200CFE6CA /* Composers */,
 				E4FA2DAD2AB45CDB00CFE6CA /* Views */,
 				E4FA2DAC2AB45CC800CFE6CA /* Controllers */,
@@ -526,6 +529,14 @@
 				E4FA2DC72AB46BBB00CFE6CA /* FeedUIComposer.swift */,
 			);
 			path = Composers;
+			sourceTree = "<group>";
+		};
+		E4FA2DC92AB48B7B00CFE6CA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E4FA2DCA2AB48B9400CFE6CA /* FeedViewModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -825,6 +836,7 @@
 				E4242E0A2AB0A81100785984 /* FeedViewController.swift in Sources */,
 				E4F4CAA52AB1DECC00F522EB /* FeedImageTableViewCell.swift in Sources */,
 				E4FA2DC52AB4690900CFE6CA /* FeedImageCellController.swift in Sources */,
+				E4FA2DCB2AB48B9400CFE6CA /* FeedViewModel.swift in Sources */,
 				E4FA2DC82AB46BBB00CFE6CA /* FeedUIComposer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
