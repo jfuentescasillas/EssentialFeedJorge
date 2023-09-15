@@ -19,7 +19,7 @@ final class FeedRefreshViewController: NSObject {
     }
 
         
-    private func binded(_ view: UIRefreshControl) -> UIRefreshControl{
+    private func binded(_ view: UIRefreshControl) -> UIRefreshControl {
         viewModel.onLoadingStateChange = { [weak view] isLoading in
             guard let view else { return }
             
