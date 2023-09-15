@@ -15,10 +15,12 @@ final class FeedImageCellController {
     private let model: FeedImage
     private let imageLoader: FeedImageDataLoaderProtocol
     
+    
     init(model: FeedImage, imageLoader: FeedImageDataLoaderProtocol) {
         self.model = model
         self.imageLoader = imageLoader
     }
+    
     
     func view() -> UITableViewCell {
         let cell = FeedImageTableViewCell()
@@ -54,7 +56,7 @@ final class FeedImageCellController {
     }
     
     
-    deinit {
+    func cancelLoad() {
         task?.cancel()
     }
 }
