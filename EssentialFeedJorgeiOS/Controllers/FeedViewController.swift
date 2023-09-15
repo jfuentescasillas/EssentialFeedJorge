@@ -24,7 +24,7 @@ public protocol FeedImageDataLoaderProtocol {
 
 
 // MARK: - FeedViewController Class
-final public class FeedViewController: UITableViewController  {
+public final class FeedViewController: UITableViewController  {
     private var feedLoader: FeedLoaderProtocol?
     private var imageLoader: FeedImageDataLoaderProtocol?
     private var tableModel = [FeedImage]()
