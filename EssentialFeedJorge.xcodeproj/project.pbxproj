@@ -57,6 +57,7 @@
 		E4FA2DA42AB44B3E00CFE6CA /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DA32AB44B3E00CFE6CA /* UIImage+TestHelpers.swift */; };
 		E4FA2DA62AB44BCD00CFE6CA /* UIRefreshControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DA52AB44BCD00CFE6CA /* UIRefreshControl+TestHelpers.swift */; };
 		E4FA2DA82AB44DD900CFE6CA /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DA72AB44DD900CFE6CA /* UIButton+TestHelpers.swift */; };
+		E4FA2DAA2AB4596300CFE6CA /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DA92AB4596300CFE6CA /* UIControl+TestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +162,7 @@
 		E4FA2DA32AB44B3E00CFE6CA /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
 		E4FA2DA52AB44BCD00CFE6CA /* UIRefreshControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		E4FA2DA72AB44DD900CFE6CA /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
+		E4FA2DA92AB4596300CFE6CA /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,6 +419,7 @@
 				E4FA2DA32AB44B3E00CFE6CA /* UIImage+TestHelpers.swift */,
 				E4FA2DA52AB44BCD00CFE6CA /* UIRefreshControl+TestHelpers.swift */,
 				E4FA2DA72AB44DD900CFE6CA /* UIButton+TestHelpers.swift */,
+				E4FA2DA92AB4596300CFE6CA /* UIControl+TestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				E40687462AB0862000BCB67B /* FeedViewControllerTests.swift in Sources */,
 				E4FA2DA82AB44DD900CFE6CA /* UIButton+TestHelpers.swift in Sources */,
 				E4FA2DA62AB44BCD00CFE6CA /* UIRefreshControl+TestHelpers.swift in Sources */,
+				E4FA2DAA2AB4596300CFE6CA /* UIControl+TestHelpers.swift in Sources */,
 				E40687522AB08CB500BCB67B /* XCTestCase+MemoryLeakTracker.swift in Sources */,
 				E4FA2DA42AB44B3E00CFE6CA /* UIImage+TestHelpers.swift in Sources */,
 			);
