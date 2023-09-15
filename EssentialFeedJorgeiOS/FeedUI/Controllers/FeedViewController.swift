@@ -7,7 +7,6 @@
 
 
 import UIKit
-import EssentialFeedJorge
 
 
 // MARK: - FeedViewController Class
