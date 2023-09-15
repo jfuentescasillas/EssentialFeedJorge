@@ -12,15 +12,19 @@ import EssentialFeedJorge
 
 // MARK: - FeedViewController Class
 public final class FeedViewController: UITableViewController  {
-    private var feedLoader: FeedLoaderProtocol?
+    private var refreshController: FeedRefreshViewController?
     private var imageLoader: FeedImageDataLoaderProtocol?
-    private var tableModel = [FeedImage]()
     private var tasks = [IndexPath: FeedImageDataLoaderTask]()
-    
+    private var tableModel = [FeedImage]() {
+        didSet {
+            tableView.reloadData()            
+        }
+    }
+        
     
     public convenience init(feedLoader: FeedLoaderProtocol, imageLoader: FeedImageDataLoaderProtocol) {
         self.init()
-        self.feedLoader = feedLoader
+        self.refreshController = FeedRefreshViewController(feedLoader: feedLoader)
         self.imageLoader = imageLoader
     }
     
@@ -28,28 +32,13 @@ public final class FeedViewController: UITableViewController  {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
+        refreshControl = refreshController?.view
+        refreshController?.onRefresh = { [weak self] feed in
+            self?.tableModel = feed
+        }
         
         tableView.prefetchDataSource = self
-        
-        load()
-    }
-    
-    
-    @objc private func load() {
-        refreshControl?.beginRefreshing()
-        
-        feedLoader?.load { [weak self] result in
-            guard let self else { return }
-            
-            if let feed = try? result.get() {
-                self.tableModel = feed
-                self.tableView.reloadData()
-            }
-            
-            self.refreshControl?.endRefreshing()
-        }
+        refreshController?.refresh()
     }
     
     
