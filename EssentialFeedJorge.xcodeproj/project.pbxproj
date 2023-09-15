@@ -62,6 +62,7 @@
 		E4FA2DB12AB45E4500CFE6CA /* FeedImageCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DB02AB45E4500CFE6CA /* FeedImageCell+TestHelpers.swift */; };
 		E4FA2DB32AB45EB500CFE6CA /* FeedViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DB22AB45EB500CFE6CA /* FeedViewControllerTests+LoaderSpy.swift */; };
 		E4FA2DB52AB45FC600CFE6CA /* FeedViewControllerTests+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DB42AB45FC600CFE6CA /* FeedViewControllerTests+Assertions.swift */; };
+		E4FA2DC12AB4643E00CFE6CA /* FeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DC02AB4643E00CFE6CA /* FeedImageDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +172,7 @@
 		E4FA2DB02AB45E4500CFE6CA /* FeedImageCell+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedImageCell+TestHelpers.swift"; sourceTree = "<group>"; };
 		E4FA2DB22AB45EB500CFE6CA /* FeedViewControllerTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewControllerTests+LoaderSpy.swift"; sourceTree = "<group>"; };
 		E4FA2DB42AB45FC600CFE6CA /* FeedViewControllerTests+Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewControllerTests+Assertions.swift"; sourceTree = "<group>"; };
+		E4FA2DC02AB4643E00CFE6CA /* FeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,6 +398,7 @@
 		E4C653662AB05F11007DA9F4 /* EssentialFeedJorgeiOS */ = {
 			isa = PBXGroup;
 			children = (
+				E4FA2DBF2AB4642B00CFE6CA /* FeedImageLoader */,
 				E4FA2DB62AB460F400CFE6CA /* FeedUI */,
 			);
 			path = EssentialFeedJorgeiOS;
@@ -498,6 +501,14 @@
 				E4FA2DB22AB45EB500CFE6CA /* FeedViewControllerTests+LoaderSpy.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E4FA2DBF2AB4642B00CFE6CA /* FeedImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				E4FA2DC02AB4643E00CFE6CA /* FeedImageDataLoader.swift */,
+			);
+			path = FeedImageLoader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -791,6 +802,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4FA2DC12AB4643E00CFE6CA /* FeedImageDataLoader.swift in Sources */,
 				E4CE78D72AB31CD20060E7BE /* UIView+Shimmering.swift in Sources */,
 				E4242E0A2AB0A81100785984 /* FeedViewController.swift in Sources */,
 				E4F4CAA52AB1DECC00F522EB /* FeedImageTableViewCell.swift in Sources */,
