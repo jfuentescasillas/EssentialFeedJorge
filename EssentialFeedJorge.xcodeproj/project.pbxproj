@@ -59,6 +59,7 @@
 		E4FA2DA82AB44DD900CFE6CA /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DA72AB44DD900CFE6CA /* UIButton+TestHelpers.swift */; };
 		E4FA2DAA2AB4596300CFE6CA /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DA92AB4596300CFE6CA /* UIControl+TestHelpers.swift */; };
 		E4FA2DAF2AB45DB300CFE6CA /* FeedViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DAE2AB45DB300CFE6CA /* FeedViewController+TestHelpers.swift */; };
+		E4FA2DB12AB45E4500CFE6CA /* FeedImageCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DB02AB45E4500CFE6CA /* FeedImageCell+TestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +166,7 @@
 		E4FA2DA72AB44DD900CFE6CA /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
 		E4FA2DA92AB4596300CFE6CA /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		E4FA2DAE2AB45DB300CFE6CA /* FeedViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewController+TestHelpers.swift"; sourceTree = "<group>"; };
+		E4FA2DB02AB45E4500CFE6CA /* FeedImageCell+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedImageCell+TestHelpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,6 +424,7 @@
 				E4FA2DA72AB44DD900CFE6CA /* UIButton+TestHelpers.swift */,
 				E4FA2DA92AB4596300CFE6CA /* UIControl+TestHelpers.swift */,
 				E4FA2DAE2AB45DB300CFE6CA /* FeedViewController+TestHelpers.swift */,
+				E4FA2DB02AB45E4500CFE6CA /* FeedImageCell+TestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -759,6 +762,7 @@
 				E4FA2DAF2AB45DB300CFE6CA /* FeedViewController+TestHelpers.swift in Sources */,
 				E40687522AB08CB500BCB67B /* XCTestCase+MemoryLeakTracker.swift in Sources */,
 				E4FA2DA42AB44B3E00CFE6CA /* UIImage+TestHelpers.swift in Sources */,
+				E4FA2DB12AB45E4500CFE6CA /* FeedImageCell+TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
