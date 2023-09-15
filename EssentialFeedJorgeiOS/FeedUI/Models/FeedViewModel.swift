@@ -11,6 +11,8 @@ import EssentialFeedJorge
 
 
 final class FeedViewModel {
+    typealias Observer<T> = (T) -> Void
+    
     private let feedLoader: FeedLoaderProtocol
 
     
@@ -19,17 +21,12 @@ final class FeedViewModel {
     }
     
     
-    var onChange: ((FeedViewModel) -> Void)?
-    var onFeedLoad: (([FeedImage]) -> Void)?
-    private(set) var isLoading: Bool = false {
-        didSet {
-            onChange?(self)
-        }
-    }
+    var onLoadingStateChange: ((Bool) -> Void)?
+    var onFeedLoad: Observer<[FeedImage]>?
     
     
     func loadFeed() {
-        isLoading = true
+        onLoadingStateChange?(true)
         feedLoader.load { [weak self] result in
             guard let self else { return }
             
@@ -37,7 +34,7 @@ final class FeedViewModel {
                 self.onFeedLoad?(feed)
             }
             
-            self.isLoading = false
+            self.onLoadingStateChange?(false)
         }
     }
 }
