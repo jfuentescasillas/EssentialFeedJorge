@@ -458,18 +458,6 @@ private extension FeedImageTableViewCell {
 }
 
 
-// MARK: - Extension. UIRefreshControl
-private extension UIRefreshControl {
-    func simulatePullToRefresh() {
-        allTargets.forEach { target in
-            actions(forTarget: target, forControlEvent: .valueChanged)?.forEach {
-                (target as NSObject).perform(Selector($0))
-            }
-        }
-    }
-}
-
-
 // MARK: - Extension. UIButton
 private extension UIButton {
     func simulateTap() {
