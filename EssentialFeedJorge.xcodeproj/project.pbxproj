@@ -64,6 +64,7 @@
 		E4FA2DB52AB45FC600CFE6CA /* FeedViewControllerTests+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DB42AB45FC600CFE6CA /* FeedViewControllerTests+Assertions.swift */; };
 		E4FA2DC12AB4643E00CFE6CA /* FeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DC02AB4643E00CFE6CA /* FeedImageDataLoader.swift */; };
 		E4FA2DC32AB465C900CFE6CA /* FeedRefreshViewController.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DC22AB465C900CFE6CA /* FeedRefreshViewController.swift .swift */; };
+		E4FA2DC52AB4690900CFE6CA /* FeedImageCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DC42AB4690900CFE6CA /* FeedImageCellController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +176,7 @@
 		E4FA2DB42AB45FC600CFE6CA /* FeedViewControllerTests+Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewControllerTests+Assertions.swift"; sourceTree = "<group>"; };
 		E4FA2DC02AB4643E00CFE6CA /* FeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoader.swift; sourceTree = "<group>"; };
 		E4FA2DC22AB465C900CFE6CA /* FeedRefreshViewController.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedRefreshViewController.swift .swift"; sourceTree = "<group>"; };
+		E4FA2DC42AB4690900CFE6CA /* FeedImageCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageCellController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,6 +451,7 @@
 			children = (
 				E4242E092AB0A81100785984 /* FeedViewController.swift */,
 				E4FA2DC22AB465C900CFE6CA /* FeedRefreshViewController.swift .swift */,
+				E4FA2DC42AB4690900CFE6CA /* FeedImageCellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -810,6 +813,7 @@
 				E4FA2DC32AB465C900CFE6CA /* FeedRefreshViewController.swift .swift in Sources */,
 				E4242E0A2AB0A81100785984 /* FeedViewController.swift in Sources */,
 				E4F4CAA52AB1DECC00F522EB /* FeedImageTableViewCell.swift in Sources */,
+				E4FA2DC52AB4690900CFE6CA /* FeedImageCellController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
