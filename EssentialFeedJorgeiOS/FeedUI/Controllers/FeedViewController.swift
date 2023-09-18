@@ -9,9 +9,15 @@
 import UIKit
 
 
+// MARK: - Protocols
+protocol FeedViewControllerDelegate {
+    func didRequestFeedRefresh()
+}
+
+
 // MARK: - FeedViewController Class
 public final class FeedViewController: UITableViewController  {
-    @IBOutlet var refreshController: FeedRefreshViewController?
+    var delegate: FeedViewControllerDelegate?
     var tableModel = [FeedImageCellController]() {
         didSet {
             tableView.reloadData()
@@ -23,7 +29,13 @@ public final class FeedViewController: UITableViewController  {
         super.viewDidLoad()
         
         tableView.prefetchDataSource = self
-        refreshController?.refresh()
+        refresh()
+    }
+    
+    
+    // MARK: - Action methods
+    @IBAction private func refresh() {
+        delegate?.didRequestFeedRefresh()
     }
     
     
@@ -67,5 +79,17 @@ extension FeedViewController: UITableViewDataSourcePrefetching {
     
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach(cancelCellControllerLoad)
+    }
+}
+
+
+// MARK: - Extension. FeedViewController. FeedLoadingViewProtocol
+extension FeedViewController: FeedLoadingViewProtocol {
+    func display(_ viewModel: FeedLoadingViewModel) {
+        if viewModel.isLoading {
+            refreshControl?.beginRefreshing()
+        } else {
+            refreshControl?.endRefreshing()
+        }
     }
 }
