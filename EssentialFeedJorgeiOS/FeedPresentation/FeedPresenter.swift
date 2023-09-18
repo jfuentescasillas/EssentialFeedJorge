@@ -9,7 +9,8 @@
 import EssentialFeedJorge
 
 
-protocol FeedLoadingViewProtocol: AnyObject {
+// MARK: - FeedView Protocols
+protocol FeedLoadingViewProtocol {
     func display(isLoading: Bool)
 }
 
@@ -19,7 +20,7 @@ protocol FeedViewProtocol {
 }
 
 
-
+// MARK: - FeedPresenter Class
 final class FeedPresenter {
     typealias Observer<T> = (T) -> Void
     
@@ -31,7 +32,7 @@ final class FeedPresenter {
     }
     
     
-    weak var loadingView: FeedLoadingViewProtocol?
+    var loadingView: FeedLoadingViewProtocol?
     var feedView: FeedViewProtocol?
     
     
