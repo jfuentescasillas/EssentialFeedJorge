@@ -9,20 +9,9 @@
 import EssentialFeedJorge
 
 
-// MARK: - FeedLoadingView Elements
-struct FeedLoadingViewModel {
-    let isLoading: Bool
-}
-
-
+// MARK: - Protocols
 protocol FeedLoadingViewProtocol {
     func display(_ viewModel: FeedLoadingViewModel)
-}
-
-
-// MARK: - FeedView Elements
-struct FeedViewModel {
-    let feed: [FeedImage]
 }
 
 
