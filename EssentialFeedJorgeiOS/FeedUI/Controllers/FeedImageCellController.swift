@@ -57,4 +57,3 @@ final class FeedImageCellController {
         return cell
     }
 }
-
