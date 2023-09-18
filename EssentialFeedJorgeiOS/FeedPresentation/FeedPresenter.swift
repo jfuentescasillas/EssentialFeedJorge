@@ -33,22 +33,28 @@ protocol FeedViewProtocol {
 
 // MARK: - FeedPresenter Class
 final class FeedPresenter {
-    var loadingView: FeedLoadingViewProtocol?
-    var feedView: FeedViewProtocol?
+    private let loadingView: FeedLoadingViewProtocol
+    private let feedView: FeedViewProtocol
+    
+    
+    init(loadingView: FeedLoadingViewProtocol, feedView: FeedViewProtocol) {
+        self.loadingView = loadingView
+        self.feedView = feedView
+    }
     
     
     func didStartLoadingFeed() {
-        loadingView?.display(FeedLoadingViewModel(isLoading: true))
+        loadingView.display(FeedLoadingViewModel(isLoading: true))
     }
     
     
     func didFinishLoadingFeed(with feed: [FeedImage]) {
-        feedView?.display(FeedViewModel(feed: feed))
-        loadingView?.display(FeedLoadingViewModel(isLoading: false))
+        feedView.display(FeedViewModel(feed: feed))
+        loadingView.display(FeedLoadingViewModel(isLoading: false))
     }
     
     
     func didFinishLoadingFeed(with error: Error) {
-        loadingView?.display(FeedLoadingViewModel(isLoading: false))
+        loadingView.display(FeedLoadingViewModel(isLoading: false))
     }
 }
