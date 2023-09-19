@@ -24,6 +24,9 @@ protocol FeedViewProtocol {
 final class FeedPresenter {
     private let loadingView: FeedLoadingViewProtocol
     private let feedView: FeedViewProtocol
+    static var title: String {
+        return "My Feed"
+    }
     
     
     init(loadingView: FeedLoadingViewProtocol, feedView: FeedViewProtocol) {
