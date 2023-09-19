@@ -1,5 +1,5 @@
 //
-//  LocalFeedItem.swift
+//  LocalFeedImage.swift
 //  EssentialFeedJorge
 //
 //  Created by jfuentescasillas on 17/08/23.

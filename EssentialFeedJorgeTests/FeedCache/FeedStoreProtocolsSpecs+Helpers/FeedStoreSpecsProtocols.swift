@@ -46,4 +46,4 @@ protocol FailableDeleteFeedStoreSpecsProtocol: FeedStoreSpecsProtocol {
 }
 
 
-typealias FailableFeedStoreProtocols = FailableRetrieveFeedStoreSpecsProtocol & FailableInsertFeedStoreSpecsProtocol & FailableDeleteFeedStoreSpecsProtocol
+typealias FailableFeedStoreSpecsProtocols = FailableRetrieveFeedStoreSpecsProtocol & FailableInsertFeedStoreSpecsProtocol & FailableDeleteFeedStoreSpecsProtocol
