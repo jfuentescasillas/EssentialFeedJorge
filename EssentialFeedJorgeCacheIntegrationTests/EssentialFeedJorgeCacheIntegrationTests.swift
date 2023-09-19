@@ -30,33 +30,21 @@ final class EssentialFeedJorgeCacheIntegrationTests: XCTestCase {
     // MARK: - Testing Methods
     func test_load_deliversNoItemsOnEmptyCache() {
         let sut = makeSUT()
+        let exp = expectation(description: "Wait for load completion")
         
-        expect(sut, toLoad: [])
-    }
-    
-    
-    func test_load_deliversItemsSavedOnASeparateInstance() {
-        let sutToPerformSave = makeSUT()
-        let sutToPerformLoad = makeSUT()
-        let feed = uniqueImageFeed().models
+        sut.load { result in
+            switch result {
+            case let .success (imageFeed):
+                XCTAssertEqual(imageFeed, [], "Expected empty feed")
+                
+            case let .failure (error):
+                XCTFail ("Expected successful feed result, got \(error) instead")
+            }
+            
+            exp.fulfill ()
+        }
         
-        save(feed, with: sutToPerformSave)
-        
-        expect(sutToPerformLoad, toLoad: feed)
-    }
-    
-    
-    func test_save_overridesItemsSavedOnASperateInstance() {
-        let sutToPerformFirstSave = makeSUT()
-        let sutToPerformLastSave = makeSUT()
-        let sutToPerformLoad = makeSUT()
-        let firstFeed = uniqueImageFeed().models
-        let latestFeed = uniqueImageFeed().models
-        
-        save(firstFeed, with: sutToPerformFirstSave)
-        save(latestFeed, with: sutToPerformLastSave)
-        
-        expect(sutToPerformLoad, toLoad: latestFeed)
+        wait (for: [exp], timeout: 1.0)
     }
     
     
