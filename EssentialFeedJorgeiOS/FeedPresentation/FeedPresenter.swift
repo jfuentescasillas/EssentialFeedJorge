@@ -6,6 +6,7 @@
 //
 
 
+import Foundation
 import EssentialFeedJorge
 
 
@@ -25,7 +26,7 @@ final class FeedPresenter {
     private let loadingView: FeedLoadingViewProtocol
     private let feedView: FeedViewProtocol
     static var title: String {
-        return "My Feed"
+        return NSLocalizedString("FEED_VIEW_TITLE", tableName: "Feed", bundle: Bundle(for: FeedPresenter.self), comment: "Title for the feed view")
     }
     
     
