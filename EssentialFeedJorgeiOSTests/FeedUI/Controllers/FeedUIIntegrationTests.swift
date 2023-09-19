@@ -12,8 +12,8 @@ import EssentialFeedJorge
 import EssentialFeedJorgeiOS
 
 
-// MARK: - FeedViewControllerTests Class
-final class FeedViewControllerTests: XCTestCase {
+// MARK: - FeedUIIntegrationTests Class
+final class FeedUIIntegrationTests: XCTestCase {
     func test_feedView_hasTitle() {
         let (sut, _) = makeSUT()
         

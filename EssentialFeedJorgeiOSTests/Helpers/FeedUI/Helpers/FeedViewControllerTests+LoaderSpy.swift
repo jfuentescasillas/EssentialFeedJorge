@@ -1,5 +1,5 @@
 //
-//  FeedViewControllerTests+LoaderSpy.swift
+//  FeedUIIntegrationTests+LoaderSpy.swift
 //  EssentialFeedJorgeiOSTests
 //
 //  Created by jfuentescasillas on 15/09/23.
@@ -11,8 +11,8 @@ import EssentialFeedJorge
 import EssentialFeedJorgeiOS
 
 
-// MARK: - Extension. FeedViewControllerTests
-extension FeedViewControllerTests {
+// MARK: - Extension. FeedUIIntegrationTests
+extension FeedUIIntegrationTests {
     // MARK: - LoaderSpy class
     class LoaderSpy: FeedLoaderProtocol, FeedImageDataLoaderProtocol {
         // MARK: Feed Loader
