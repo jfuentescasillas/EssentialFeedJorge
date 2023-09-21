@@ -23,7 +23,6 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         // ASSERT: Then assert that a URL request was initiated in the client.
         // Here, we assert that it wasn't done a URL Request since that only
         // happens when .load() is invoked
-        XCTAssertNil(client.requestedURL)
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
@@ -37,20 +36,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         sut.load { _ in }
         
         // ASSERT: Then assert that a URL request was initiated in the client
-        XCTAssertNotNil(client.requestedURL)
-    }
-    
-    
-    func test_load_requestDataFromURLAndURLsAreEqual() {
-        // ARRANGE: Given a SUT (System Under Test) and a client
-        let url = URL(string: "https://a-given-url.com")!
-        let (sut, client) = makeSUT(url: url) // HTTPClientSpy()
-        
-        // ACT: When we invoke sut.load()
-        sut.load { _ in }
-        
-        // ASSERT: Then assert that a URL request was initiated in the client
-        XCTAssertEqual(client.requestedURL, url)
+        XCTAssertEqual(client.requestedURLs, [url])
     }
     
     
@@ -249,7 +235,6 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     // MARK: - Helper Class
     class HTTPClientSpy: HTTPClientProtocol {
         // MARK: - Properties
-        var requestedURL: URL?
         private var messages = [(url: URL, completion: (HTTPClientProtocol.Result) -> Void)]()
         var requestedURLs: [URL] {
             return messages.map { $0.url }
@@ -259,7 +244,6 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         // MARK: - Methods
         func get(from url: URL, completion: @escaping (HTTPClientProtocol.Result) -> Void) {
             messages.append((url, completion))
-            requestedURL = url
         }
         
         
@@ -276,7 +260,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
                 headerFields: nil
             )!
             
-            messages[index].completion(.success((data, response)))
+            messages[index].completion(.success((data, response)))            
         }
     }
 }

@@ -147,6 +147,7 @@
 		E40022152ABB5A2300D9C2EC /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Feed.strings"; sourceTree = "<group>"; };
 		E40022162ABB5A8600D9C2EC /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Feed.strings"; sourceTree = "<group>"; };
 		E40022182ABB5B4D00D9C2EC /* FeedLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLocalizationTests.swift; sourceTree = "<group>"; };
+		E4014C3F2ABC57E100D753F1 /* EssentialFeedJorge.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EssentialFeedJorge.xctestplan; sourceTree = "<group>"; };
 		E404A2092A9497260082F80F /* FeedCachePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCachePolicy.swift; sourceTree = "<group>"; };
 		E4209EB22A7B9D70009D6000 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 		E4242E092AB0A81100785984 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -347,6 +348,7 @@
 		E431A71C2A7A49D6007723DD = {
 			isa = PBXGroup;
 			children = (
+				E4014C3F2ABC57E100D753F1 /* EssentialFeedJorge.xctestplan */,
 				E4C6537A2AB061F0007DA9F4 /* EssentialFeedJorgeiOS.xctestplan */,
 				E442DBEE2A9DDED5001AA1E7 /* EssentialFeedJorgeCacheIntegrationTests.xctestplan */,
 				E4DF32F72A863FC400A4F272 /* CI.xctestplan */,
