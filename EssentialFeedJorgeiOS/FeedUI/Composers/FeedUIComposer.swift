@@ -73,31 +73,6 @@ private final class FeedViewAdapter: FeedViewProtocol {
 }
 
 
-// MARK: - WeakRefViertualProxy
-private final class WeakRefVirtualProxy<T: AnyObject> {
-    private weak var object: T?
-    
-    init(_ object: T) {
-        self.object = object
-    }
-}
-
-
-// MARK: - Extensions. WeakRefVirtualProxy
-extension WeakRefVirtualProxy: FeedLoadingViewProtocol where T: FeedLoadingViewProtocol {
-    func display(_ viewModel: FeedLoadingViewModel) {
-        object?.display(viewModel)
-    }
-}
-
-
-extension WeakRefVirtualProxy: FeedImageView where T: FeedImageView, T.Image == UIImage {
-    func display(_ model: FeedImageViewModel<UIImage>) {
-        object?.display(model)
-    }
-}
-
-
 // MARK: - FeedLoaderPresentationAdapter Class
 private final class FeedLoaderPresentationAdapter: FeedViewControllerDelegate {
     private let feedLoader: FeedLoaderProtocol
