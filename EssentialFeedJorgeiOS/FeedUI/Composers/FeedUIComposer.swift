@@ -32,52 +32,6 @@ public final class FeedUIComposer {
 }
 
 
-// MARK: - Decorator Class And its Extensions
-private final class MainQueueDispatchDecorator<T> {
-    private let decoratee: T
-    
-    
-    init(decoratee: T) {
-        self.decoratee = decoratee
-    }
-    
-    
-    func dispatch(completion: @escaping () -> Void) {
-        guard Thread.isMainThread else {
-            return DispatchQueue.main.async(execute: completion)
-        }
-        
-        completion()
-    }
-}
-
-
-extension MainQueueDispatchDecorator: FeedLoaderProtocol where T == FeedLoaderProtocol {
-    func load(completion: @escaping (FeedLoaderProtocol.Result) -> Void) {
-        decoratee.load { [weak self] result in
-            guard let self else { return }
-            
-            self.dispatch {
-                completion(result)
-            }
-        }
-    }
-}
-
-
-extension MainQueueDispatchDecorator: FeedImageDataLoaderProtocol where T == FeedImageDataLoaderProtocol {
-    func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoaderProtocol.Result) -> Void) -> FeedImageDataLoaderTask {
-        return decoratee.loadImageData(from: url) { [weak self] result in
-            guard let self else { return }
-            
-            self.dispatch {
-                completion(result)
-            }
-        }
-    }
-}
-
-
 // MARK: - Extension. FeedViewController
 private extension FeedViewController {
     static func makeWith(delegate: FeedViewControllerDelegate, title: String) -> FeedViewController {
