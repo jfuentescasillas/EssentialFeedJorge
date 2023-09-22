@@ -10,12 +10,13 @@ import UIKit
 import EssentialFeedJorge
 
 
+// MARK: - FeedUIComposer Class
 public final class FeedUIComposer {
     private init() {}
     
     
     public static func feedComposedWith(feedLoader: FeedLoaderProtocol, imageLoader: FeedImageDataLoaderProtocol) -> FeedViewController {
-        let presentationAdapter = FeedLoaderPresentationAdapter(feedLoader: feedLoader)
+        let presentationAdapter = FeedLoaderPresentationAdapter(feedLoader: MainQueueDispatchDecorator(decoratee: feedLoader))
         let feedController = FeedViewController.makeWith(delegate: presentationAdapter, title: FeedPresenter.title)
         
         presentationAdapter.presenter = FeedPresenter(
@@ -24,6 +25,30 @@ public final class FeedUIComposer {
         )
         
         return feedController
+    }
+}
+
+
+// MARK: - Decorator Class
+private final class MainQueueDispatchDecorator: FeedLoaderProtocol {
+    private let decoratee: FeedLoaderProtocol
+    
+    
+    init(decoratee: FeedLoaderProtocol) {
+        self.decoratee = decoratee
+    }
+    
+    
+    func load(completion: @escaping (FeedLoaderProtocol.Result) -> Void) {
+        decoratee.load { result in
+            if Thread.isMainThread {
+                completion(result)
+            } else {
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+            }
+        }
     }
 }
 
