@@ -29,24 +29,33 @@ public final class FeedUIComposer {
 }
 
 
-// MARK: - Decorator Class
-private final class MainQueueDispatchDecorator: FeedLoaderProtocol {
-    private let decoratee: FeedLoaderProtocol
+// MARK: - Decorator Class And its Extension
+private final class MainQueueDispatchDecorator<T> {
+    private let decoratee: T
     
     
-    init(decoratee: FeedLoaderProtocol) {
+    init(decoratee: T) {
         self.decoratee = decoratee
     }
     
     
+    func dispatch(completion: @escaping () -> Void) {
+        guard Thread.isMainThread else {
+            return DispatchQueue.main.async(execute: completion)
+        }
+        
+        completion()
+    }
+}
+
+
+extension MainQueueDispatchDecorator: FeedLoaderProtocol where T == FeedLoaderProtocol {
     func load(completion: @escaping (FeedLoaderProtocol.Result) -> Void) {
-        decoratee.load { result in
-            if Thread.isMainThread {
+        decoratee.load { [weak self] result in
+            guard let self else { return }
+            
+            self.dispatch {
                 completion(result)
-            } else {
-                DispatchQueue.main.async {
-                    completion(result)
-                }
             }
         }
     }
