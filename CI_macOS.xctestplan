@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "5A69D283-866B-4B53-9A9F-D22F74673B92",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:EssentialFeedJorge.xcodeproj",
+        "identifier" : "E4DF32EB2A8625D200A4F272",
+        "name" : "EssentialFeedJorgeAPIEndToEndTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:EssentialFeedJorge.xcodeproj",
+        "identifier" : "E442DBE32A9DDDC3001AA1E7",
+        "name" : "EssentialFeedJorgeCacheIntegrationTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:EssentialFeedJorge.xcodeproj",
+        "identifier" : "E431A72D2A7A49D6007723DD",
+        "name" : "EssentialFeedJorgeTests"
+      }
+    }
+  ],
+  "version" : 1
+}

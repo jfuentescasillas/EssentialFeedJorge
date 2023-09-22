@@ -1,8 +1,8 @@
 {
   "configurations" : [
     {
-      "id" : "731CEA40-C91C-4843-A672-5DF10286FBAD",
-      "name" : "Test Scheme Action",
+      "id" : "56F1D3CF-E98F-4425-BD9F-6E7DF141F724",
+      "name" : "Configuration 1",
       "options" : {
 
       }
@@ -13,11 +13,6 @@
       "targets" : [
         {
           "containerPath" : "container:EssentialFeedJorge.xcodeproj",
-          "identifier" : "E431A7252A7A49D6007723DD",
-          "name" : "EssentialFeedJorge"
-        },
-        {
-          "containerPath" : "container:EssentialFeedJorge.xcodeproj",
           "identifier" : "E4C653642AB05F11007DA9F4",
           "name" : "EssentialFeedJorgeiOS"
         }
@@ -26,13 +21,6 @@
     "testExecutionOrdering" : "random"
   },
   "testTargets" : [
-    {
-      "target" : {
-        "containerPath" : "container:EssentialFeedJorge.xcodeproj",
-        "identifier" : "E431A72D2A7A49D6007723DD",
-        "name" : "EssentialFeedJorgeTests"
-      }
-    },
     {
       "target" : {
         "containerPath" : "container:EssentialFeedJorge.xcodeproj",
