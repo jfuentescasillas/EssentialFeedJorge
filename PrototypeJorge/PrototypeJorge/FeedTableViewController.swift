@@ -9,6 +9,7 @@
 import UIKit
 
 
+// MARK: - FeedImageViewModel
 struct FeedImageViewModel {
     let description: String?
     let location: String?
@@ -16,6 +17,7 @@ struct FeedImageViewModel {
 }
 
 
+// MARK: - FeedTableViewController Class
 class FeedTableViewController: UITableViewController {
     // MARK: - Properties
     private var feed = [FeedImageViewModel]()
