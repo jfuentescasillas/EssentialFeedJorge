@@ -21,6 +21,7 @@ extension FeedUIIntegrationTests {
             return feedRequests.count
         }
         
+        
         func load(completion: @escaping (FeedLoaderProtocol.Result) -> Void) {
             feedRequests.append(completion)
         }

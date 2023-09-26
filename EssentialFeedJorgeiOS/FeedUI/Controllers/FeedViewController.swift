@@ -25,6 +25,7 @@ public final class FeedViewController: UITableViewController  {
     }
     
     
+    // MARK: - Life Cycle
     public override func viewDidLoad() {
         super.viewDidLoad()
                 
