@@ -42,6 +42,7 @@ final class FeedLocalizationTests: XCTestCase {
                 let localizedBundle = Bundle(path: path)
             else {
                 XCTFail("Couldn't find bundle for localization: \(localization)", file: file, line: line)
+               
                 return nil
             }
 
@@ -58,6 +59,7 @@ final class FeedLocalizationTests: XCTestCase {
                 let keys = strings.allKeys as? [String]
             else {
                 XCTFail("Couldn't load localized strings for localization: \(current.localization)", file: file, line: line)
+               
                 return acc
             }
 
