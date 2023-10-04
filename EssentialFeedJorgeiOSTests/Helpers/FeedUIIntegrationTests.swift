@@ -307,7 +307,7 @@ final class FeedUIIntegrationTests: XCTestCase {
     
     
     func test_loadImageDataCompletion_dispatchesFromBackgroundToMainThread(){
-        let (sut, loader) = makeSUT ()
+        let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
         
         loader.completeFeedLoading(with: [makeImage()])
