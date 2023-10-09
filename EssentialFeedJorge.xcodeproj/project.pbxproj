@@ -274,6 +274,7 @@
 		E40021F72ABB249800D9C2EC /* EssentialFeedJorgeiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				E43325C52AD4596500B67A18 /* FeedUI */,
 				E40022172ABB5B3300D9C2EC /* FeedPresentation */,
 				E40021F82ABB249800D9C2EC /* EssentialFeedJorgeiOSTests-Bridging-Header.h */,
 				E40021F92ABB249800D9C2EC /* Helpers */,
@@ -282,23 +283,6 @@
 			sourceTree = "<group>";
 		};
 		E40021F92ABB249800D9C2EC /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				E40021FA2ABB249800D9C2EC /* FeedUI */,
-				E40022072ABB249800D9C2EC /* FeedUIIntegrationTests.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
-		E40021FA2ABB249800D9C2EC /* FeedUI */ = {
-			isa = PBXGroup;
-			children = (
-				E40021FB2ABB249800D9C2EC /* Helpers */,
-			);
-			path = FeedUI;
-			sourceTree = "<group>";
-		};
-		E40021FB2ABB249800D9C2EC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				E40021FC2ABB249800D9C2EC /* UIButton+TestHelpers.swift */,
@@ -423,6 +407,14 @@
 				E431A7402A7A4A93007723DD /* FeedLoader.swift */,
 			);
 			path = FeedFeature;
+			sourceTree = "<group>";
+		};
+		E43325C52AD4596500B67A18 /* FeedUI */ = {
+			isa = PBXGroup;
+			children = (
+				E40022072ABB249800D9C2EC /* FeedUIIntegrationTests.swift */,
+			);
+			path = FeedUI;
 			sourceTree = "<group>";
 		};
 		E442DBE52A9DDDC3001AA1E7 /* EssentialFeedJorgeCacheIntegrationTests */ = {
