@@ -13,16 +13,28 @@ final class FeedPresenter {
     init(view: Any) {
         
     }
+    
+    
+    func didStartLoadingFeed() {
+        
+    }
 }
 
 
 class FeedPresenterTests: XCTestCase {
     func test_init_doesNotSendMessagesToView() {
-        let (_, view) = makeSUT()
+        let (sut, view) = makeSUT()
         
-        _ = FeedPresenter(view: view)
+        sut.didStartLoadingFeed()
         
         XCTAssertTrue(view.messages.isEmpty, "Expected no view messages")
+    }
+    
+    
+    func test_didStartLoadingFeed_displaysNoErrorMessage() {
+//        let (_, view) = makeSUT()
+        
+//        XCTAssertEqual(view.messages, [.display(errorMessage: .none)])
     }
     
     
@@ -38,6 +50,10 @@ class FeedPresenterTests: XCTestCase {
     
     
     private class ViewSpy {
-        let messages = [Any]()
+        enum Message: Equatable {
+            case display(errorMessage: String?)
+        }
+        
+        let messages = [Message]()
     }
 }
