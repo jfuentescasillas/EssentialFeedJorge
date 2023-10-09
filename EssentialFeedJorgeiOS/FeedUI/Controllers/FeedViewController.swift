@@ -100,3 +100,11 @@ extension FeedViewController: FeedLoadingViewProtocol {
         }
     }
 }
+
+
+// MARK: - Extension. FeedViewController. FeedErrorView
+extension FeedViewController: FeedErrorViewProtocol {
+    func display(_ viewModel: FeedErrorViewModel) {
+        errorView.message = viewModel.message
+    }
+}
