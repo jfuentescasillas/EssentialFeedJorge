@@ -26,12 +26,6 @@ protocol FeedErrorViewProtocol {
 }
 
 
-// MARK: - FeedErrorViewModel
-struct FeedErrorViewModel {
-    let message: String?
-}
-
-
 // MARK: - FeedPresenter Class
 final class FeedPresenter {
     private let loadingView: FeedLoadingViewProtocol
