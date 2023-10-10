@@ -315,6 +315,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E419EDD62AD5ACFF00CD51F0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E4D5E2D32AB8A76C003334DB /* UITableView+Dequeueing.swift */,
+				E4D5E2D52AB8A93A003334DB /* UIImageView+Animations.swift */,
+				E4CE78D62AB31CD20060E7BE /* UIView+Shimmering.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		E4209EB12A7B9C77009D6000 /* FeedAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -520,7 +530,6 @@
 			children = (
 				E4242E092AB0A81100785984 /* FeedViewController.swift */,
 				E4FA2DC42AB4690900CFE6CA /* FeedImageCellController.swift */,
-				E4D5E2D52AB8A93A003334DB /* UIImageView+Animations.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -528,11 +537,10 @@
 		E4FA2DAD2AB45CDB00CFE6CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E419EDD62AD5ACFF00CD51F0 /* Helpers */,
 				E4F4CAA42AB1DECC00F522EB /* FeedImageTableViewCell.swift */,
-				E4CE78D62AB31CD20060E7BE /* UIView+Shimmering.swift */,
 				E4D5E2CF2AB895A4003334DB /* Feed.storyboard */,
 				E4D5E2D12AB8967B003334DB /* Feed.xcassets */,
-				E4D5E2D32AB8A76C003334DB /* UITableView+Dequeueing.swift */,
 				E419EDD42AD5768A00CD51F0 /* ErrorView.swift */,
 			);
 			path = Views;
