@@ -15,12 +15,6 @@ protocol FeedViewControllerDelegate {
 }
 
 
-// MARK: - Error View Class
-public final class ErrorView: UIView {
-    public var message: String?
-}
-
-
 // MARK: - FeedViewController Class
 public final class FeedViewController: UITableViewController  {
     var delegate: FeedViewControllerDelegate?
