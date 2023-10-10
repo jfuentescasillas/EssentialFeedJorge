@@ -24,12 +24,13 @@ public final class ErrorView: UIView {
 // MARK: - FeedViewController Class
 public final class FeedViewController: UITableViewController  {
     var delegate: FeedViewControllerDelegate?
-    public let errorView = ErrorView()
     var tableModel = [FeedImageCellController]() {
         didSet {
             tableView.reloadData()
         }
     }
+    
+    @IBOutlet private(set) public var errorView: ErrorView?
     
     
     // MARK: - Life Cycle
@@ -105,6 +106,6 @@ extension FeedViewController: FeedLoadingViewProtocol {
 // MARK: - Extension. FeedViewController. FeedErrorView
 extension FeedViewController: FeedErrorViewProtocol {
     func display(_ viewModel: FeedErrorViewModel) {
-        errorView.message = viewModel.message
+        errorView?.message = viewModel.message
     }
 }
