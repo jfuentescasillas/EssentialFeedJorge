@@ -10,7 +10,7 @@ import EssentialFeedJorge
 
 
 // MARK: - FeedImageDataLoaderPresentationAdapter
-final class FeedImageDataLoaderPresentationAdapter<View: FeedImageView, Image>: FeedImageCellControllerDelegate where View.Image == Image {
+final class FeedImageDataLoaderPresentationAdapter<View: FeedImageViewProtocol, Image>: FeedImageCellControllerDelegate where View.Image == Image {
     private let model: FeedImage
     private let imageLoader: FeedImageDataLoaderProtocol
     private var task: FeedImageDataLoaderTask?
