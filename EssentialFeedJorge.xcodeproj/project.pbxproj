@@ -504,6 +504,7 @@
 			isa = PBXGroup;
 			children = (
 				E490F5552AD6B57F00B17FC8 /* FeedPresenter.swift */,
+				E490F5612AD6E61800B17FC8 /* FeedImagePresenter.swift */,
 				E490F5582AD6B7F100B17FC8 /* FeedViewModel.swift */,
 				E490F55A2AD6B82D00B17FC8 /* FeedLoadingViewModel.swift */,
 				E490F55C2AD6B85B00B17FC8 /* FeedErrorViewModel.swift */,
@@ -518,7 +519,6 @@
 				E49EA9572AD44D0A00DC4251 /* FeedPresenterTests.swift */,
 				E40022182ABB5B4D00D9C2EC /* FeedLocalizationTests.swift */,
 				E490F55F2AD6BF7A00B17FC8 /* FeedImagePresenterTests.swift */,
-				E490F5612AD6E61800B17FC8 /* FeedImagePresenter.swift */,
 			);
 			path = FeedPresentation;
 			sourceTree = "<group>";
