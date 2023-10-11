@@ -40,7 +40,7 @@ class FeedPresenterTests: XCTestCase {
         let (sut, view) = makeSUT()
         let feed = uniqueImageFeed().models
         
-        sut.didFinishDownloadingFeed(with: feed)
+        sut.didFinishLoadingFeed(with: feed)
         
         XCTAssertEqual(view.messages,
                        [.display(feed: feed),

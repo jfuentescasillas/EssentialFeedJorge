@@ -7,6 +7,7 @@
 
 
 import UIKit
+import EssentialFeedJorge
 
 
 // MARK: - WeakRefViertualProxy
