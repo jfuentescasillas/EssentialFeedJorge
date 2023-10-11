@@ -64,6 +64,10 @@ final class FeedPresenter {
                                  comment: "Error message displayed when we can't load the image feed from the server")
     }
     
+    static var title: String {
+        return NSLocalizedString("FEED_VIEW_TITLE", tableName: "Feed", bundle: Bundle(for: FeedPresenter.self), comment: "Title for the feed view")
+    }
+    
     
     init(feedView: FeedViewProtocol, loadingView: FeedLoadingViewProtocol, errorView: FeedErrorViewProtocol) {
         self.feedView = feedView
@@ -93,9 +97,14 @@ final class FeedPresenter {
 
 // MARK: - FeedPresenterTests class
 class FeedPresenterTests: XCTestCase {
+    func test_tile_isLocalized() {
+        XCTAssertEqual(FeedPresenter.title, localized("FEED_VIEW_TITLE"))
+    }
+    
+    
     func test_init_doesNotSendMessagesToView() {
         let (_, view) = makeSUT()
-       
+        
         XCTAssertTrue(view.messages.isEmpty, "Expected no view messages")
     }
     
@@ -127,9 +136,9 @@ class FeedPresenterTests: XCTestCase {
     
     func test_didFinishLoadingFeedWithError_displaysLocalizedErrorMessageAndStopsLoading() {
         let (sut, view) = makeSUT()
-
+        
         sut.didFinishLoadingFeed(with: anyNSError())
-
+        
         XCTAssertEqual(view.messages, [
             .display(errorMessage: localized("FEED_VIEW_CONNECTION_ERROR")),
             .display(isLoading: false)
