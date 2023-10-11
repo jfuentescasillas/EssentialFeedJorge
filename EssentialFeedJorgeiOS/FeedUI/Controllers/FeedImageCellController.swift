@@ -7,6 +7,7 @@
 
 
 import UIKit
+import EssentialFeedJorge
 
 
 // MARK: - Protocols
@@ -17,7 +18,7 @@ protocol FeedImageCellControllerDelegate {
 
 
 // MARK: - FeedImageCellController Class
-final class FeedImageCellController: FeedImageView {
+final class FeedImageCellController: FeedImageViewProtocol {
     private let delegate: FeedImageCellControllerDelegate
     private var cell: FeedImageTableViewCell?
     
