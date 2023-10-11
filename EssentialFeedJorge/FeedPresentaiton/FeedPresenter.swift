@@ -8,31 +8,6 @@
 import Foundation
 
 
-// MARK: - View Models
-public struct FeedViewModel {
-    public let feed: [FeedImage]
-}
-
-
-public struct FeedLoadingViewModel {
-    public let isLoading: Bool
-}
-
-
-public struct FeedErrorViewModel {
-    public let message: String?
-    
-    static var noError: FeedErrorViewModel {
-        return FeedErrorViewModel(message: nil)
-    }
-    
-    
-    static func error(message: String) -> FeedErrorViewModel {
-        return FeedErrorViewModel(message: message)
-    }
-}
-
-
 // MARK: - Protocols
 public protocol FeedViewProtocol {
     func display(_ viewModel: FeedViewModel)
