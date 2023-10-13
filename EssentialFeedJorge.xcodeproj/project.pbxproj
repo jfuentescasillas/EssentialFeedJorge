@@ -21,6 +21,7 @@
 		E406874D2AB08B7200BCB67B /* EssentialFeedJorge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E431A7262A7A49D6007723DD /* EssentialFeedJorge.framework */; platformFilter = ios; };
 		E406874E2AB08B7200BCB67B /* EssentialFeedJorge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E431A7262A7A49D6007723DD /* EssentialFeedJorge.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E40687522AB08CB500BCB67B /* XCTestCase+MemoryLeakTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E462FCBB2A84D3FB00A1B9F8 /* XCTestCase+MemoryLeakTracker.swift */; };
+		E40D18462AD9585B00C0CC17 /* FeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DC02AB4643E00CFE6CA /* FeedImageDataLoader.swift */; };
 		E419EDD52AD5768A00CD51F0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E419EDD42AD5768A00CD51F0 /* ErrorView.swift */; };
 		E419EDDA2AD5AED400CD51F0 /* UIRefreshControl+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E419EDD92AD5AED400CD51F0 /* UIRefreshControl+Helpers.swift */; };
 		E4209EB32A7B9D70009D6000 /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4209EB22A7B9D70009D6000 /* RemoteFeedLoader.swift */; };
@@ -83,7 +84,6 @@
 		E4EEFC262A9C8A0900924EB6 /* CoreDataFeedStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EEFC252A9C8A0900924EB6 /* CoreDataFeedStoreTests.swift */; };
 		E4EEFC292A9C907100924EB6 /* CoreDataFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EEFC272A9C903300924EB6 /* CoreDataFeedStore.swift */; };
 		E4F4CAA52AB1DECC00F522EB /* FeedImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4CAA42AB1DECC00F522EB /* FeedImageTableViewCell.swift */; };
-		E4FA2DC12AB4643E00CFE6CA /* FeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DC02AB4643E00CFE6CA /* FeedImageDataLoader.swift */; };
 		E4FA2DC52AB4690900CFE6CA /* FeedImageCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DC42AB4690900CFE6CA /* FeedImageCellController.swift */; };
 		E4FA2DC82AB46BBB00CFE6CA /* FeedUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DC72AB46BBB00CFE6CA /* FeedUIComposer.swift */; };
 /* End PBXBuildFile section */
@@ -412,6 +412,7 @@
 			children = (
 				E431A73E2A7A49F5007723DD /* FeedImage.swift */,
 				E431A7402A7A4A93007723DD /* FeedLoader.swift */,
+				E4FA2DC02AB4643E00CFE6CA /* FeedImageDataLoader.swift */,
 			);
 			path = FeedFeature;
 			sourceTree = "<group>";
@@ -522,7 +523,6 @@
 		E4C653662AB05F11007DA9F4 /* EssentialFeedJorgeiOS */ = {
 			isa = PBXGroup;
 			children = (
-				E4FA2DBF2AB4642B00CFE6CA /* FeedImageLoader */,
 				E4FA2DB62AB460F400CFE6CA /* FeedUI */,
 			);
 			path = EssentialFeedJorgeiOS;
@@ -565,14 +565,6 @@
 				E4FA2DAC2AB45CC800CFE6CA /* Controllers */,
 			);
 			path = FeedUI;
-			sourceTree = "<group>";
-		};
-		E4FA2DBF2AB4642B00CFE6CA /* FeedImageLoader */ = {
-			isa = PBXGroup;
-			children = (
-				E4FA2DC02AB4643E00CFE6CA /* FeedImageDataLoader.swift */,
-			);
-			path = FeedImageLoader;
 			sourceTree = "<group>";
 		};
 		E4FA2DC62AB46BB200CFE6CA /* Composers */ = {
@@ -849,6 +841,7 @@
 				E45079CD2A9CCF4D0066A313 /* ManagedCache.swift in Sources */,
 				E4EEFC292A9C907100924EB6 /* CoreDataFeedStore.swift in Sources */,
 				E490F55D2AD6B85B00B17FC8 /* FeedErrorViewModel.swift in Sources */,
+				E40D18462AD9585B00C0CC17 /* FeedImageDataLoader.swift in Sources */,
 				E490F55B2AD6B82D00B17FC8 /* FeedLoadingViewModel.swift in Sources */,
 				E490F5632AD6E6B200B17FC8 /* FeedImagePresenter.swift in Sources */,
 				E45079CF2A9CCF940066A313 /* ManagedFeedImage.swift in Sources */,
@@ -892,7 +885,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4FA2DC12AB4643E00CFE6CA /* FeedImageDataLoader.swift in Sources */,
 				E419EDD52AD5768A00CD51F0 /* ErrorView.swift in Sources */,
 				E419EDDA2AD5AED400CD51F0 /* UIRefreshControl+Helpers.swift in Sources */,
 				E4CE78D72AB31CD20060E7BE /* UIView+Shimmering.swift in Sources */,
