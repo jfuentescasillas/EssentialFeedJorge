@@ -24,6 +24,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         URLProtocolStub.stopInterceptingRequest()
     }
     
+    
     func test_getFromURL_performsGETRequestWithURL() {
         // Used "expectation" when the block is asynchronously invoked
         let exp = expectation(description: "Waiting for request")
@@ -178,23 +179,29 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     // MARK: - Private Class
     private class URLProtocolStub: URLProtocol {
-        private static var stub: Stub?
-        private static var requestObserver: ((URLRequest) -> Void)?
-        
         private struct Stub {
             let data: Data?
             let response: URLResponse?
             let error: Error?
+            let requestObserver: ((URLRequest) -> Void)?
+        }
+        
+        
+        private static let queue = DispatchQueue(label: "URLProtocolStub.queue")
+        private static var _stub: Stub?
+        private static var stub: Stub? {
+            get { return queue.sync { _stub } }
+            set { queue.sync { _stub = newValue } }
         }
         
         
         static func stub(data: Data?, response: URLResponse?, error: Error?) {
-            stub = Stub(data: data, response: response, error: error)
+            stub = Stub(data: data, response: response, error: error, requestObserver: nil)
         }
         
         
         static func observeRequests(observer: @escaping (URLRequest) -> Void) {
-            requestObserver = observer
+            stub = Stub(data: nil, response: nil, error: nil, requestObserver: observer)
         }
         
         
@@ -205,7 +212,6 @@ class URLSessionHTTPClientTests: XCTestCase {
         
         static func stopInterceptingRequest() {
             URLProtocol.unregisterClass(URLProtocolStub.self)
-            requestObserver = nil
             stub = nil  // Remove stubs
         }
         
@@ -224,12 +230,6 @@ class URLSessionHTTPClientTests: XCTestCase {
             /* This if let requestObserver prevents "data races". This is: every request is finished
                before the test method using the URLProtocolStub returns, so we won't have any
                requests running in background threads concurrently with other test methods.       */
-            if let requestObserver = URLProtocolStub.requestObserver {
-                client?.urlProtocolDidFinishLoading(self)
-                
-                return requestObserver(request)
-            }
-
             guard let stub = URLProtocolStub.stub else { return }
 
             if let data = stub.data {
@@ -245,6 +245,8 @@ class URLSessionHTTPClientTests: XCTestCase {
             } else {
                 client?.urlProtocolDidFinishLoading(self)
             }
+            
+            stub.requestObserver?(request)
         }
         
         
