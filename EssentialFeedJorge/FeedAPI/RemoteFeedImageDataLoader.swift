@@ -9,7 +9,7 @@
 import Foundation
 
 
-public final class RemoteFeedImageDataLoader {
+public final class RemoteFeedImageDataLoader: FeedImageDataLoaderProtocol {
     private let client: HTTPClientProtocol
     
     
