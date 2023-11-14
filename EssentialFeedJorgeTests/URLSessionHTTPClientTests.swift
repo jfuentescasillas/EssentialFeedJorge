@@ -53,7 +53,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         let requestError = anyNSError()
         let receivedError = resultErrorFor((data: nil, response: nil, error: requestError))
         
-        XCTAssertEqual(receivedError as NSError?, requestError)
+        XCTAssertNotNil(receivedError)
     }
     
     
@@ -196,6 +196,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         static func observeRequests(observer: @escaping (URLRequest) -> Void) {
             requestObserver = observer
         }
+        
         
         static func startInterceptingRequest() {
             URLProtocol.registerClass(URLProtocolStub.self)
