@@ -11,6 +11,20 @@ import Foundation
 
 // MARK: - Class LocalFeedImageDataLoader
 public final class LocalFeedImageDataLoader: FeedImageDataLoaderProtocol {
+    private let store: FeedImageDataStoreProtocol
+    
+    
+    public init(store: FeedImageDataStoreProtocol) {
+        self.store = store
+    }
+    
+    
+    public enum Error: Swift.Error {
+        case failed
+        case notFound
+    }
+    
+    
     private final class Task: FeedImageDataLoaderTask {
         private var completion: ((FeedImageDataLoaderProtocol.Result) -> Void)?
         
@@ -36,17 +50,11 @@ public final class LocalFeedImageDataLoader: FeedImageDataLoaderProtocol {
     }
     
     
-    public enum Error: Swift.Error {
-        case failed
-        case notFound
-    }
+    public typealias SaveResult = Result<Void, Swift.Error>
     
     
-    private let store: FeedImageDataStoreProtocol
-    
-    
-    public init(store: FeedImageDataStoreProtocol) {
-        self.store = store
+    public func save(_ data: Data, for url: URL, completion: @escaping (SaveResult) -> Void) {
+        store.insert(data, for: url) { _ in }
     }
     
     
