@@ -26,47 +26,34 @@ final class EssentialFeedJorgeCacheIntegrationTests: XCTestCase {
     }
     
     
-    // MARK: - Testing Methods
-    func test_load_deliversNoItemsOnEmptyCache() {
-        let sut = makeFeedLoader()
-        let exp = expectation(description: "Wait for load completion")
+    // MARK: - LocalFeedLoader Tests
+    func test_loadFeed_deliversNoItemsOnEmptyCache() {
+        let feedLoader = makeFeedLoader()
         
-        sut.load { result in
-            switch result {
-            case let .success (imageFeed):
-                XCTAssertEqual(imageFeed, [], "Expected empty feed")
-                
-            case let .failure (error):
-                XCTFail ("Expected successful feed result, got \(error) instead")
-            }
-            
-            exp.fulfill ()
-        }
-        
-        wait (for: [exp], timeout: 1.0)
+        expect(feedLoader, toLoad: [])
     }
     
     
-    func test_load_deliversItemsSavedOnASeparateInstance() {
-        let sutToPerformSave = makeFeedLoader()
-        let sutToPerformLoad = makeFeedLoader()
+    func test_loadFeed_deliversItemsSavedOnASeparateInstance() {
+        let feedLoaderToPerformSave = makeFeedLoader()
+        let feedLoaderToPerformLoad = makeFeedLoader()
         let feed = uniqueImageFeed().models
-
-        save(feed, with: sutToPerformSave)
-        expect(sutToPerformLoad, toLoad: feed)
+        
+        save(feed, with: feedLoaderToPerformSave)
+        expect(feedLoaderToPerformLoad, toLoad: feed)
     }
     
     
-    func test_save_overridesItemsSavedOnASeparateInstance() {
-        let sutToPerformFirstSave = makeFeedLoader()
-        let sutToPerformLastSave = makeFeedLoader()
-        let sutToPerformLoad = makeFeedLoader()
+    func test_saveFeed_overridesItemsSavedOnASeparateInstance() {
+        let feedLoaderToPerformFirstSave = makeFeedLoader()
+        let feedLoaderToPerformLastSave = makeFeedLoader()
+        let feedLoaderToPerformLoad = makeFeedLoader()
         let firstFeed = uniqueImageFeed().models
         let latestFeed = uniqueImageFeed().models
-
-        save(firstFeed, with: sutToPerformFirstSave)
-        save(latestFeed, with: sutToPerformLastSave)
-        expect(sutToPerformLoad, toLoad: latestFeed)
+        
+        save(firstFeed, with: feedLoaderToPerformFirstSave)
+        save(latestFeed, with: feedLoaderToPerformLastSave)
+        expect(feedLoaderToPerformLoad, toLoad: latestFeed)
     }
     
     
