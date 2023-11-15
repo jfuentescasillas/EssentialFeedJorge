@@ -517,9 +517,9 @@
 				E46856F92A8CED2A0040C5F5 /* CacheFeedUseCaseTests.swift */,
 				E48221AC2B04D4BE007043DA /* CacheFeedImageDataUseCaseTests.swift */,
 				E48221AE2B051AC0007043DA /* CoreDataFeedImageDataStoreTests.swift */,
+				E4EEFC252A9C8A0900924EB6 /* CoreDataFeedStoreTests.swift */,
 				E4862A072A9388F8007C2ACD /* ValidateFeedCacheUseCaseTests.swift */,
 				E42B04362A98DC34006139EB /* FeedStoreProtocolsSpecs+Helpers */,
-				E4EEFC252A9C8A0900924EB6 /* CoreDataFeedStoreTests.swift */,
 			);
 			path = FeedCache;
 			sourceTree = "<group>";
