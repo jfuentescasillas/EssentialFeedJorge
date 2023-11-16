@@ -55,6 +55,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E47D078A2B0673D0005D8179 /* EssentialAppJorge.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EssentialAppJorge.xctestplan; sourceTree = "<group>"; };
 		E48654C72B0627AC007C85AF /* EssentialFeedJorge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeedJorge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E48654C82B0627AC007C85AF /* EssentialFeedJorgeiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeedJorgeiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E48705C12B06257400C231DB /* EssentialAppJorge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialAppJorge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +112,7 @@
 		E48705B82B06257400C231DB = {
 			isa = PBXGroup;
 			children = (
+				E47D078A2B0673D0005D8179 /* EssentialAppJorge.xctestplan */,
 				E48705C32B06257400C231DB /* EssentialAppJorge */,
 				E48705DA2B06257400C231DB /* EssentialAppJorgeTests */,
 				E48705E42B06257400C231DB /* EssentialAppJorgeUITests */,

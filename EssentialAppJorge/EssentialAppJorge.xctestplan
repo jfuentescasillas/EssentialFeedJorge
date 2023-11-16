@@ -1,0 +1,46 @@
+{
+  "configurations" : [
+    {
+      "id" : "76816BB1-3520-4FC1-8E46-3463D2CF7AB2",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:EssentialAppJorge.xcodeproj",
+          "identifier" : "E48705C02B06257400C231DB",
+          "name" : "EssentialAppJorge"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:EssentialAppJorge.xcodeproj",
+      "identifier" : "E48705C02B06257400C231DB",
+      "name" : "EssentialAppJorge"
+    },
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:EssentialAppJorge.xcodeproj",
+        "identifier" : "E48705D62B06257400C231DB",
+        "name" : "EssentialAppJorgeTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:EssentialAppJorge.xcodeproj",
+        "identifier" : "E48705E02B06257400C231DB",
+        "name" : "EssentialAppJorgeUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
