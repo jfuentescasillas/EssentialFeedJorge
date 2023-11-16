@@ -10,6 +10,7 @@ import XCTest
 import EssentialFeedJorge
 
 
+// MARK: - FeedLoaderWithFallbackComposite
 class FeedLoaderWithFallbackComposite: FeedLoaderProtocol {
     private let primary: FeedLoaderProtocol
 
@@ -25,6 +26,7 @@ class FeedLoaderWithFallbackComposite: FeedLoaderProtocol {
 }
 
 
+// MARK: - FeedLoaderWithFallbackCompositeTests
 class FeedLoaderProtocolWithFallbackCompositeTests: XCTestCase {
     func test_load_deliversPrimaryFeedOnPrimaryLoaderSuccess() {
         let primaryFeed = uniqueFeed()
