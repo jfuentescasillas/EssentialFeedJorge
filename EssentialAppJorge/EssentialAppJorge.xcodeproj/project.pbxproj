@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E48654C92B0627AC007C85AF /* EssentialFeedJorge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E48654C72B0627AC007C85AF /* EssentialFeedJorge.framework */; };
+		E48654CA2B0627AC007C85AF /* EssentialFeedJorge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E48654C72B0627AC007C85AF /* EssentialFeedJorge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E48654CB2B0627AC007C85AF /* EssentialFeedJorgeiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E48654C82B0627AC007C85AF /* EssentialFeedJorgeiOS.framework */; };
+		E48654CC2B0627AC007C85AF /* EssentialFeedJorgeiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E48654C82B0627AC007C85AF /* EssentialFeedJorgeiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E48705C52B06257400C231DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48705C42B06257400C231DB /* AppDelegate.swift */; };
 		E48705C72B06257400C231DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48705C62B06257400C231DB /* SceneDelegate.swift */; };
 		E48705C92B06257400C231DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48705C82B06257400C231DB /* ViewController.swift */; };
@@ -35,7 +39,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E48654CD2B0627AC007C85AF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E48654CA2B0627AC007C85AF /* EssentialFeedJorge.framework in Embed Frameworks */,
+				E48654CC2B0627AC007C85AF /* EssentialFeedJorgeiOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		E48654C72B0627AC007C85AF /* EssentialFeedJorge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeedJorge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E48654C82B0627AC007C85AF /* EssentialFeedJorgeiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeedJorgeiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E48705C12B06257400C231DB /* EssentialAppJorge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialAppJorge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E48705C42B06257400C231DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E48705C62B06257400C231DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +77,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E48654C92B0627AC007C85AF /* EssentialFeedJorge.framework in Frameworks */,
+				E48654CB2B0627AC007C85AF /* EssentialFeedJorgeiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +99,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E48654C62B0627AC007C85AF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E48654C72B0627AC007C85AF /* EssentialFeedJorge.framework */,
+				E48654C82B0627AC007C85AF /* EssentialFeedJorgeiOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E48705B82B06257400C231DB = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +115,7 @@
 				E48705DA2B06257400C231DB /* EssentialAppJorgeTests */,
 				E48705E42B06257400C231DB /* EssentialAppJorgeUITests */,
 				E48705C22B06257400C231DB /* Products */,
+				E48654C62B0627AC007C85AF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,6 +170,7 @@
 				E48705BD2B06257400C231DB /* Sources */,
 				E48705BE2B06257400C231DB /* Frameworks */,
 				E48705BF2B06257400C231DB /* Resources */,
+				E48654CD2B0627AC007C85AF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
