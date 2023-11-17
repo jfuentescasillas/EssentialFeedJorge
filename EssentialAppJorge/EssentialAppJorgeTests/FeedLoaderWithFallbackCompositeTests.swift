@@ -8,34 +8,7 @@
 
 import XCTest
 import EssentialFeedJorge
-
-
-// MARK: - FeedLoaderWithFallbackComposite
-class FeedLoaderWithFallbackComposite: FeedLoaderProtocol {
-    private let primary: FeedLoaderProtocol
-    private let fallback: FeedLoaderProtocol
-    
-    
-    init(primary: FeedLoaderProtocol, fallback: FeedLoaderProtocol) {
-        self.primary = primary
-        self.fallback = fallback
-    }
-    
-    
-    func load(completion: @escaping (FeedLoaderProtocol.Result) -> Void) {
-        primary.load { [weak self] result in
-            guard let self else { return }
-            
-            switch result {
-            case .success:
-                completion(result)
-                
-            case .failure:
-                self.fallback.load(completion: completion)
-            }
-        }
-    }
-}
+import EssentialAppJorge
 
 
 // MARK: - FeedLoaderWithFallbackCompositeTests
