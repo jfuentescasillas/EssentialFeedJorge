@@ -12,6 +12,14 @@ import EssentialFeedJorge
 
 // MARK: - Class FeedImageDataLoaderWithFallbackComposite
 class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoaderProtocol {
+    private let primary: FeedImageDataLoaderProtocol
+
+    
+    init(primary: FeedImageDataLoaderProtocol, fallback: FeedImageDataLoaderProtocol) {
+        self.primary = primary
+    }
+    
+    
     private class Task: FeedImageDataLoaderTask {
         func cancel() {
             
@@ -19,12 +27,9 @@ class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoaderProtocol {
     }
     
     
-    init(primary: FeedImageDataLoaderProtocol, fallback: FeedImageDataLoaderProtocol) {
-        
-    }
-    
-    
     func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoaderProtocol.Result) -> Void) -> FeedImageDataLoaderTask {
+        _ = primary.loadImageData(from: url) { _ in }
+        
         return Task()
     }
 }
@@ -43,7 +48,25 @@ class FeedImageDataLoaderWithFallbackCompositeTests: XCTest {
     }
     
     
+    func test_loadImageData_loadsFromPrimaryLoaderFirst() {
+        let url = anyURL()
+        let primaryLoader = LoaderSpy()
+        let fallbackLoader = LoaderSpy()
+        let sut = FeedImageDataLoaderWithFallbackComposite(primary: primaryLoader, fallback: fallbackLoader)
+        
+        _ = sut.loadImageData(from: url) { _ in }
+        
+        XCTAssertEqual(primaryLoader.loadedURLs, [url], "Expected to load URL from primary loader")
+        XCTAssertTrue(fallbackLoader.loadedURLs.isEmpty, "Expected no loaded URLs in the fallback loader")
+    }
+
+
     // MARK: - Helpers
+    private func anyURL() -> URL {
+        return URL(string: "http://a-url.com")!
+    }
+    
+    
     private class LoaderSpy: FeedImageDataLoaderProtocol {
         private var messages = [(url: URL, completion: (FeedImageDataLoaderProtocol.Result) -> Void)]()
         var loadedURLs: [URL] {
