@@ -40,6 +40,7 @@ final class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
     func test_init_doesNotLoadImageData() {
         let primaryLoader = LoaderSpy()
         let fallbackLoader = LoaderSpy()
+        
         _ = FeedImageDataLoaderWithFallbackComposite(primary: primaryLoader, fallback: fallbackLoader)
         
         XCTAssertTrue(primaryLoader.loadedURLs.isEmpty, "Expected no loaded URLs in the primary loader")
@@ -58,30 +59,30 @@ final class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
         XCTAssertEqual(primaryLoader.loadedURLs, [url], "Expected to load URL from primary loader")
         XCTAssertTrue(fallbackLoader.loadedURLs.isEmpty, "Expected no loaded URLs in the fallback loader")
     }
-}
-
-
-// MARK: - Helpers
-private func anyURL() -> URL {
-    return URL(string: "http://a-url.com")!
-}
-
-
-private class LoaderSpy: FeedImageDataLoaderProtocol {
-    private var messages = [(url: URL, completion: (FeedImageDataLoaderProtocol.Result) -> Void)]()
-    var loadedURLs: [URL] {
-        return messages.map { $0.url }
+    
+    
+    // MARK: - Helpers
+    private func anyURL() -> URL {
+        return URL(string: "http://a-url.com")!
     }
     
     
-    private struct Task: FeedImageDataLoaderTask {
-        func cancel() {}
-    }
-    
-    
-    func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoaderProtocol.Result) -> Void) -> FeedImageDataLoaderTask {        messages.append((url, completion))
-
-        return Task()
+    private class LoaderSpy: FeedImageDataLoaderProtocol {
+        private var messages = [(url: URL, completion: (FeedImageDataLoaderProtocol.Result) -> Void)]()
+        var loadedURLs: [URL] {
+            return messages.map { $0.url }
+        }
+        
+        
+        private struct Task: FeedImageDataLoaderTask {
+            func cancel() {}
+        }
+        
+        
+        func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoaderProtocol.Result) -> Void) -> FeedImageDataLoaderTask {
+            messages.append((url, completion))
+            
+            return Task()
+        }
     }
 }
-
