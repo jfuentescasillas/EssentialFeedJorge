@@ -20,6 +20,11 @@
           "containerPath" : "container:EssentialFeedJorge.xcodeproj",
           "identifier" : "E431A7252A7A49D6007723DD",
           "name" : "EssentialFeedJorge"
+        },
+        {
+          "containerPath" : "container:EssentialAppJorge\/EssentialAppJorge.xcodeproj",
+          "identifier" : "E48705C02B06257400C231DB",
+          "name" : "EssentialAppJorge"
         }
       ]
     },
@@ -52,6 +57,13 @@
         "containerPath" : "container:EssentialFeedJorge.xcodeproj",
         "identifier" : "E431A72D2A7A49D6007723DD",
         "name" : "EssentialFeedJorgeTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:EssentialAppJorge\/EssentialAppJorge.xcodeproj",
+        "identifier" : "E48705D62B06257400C231DB",
+        "name" : "EssentialAppJorgeTests"
       }
     }
   ],
