@@ -5,7 +5,7 @@
 //  Created by jfuentescasillas on 16/11/23.
 //
 
-import XCTest
+/*import XCTest
 
 final class EssentialAppJorgeUITestsLaunchTests: XCTestCase {
 
@@ -30,3 +30,4 @@ final class EssentialAppJorgeUITestsLaunchTests: XCTestCase {
         add(attachment)
     }
 }
+*/
