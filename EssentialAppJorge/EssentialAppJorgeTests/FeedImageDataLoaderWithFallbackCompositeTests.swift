@@ -13,10 +13,12 @@ import EssentialFeedJorge
 // MARK: - Class FeedImageDataLoaderWithFallbackComposite
 class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoaderProtocol {
     private let primary: FeedImageDataLoaderProtocol
+    private let fallback: FeedImageDataLoaderProtocol
     
     
     init(primary: FeedImageDataLoaderProtocol, fallback: FeedImageDataLoaderProtocol) {
         self.primary = primary
+        self.fallback = fallback
     }
     
     
@@ -28,7 +30,17 @@ class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoaderProtocol {
     
     
     func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoaderProtocol.Result) -> Void) -> FeedImageDataLoaderTask {
-        _ = primary.loadImageData(from: url) { _ in }
+        _ = primary.loadImageData(from: url) { [weak self] result in
+            guard let self else { return }
+            
+            switch result {
+            case .success:
+                break
+                
+            case .failure:
+                _ = self.fallback.loadImageData(from: url, completion: { _ in })
+            }
+        }
         
         return Task()
     }
@@ -36,7 +48,7 @@ class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoaderProtocol {
 
 
 // MARK: - Class FeedImageDataLoaderWithFallbackCompositeTests
-final class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
+class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
     func test_init_doesNotLoadImageData() {
         let (_, primaryLoader, fallbackLoader) = makeSUT()
         
@@ -56,16 +68,29 @@ final class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
     }
     
     
+    func test_loadImageData_loadsFromFallbackOnPrimaryLoaderFailure() {
+        let url = anyURL()
+        let (sut, primaryLoader, fallbackLoader) = makeSUT()
+        
+        _ = sut.loadImageData(from: url) { _ in }
+        
+        primaryLoader.complete(with: anyNSError())
+        
+        XCTAssertEqual(primaryLoader.loadedURLs, [url], "Expected to load URL from primary loader")
+        XCTAssertEqual(fallbackLoader.loadedURLs, [url], "Expected to load URL from fallback loader")
+    }
+    
+    
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: FeedImageDataLoaderProtocol, primary: LoaderSpy, fallback: LoaderSpy) {
         let primaryLoader = LoaderSpy()
         let fallbackLoader = LoaderSpy()
         let sut = FeedImageDataLoaderWithFallbackComposite(primary: primaryLoader, fallback: fallbackLoader)
-       
+        
         trackForMemoryLeaks(primaryLoader, file: file, line: line)
         trackForMemoryLeaks(fallbackLoader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
-      
+        
         return (sut, primaryLoader, fallbackLoader)
     }
     
@@ -79,6 +104,11 @@ final class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
     
     private func anyURL() -> URL {
         return URL(string: "http://a-url.com")!
+    }
+    
+    
+    private func anyNSError() -> NSError {
+        return NSError(domain: "any error", code: 0)
     }
     
     
@@ -98,6 +128,11 @@ final class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
             messages.append((url, completion))
             
             return Task()
+        }
+        
+        
+        func complete(with error: Error, at index: Int = 0) {
+            messages[index].completion(.failure(error))
         }
     }
 }
