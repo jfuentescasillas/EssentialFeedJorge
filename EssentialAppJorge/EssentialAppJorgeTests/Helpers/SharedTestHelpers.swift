@@ -7,6 +7,7 @@
 
 
 import Foundation
+import EssentialFeedJorge
 
 
 func anyData() -> Data {
@@ -24,3 +25,6 @@ func anyNSError() -> NSError {
 }
 
 
+func uniqueFeed() -> [FeedImage] {
+    return [FeedImage(id: UUID(), description: "any", location: "any", url: anyURL())]
+}
