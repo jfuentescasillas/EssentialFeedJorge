@@ -8,32 +8,7 @@
 
 import XCTest
 import EssentialFeedJorge
-
-
-// MARK: - Class FeedLoaderCacheDecorator
-final class FeedLoaderCacheDecorator: FeedLoaderProtocol {
-    private let decoratee: FeedLoaderProtocol
-    private let cache: FeedCacheProtocol
-    
-    
-    init(decoratee: FeedLoaderProtocol, cache: FeedCacheProtocol) {
-        self.decoratee = decoratee
-        self.cache = cache
-    }
-    
-    
-    func load(completion: @escaping (FeedLoaderProtocol.Result) -> Void) {
-        decoratee.load { [weak self] result in
-            guard let self else { return }
-            
-            completion(result.map { feed in
-                self.cache.save(feed) { _ in }
-                
-                return feed
-            })
-        }
-    }
-}
+import EssentialAppJorge
 
 
 // MARK: - Class FeedLoaderCacheDecoratorTests
