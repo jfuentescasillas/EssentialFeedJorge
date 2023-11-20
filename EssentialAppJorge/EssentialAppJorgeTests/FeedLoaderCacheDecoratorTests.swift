@@ -10,14 +10,6 @@ import XCTest
 import EssentialFeedJorge
 
 
-// MARK: - Protocol
-protocol FeedCacheProtocol {
-    typealias Result = Swift.Result<Void, Error>
-    
-    func save(_ feed: [FeedImage], completion: @escaping (Result) -> Void)
-}
-
-
 // MARK: - Class FeedLoaderCacheDecorator
 final class FeedLoaderCacheDecorator: FeedLoaderProtocol {
     private let decoratee: FeedLoaderProtocol
