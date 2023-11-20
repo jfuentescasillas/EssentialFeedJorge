@@ -26,7 +26,7 @@ public final class FeedLoaderCacheDecorator: FeedLoaderProtocol {
             guard let self else { return }
             
             completion(result.map { feed in
-                self.cache.save(feed) { _ in }
+                self.cache.saveIgnoringResult(feed)
                 
                 return feed
             })
@@ -35,3 +35,9 @@ public final class FeedLoaderCacheDecorator: FeedLoaderProtocol {
 }
 
 
+// MARK: - Extension. FeedCacheProtocol
+private extension FeedCacheProtocol {
+    func saveIgnoringResult(_ feed: [FeedImage]) {
+        save(feed) { _ in }
+    }
+}
