@@ -43,4 +43,16 @@ final class FeedLoaderCacheDecoratorTests: XCTestCase, FeedLoaderTestCaseProtoco
         
         expect(sut, toCompleteWith: .failure(anyNSError()))
     }
+    
+    
+    // MARK: - Helpers
+    private func makeSUT(loaderResult: FeedLoaderProtocol.Result, file: StaticString = #file, line: UInt = #line) -> FeedLoaderProtocol {
+        let loader = FeedLoaderStub(result: loaderResult)
+        let sut = FeedLoaderCacheDecorator(decoratee: loader)
+        
+        trackForMemoryLeaks(loader, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        
+        return sut
+    }
 }
