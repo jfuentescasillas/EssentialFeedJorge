@@ -13,7 +13,7 @@ import EssentialFeedJorge
 // MARK: - Protocol
 protocol FeedCacheProtocol {
     typealias Result = Swift.Result<Void, Error>
-
+    
     func save(_ feed: [FeedImage], completion: @escaping (Result) -> Void)
 }
 
@@ -55,6 +55,17 @@ final class FeedLoaderCacheDecoratorTests: XCTestCase, FeedLoaderTestCaseProtoco
         let sut = makeSUT(loaderResult: .failure(anyNSError()))
         
         expect(sut, toCompleteWith: .failure(anyNSError()))
+    }
+    
+    
+    func test_load_cachesLoadedFeedOnLoaderSuccess() {
+        let cache = CacheSpy()
+        let feed = uniqueFeed()
+        let sut = makeSUT(loaderResult: .success(feed), cache: cache)
+        
+        sut.load { _ in }
+        
+        XCTAssertEqual(cache.messages, [.save(feed)], "Expected to cache loaded feed on success")
     }
     
     
