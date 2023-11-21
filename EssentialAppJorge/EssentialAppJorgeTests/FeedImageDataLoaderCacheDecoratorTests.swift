@@ -11,15 +11,6 @@ import EssentialFeedJorge
 import EssentialAppJorge
 
 
-// MARK: - FeedImageDataCacheProtocol
-protocol FeedImageDataCacheProtocol {
-    typealias Result = Swift.Result<Void, Error>
-    
-    
-    func save(_ data: Data, for url: URL, completion: @escaping (Result) -> Void)
-}
-
-
 // MARK: - Class FeedImageDataLoaderCacheDecorator
 class FeedImageDataLoaderCacheDecorator: FeedImageDataLoaderProtocol {
     private let decoratee: FeedImageDataLoaderProtocol
