@@ -21,8 +21,8 @@ public final class LocalFeedImageDataLoader {
 
 
 // MARK: - Extension. LocalFeedImageDataLoader
-extension LocalFeedImageDataLoader {
-    public typealias SaveResult = Result<Void, Error>
+extension LocalFeedImageDataLoader: FeedImageDataCacheProtocol {
+    public typealias SaveResult = FeedImageDataCacheProtocol.Result
     
     
     public enum SaveError: Error {
