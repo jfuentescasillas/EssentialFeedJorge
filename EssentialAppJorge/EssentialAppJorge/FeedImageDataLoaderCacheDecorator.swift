@@ -27,7 +27,7 @@ public final class FeedImageDataLoaderCacheDecorator: FeedImageDataLoaderProtoco
             guard let self else { return }
             
             completion(result.map { data in
-                self.cache.save(data, for: url) { _ in }
+                self.cache.saveIgnoringResult(data, for: url)
                 
                 return data
             })
@@ -38,3 +38,8 @@ public final class FeedImageDataLoaderCacheDecorator: FeedImageDataLoaderProtoco
 }
 
 
+private extension FeedImageDataCacheProtocol {
+    func saveIgnoringResult(_ data: Data, for url: URL) {
+        save(data, for: url) { _ in }
+    }
+}
