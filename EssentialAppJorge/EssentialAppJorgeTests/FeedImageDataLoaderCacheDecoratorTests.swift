@@ -39,9 +39,9 @@ class FeedImageDataLoaderCacheDecoratorTests: XCTestCase {
     func test_loadImageData_loadsFromLoader() {
         let url = anyURL()
         let (sut, loader) = makeSUT()
-
+        
         _ = sut.loadImageData(from: url) { _ in }
-
+        
         XCTAssertEqual(loader.loadedURLs, [url], "Expected to load URL from loader")
     }
     
@@ -68,7 +68,7 @@ class FeedImageDataLoaderCacheDecoratorTests: XCTestCase {
     
     func test_loadImageData_deliversErrorOnLoaderFailure() {
         let (sut, loader) = makeSUT()
-
+        
         expect(sut, toCompleteWith: .failure(anyNSError()), when: {
             loader.complete(with: anyNSError())
         })
