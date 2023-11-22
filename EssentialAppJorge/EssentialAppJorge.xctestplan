@@ -32,14 +32,6 @@
         "identifier" : "E48705D62B06257400C231DB",
         "name" : "EssentialAppJorgeTests"
       }
-    },
-    {
-      "parallelizable" : true,
-      "target" : {
-        "containerPath" : "container:EssentialAppJorge.xcodeproj",
-        "identifier" : "E48705E02B06257400C231DB",
-        "name" : "EssentialAppJorgeUITests"
-      }
     }
   ],
   "version" : 1
