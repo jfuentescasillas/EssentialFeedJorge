@@ -17,7 +17,7 @@
                BlueprintIdentifier = "E48705C02B06257400C231DB"
                BuildableName = "EssentialAppJorge.app"
                BlueprintName = "EssentialAppJorge"
-               ReferencedContainer = "container:EssentialAppJorge.xcodeproj">
+               ReferencedContainer = "container:EssentialAppJorge/EssentialAppJorge.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -41,7 +41,7 @@
                BlueprintIdentifier = "E48705D62B06257400C231DB"
                BuildableName = "EssentialAppJorgeTests.xctest"
                BlueprintName = "EssentialAppJorgeTests"
-               ReferencedContainer = "container:EssentialAppJorge.xcodeproj">
+               ReferencedContainer = "container:EssentialAppJorge/EssentialAppJorge.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -52,7 +52,18 @@
                BlueprintIdentifier = "E48705E02B06257400C231DB"
                BuildableName = "EssentialAppJorgeUITests.xctest"
                BlueprintName = "EssentialAppJorgeUITests"
-               ReferencedContainer = "container:EssentialAppJorge.xcodeproj">
+               ReferencedContainer = "container:EssentialAppJorge/EssentialAppJorge.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E49D52A92B0E3117002A7CF3"
+               BuildableName = "EssentialAppJorgeUIAcceptanceTests.xctest"
+               BlueprintName = "EssentialAppJorgeUIAcceptanceTests"
+               ReferencedContainer = "container:EssentialAppJorge/EssentialAppJorge.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -74,7 +85,7 @@
             BlueprintIdentifier = "E48705C02B06257400C231DB"
             BuildableName = "EssentialAppJorge.app"
             BlueprintName = "EssentialAppJorge"
-            ReferencedContainer = "container:EssentialAppJorge.xcodeproj">
+            ReferencedContainer = "container:EssentialAppJorge/EssentialAppJorge.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -91,7 +102,7 @@
             BlueprintIdentifier = "E48705C02B06257400C231DB"
             BuildableName = "EssentialAppJorge.app"
             BlueprintName = "EssentialAppJorge"
-            ReferencedContainer = "container:EssentialAppJorge.xcodeproj">
+            ReferencedContainer = "container:EssentialAppJorge/EssentialAppJorge.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

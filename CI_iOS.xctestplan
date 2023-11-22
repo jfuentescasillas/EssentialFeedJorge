@@ -65,6 +65,13 @@
         "identifier" : "E48705D62B06257400C231DB",
         "name" : "EssentialAppJorgeTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:EssentialAppJorge\/EssentialAppJorge.xcodeproj",
+        "identifier" : "E49D52A92B0E3117002A7CF3",
+        "name" : "EssentialAppJorgeUIAcceptanceTests"
+      }
     }
   ],
   "version" : 1
