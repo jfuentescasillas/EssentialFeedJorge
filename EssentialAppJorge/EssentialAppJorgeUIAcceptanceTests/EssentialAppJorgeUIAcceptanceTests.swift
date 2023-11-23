@@ -14,12 +14,10 @@ final class EssentialAppJorgeUIAcceptanceTests: XCTestCase {
         app.launch()
 
         let feedCells = app.cells.matching(identifier: "feed-image-cell")
-        XCTAssertEqual(feedCells.count, 0)  // It should be 22 instead of 0
-        //XCTAssertEqual(feedCells.count, 22)
+        XCTAssertEqual(feedCells.count, 22)
         
         let firstImage = app.images.matching(identifier: "feed-image-view").firstMatch
-        XCTAssertTrue(!firstImage.exists)  // It should be (firstImage.exists)
-        //XCTAssertTrue(firstImage.exists)
+        XCTAssertTrue(firstImage.exists)
     }
     
     
