@@ -14,26 +14,18 @@ import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    
+    let localStoreURL = NSPersistentContainer
+        .defaultDirectoryURL()
+        .appendingPathComponent("feed-store.sqlite")
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
-        
+                
         let remoteURL = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
         let remoteClient = makeRemoteClient()
         let remoteFeedLoader = RemoteFeedLoader(url: remoteURL, client: remoteClient)
         let remoteImageLoader = RemoteFeedImageDataLoader(client: remoteClient)
-               
-        let localStoreURL = NSPersistentContainer
-            .defaultDirectoryURL()
-            .appending(path: "feed-store.sqlite")
-        
-        #if DEBUG
-        if CommandLine.arguments.contains("-reset") {
-            try? FileManager.default.removeItem(at: localStoreURL)
-        }
-        #endif
-        
+                      
         let localStore = try! CoreDataFeedStore(storeURL: localStoreURL)
         let localFeedLoader = LocalFeedLoader(store: localStore, currentDate: Date.init)
         let localImageLoader = LocalFeedImageDataLoader(store: localStore)
@@ -49,39 +41,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 fallback: FeedImageDataLoaderCacheDecorator(
                     decoratee: remoteImageLoader,
                     cache: localImageLoader)))
-        
-        /*
-         To load and cache images use:
-         
-         window?.rootViewController = FeedUIComposer.feedComposedWith(
-             feedLoader: FeedLoaderWithFallbackComposite(
-                 primary: FeedLoaderCacheDecorator(
-                     decoratee: remoteFeedLoader,
-                     cache: localFeedLoader),
-                 fallback: localFeedLoader),
-             imageLoader: FeedImageDataLoaderWithFallbackComposite(
-                 primary: localImageLoader,
-                 fallback: FeedImageDataLoaderCacheDecorator(
-                     decoratee: remoteImageLoader,
-                     cache: localImageLoader)))
-         
-         ----------------------------------------------
-         To check everything from the cache use:
-         
-         window?.rootViewController = FeedUIComposer.feedComposedWith(
-             feedLoader: localFeedLoader,
-             imageLoader: localImageLoader)
-         */
     }
     
     
-    private func makeRemoteClient() -> HTTPClientProtocol {
-        #if DEBUG
-        if UserDefaults.standard.string(forKey: "connectivity") == "offline" {
-            return AlwaysFailingHTTPClient()
-        }
-        #endif
-        
+    func makeRemoteClient() -> HTTPClientProtocol {
         return URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
     }
     
@@ -118,20 +81,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 }
-
-
-// MARK: - Class. AlwaysFailingHTTPClient
-#if DEBUG
-private class AlwaysFailingHTTPClient: HTTPClientProtocol {
-    private class Task: HTTPClientTask {
-        func cancel() { }
-    }
-    
-    
-    func get(from url: URL, completion: @escaping (HTTPClientProtocol.Result) -> Void) -> HTTPClientTask {
-        completion(.failure(NSError(domain: "offline", code: 0)))
-        
-        return Task()
-    }
-}
-#endif
