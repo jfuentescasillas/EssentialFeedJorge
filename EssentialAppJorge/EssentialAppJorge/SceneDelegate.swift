@@ -20,13 +20,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let remoteURL = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
-        let remoteClient = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+        let remoteClient = makeRemoteClient()
         let remoteFeedLoader = RemoteFeedLoader(url: remoteURL, client: remoteClient)
         let remoteImageLoader = RemoteFeedImageDataLoader(client: remoteClient)
                
+        let localStoreURL = NSPersistentContainer
+            .defaultDirectoryURL()
+            .appending(path: "feed-store.sqlite")
+        let localStore = try! CoreDataFeedStore(storeURL: localStoreURL)
+        let localFeedLoader = LocalFeedLoader(store: localStore, currentDate: Date.init)
+        let localImageLoader = LocalFeedImageDataLoader(store: localStore)
+        
         window?.rootViewController = FeedUIComposer.feedComposedWith(
-            feedLoader: remoteFeedLoader,
-            imageLoader: remoteImageLoader)
+            feedLoader: FeedLoaderWithFallbackComposite(
+                primary: FeedLoaderCacheDecorator(
+                    decoratee: remoteFeedLoader,
+                    cache: localFeedLoader),
+                fallback: localFeedLoader),
+            imageLoader: FeedImageDataLoaderWithFallbackComposite(
+                primary: localImageLoader,
+                fallback: FeedImageDataLoaderCacheDecorator(
+                    decoratee: remoteImageLoader,
+                    cache: localImageLoader)))
         
         /*
          To load and cache images use:
@@ -50,6 +65,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
              feedLoader: localFeedLoader,
              imageLoader: localImageLoader)
          */
+    }
+    
+    
+    private func makeRemoteClient() -> HTTPClientProtocol {
+        switch UserDefaults.standard.string(forKey: "connectivity") {
+        case "offline":
+            return AlwaysFailingHTTPClient()
+            
+        default:
+            return URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+            
+        }
     }
     
     
@@ -83,5 +110,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+}
+
+
+// MARK: - Class. AlwaysFailingHTTPClient
+private class AlwaysFailingHTTPClient: HTTPClientProtocol {
+    private class Task: HTTPClientTask {
+        func cancel() { }
+    }
+    
+    
+    func get(from url: URL, completion: @escaping (HTTPClientProtocol.Result) -> Void) -> HTTPClientTask {
+        completion(.failure(NSError(domain: "offline", code: 0)))
+        
+        return Task()
     }
 }
