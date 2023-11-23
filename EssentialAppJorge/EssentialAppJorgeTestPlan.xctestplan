@@ -12,7 +12,7 @@
     "codeCoverage" : {
       "targets" : [
         {
-          "containerPath" : "container:EssentialAppJorge.xcodeproj",
+          "containerPath" : "container:EssentialAppJorge\/EssentialAppJorge.xcodeproj",
           "identifier" : "E48705C02B06257400C231DB",
           "name" : "EssentialAppJorge"
         }
@@ -28,7 +28,7 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:EssentialAppJorge.xcodeproj",
+        "containerPath" : "container:EssentialAppJorge\/EssentialAppJorge.xcodeproj",
         "identifier" : "E48705D62B06257400C231DB",
         "name" : "EssentialAppJorgeTests"
       }
