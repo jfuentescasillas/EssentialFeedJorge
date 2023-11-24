@@ -77,58 +77,6 @@ class FeedAcceptanceTests: XCTestCase {
         let sut = SceneDelegate(httpClient: HTTPClientStub.offline, store: store)
         sut.sceneWillResignActive(UIApplication.shared.connectedScenes.first!)
     }
-        
-    
-    private class InMemoryFeedStore: FeedStoreProtocol, FeedImageDataStoreProtocol {
-        private(set) var feedCache: CachedFeed?
-        private var feedImageDataCache: [URL: Data] = [:]
-        
-        
-        private init(feedCache: CachedFeed? = nil) {
-            self.feedCache = feedCache
-        }
-        
-        
-        func deleteCachedFeed(completion: @escaping FeedStoreProtocol.DeletionCompletion) {
-            feedCache = nil
-            completion(.success(()))
-        }
-        
-        
-        func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping FeedStoreProtocol.InsertionCompletion) {
-            feedCache = CachedFeed(feed: feed, timestamp: timestamp)
-            completion(.success(()))
-        }
-        
-        
-        func retrieve(completion: @escaping FeedStoreProtocol.RetrievalCompletion) {
-            completion(.success(feedCache))
-        }
-        
-        
-        func insert(_ data: Data, for url: URL, completion: @escaping (FeedImageDataStoreProtocol.InsertionResult) -> Void) {
-            feedImageDataCache[url] = data
-            completion(.success(()))
-        }
-        
-        
-        func retrieve(dataForURL url: URL, completion: @escaping (FeedImageDataStoreProtocol.RetrievalResult) -> Void) {
-            completion(.success(feedImageDataCache[url]))
-        }
-        
-        
-        static var empty: InMemoryFeedStore {
-            InMemoryFeedStore()
-        }
-        
-        static var withExpiredFeedCache: InMemoryFeedStore {
-            InMemoryFeedStore(feedCache: CachedFeed(feed: [], timestamp: Date.distantPast))
-        }
-        
-        static var withNonExpiredFeedCache: InMemoryFeedStore {
-            InMemoryFeedStore(feedCache: CachedFeed(feed: [], timestamp: Date()))
-        }
-    }
     
     
     private func response(for url: URL) -> (Data, HTTPURLResponse) {
