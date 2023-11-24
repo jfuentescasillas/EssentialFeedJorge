@@ -11,19 +11,19 @@ import EssentialFeedJorge
 
 
 // MARK: - Protocols
-protocol FeedImageCellControllerDelegate {
+public protocol FeedImageCellControllerDelegate {
     func didRequestImage()
     func didCancelImageRequest()
 }
 
 
 // MARK: - FeedImageCellController Class
-final class FeedImageCellController: FeedImageViewProtocol {
+public final class FeedImageCellController: FeedImageViewProtocol {
     private let delegate: FeedImageCellControllerDelegate
     private var cell: FeedImageTableViewCell?
     
     
-    init(delegate: FeedImageCellControllerDelegate) {
+    public init(delegate: FeedImageCellControllerDelegate) {
         self.delegate = delegate
     }
     
@@ -52,7 +52,7 @@ final class FeedImageCellController: FeedImageViewProtocol {
     }
     
     
-    func display(_ viewModel: FeedImageViewModel<UIImage>) {
+    public func display(_ viewModel: FeedImageViewModel<UIImage>) {
         cell?.locationContainer.isHidden = !viewModel.hasLocation
         cell?.locationLabel.text = viewModel.location
         cell?.descriptionLabel.text = viewModel.description

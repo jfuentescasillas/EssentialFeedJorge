@@ -10,6 +10,7 @@ import XCTest
 import UIKit
 import EssentialFeedJorge
 import EssentialFeedJorgeiOS
+import EssentialAppJorge
 
 
 // MARK: - FeedUIIntegrationTests Class

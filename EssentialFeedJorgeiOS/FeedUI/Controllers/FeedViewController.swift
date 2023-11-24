@@ -11,15 +11,15 @@ import EssentialFeedJorge
 
 
 // MARK: - Protocols
-protocol FeedViewControllerDelegate {
+public protocol FeedViewControllerDelegate {
     func didRequestFeedRefresh()
 }
 
 
 // MARK: - FeedViewController Class
 public final class FeedViewController: UITableViewController  {
-    var delegate: FeedViewControllerDelegate?
-    var tableModel = [FeedImageCellController]() {
+    public var delegate: FeedViewControllerDelegate?
+    private var tableModel = [FeedImageCellController]() {
         didSet {
             tableView.reloadData()
         }
@@ -60,6 +60,11 @@ public final class FeedViewController: UITableViewController  {
     
     
     // MARK: - Custom Methods
+    public func display(_ cellControllers: [FeedImageCellController]) {
+        tableModel = cellControllers
+    }
+    
+    
     private func cellController(forRowAt indexPath: IndexPath) -> FeedImageCellController {
         return tableModel[indexPath.row]
     }
