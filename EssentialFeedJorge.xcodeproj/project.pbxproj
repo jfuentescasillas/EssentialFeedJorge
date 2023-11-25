@@ -87,6 +87,7 @@
 		E4FA2DC52AB4690900CFE6CA /* FeedImageCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA2DC42AB4690900CFE6CA /* FeedImageCellController.swift */; };
 		E4FDD65F2B12016F0032D348 /* FeedSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDD65E2B12016F0032D348 /* FeedSnapshotTests.swift */; };
 		E4FDD6622B1212680032D348 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDD6612B1212680032D348 /* UIImage+TestHelpers.swift */; };
+		E4FDD66A2B12164E0032D348 /* UITableView+HeaderSizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDD6692B12164E0032D348 /* UITableView+HeaderSizing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +227,7 @@
 		E4FA2DC42AB4690900CFE6CA /* FeedImageCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageCellController.swift; sourceTree = "<group>"; };
 		E4FDD65E2B12016F0032D348 /* FeedSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSnapshotTests.swift; sourceTree = "<group>"; };
 		E4FDD6612B1212680032D348 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
+		E4FDD6692B12164E0032D348 /* UITableView+HeaderSizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+HeaderSizing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +305,7 @@
 				E4D5E2D52AB8A93A003334DB /* UIImageView+Animations.swift */,
 				E4CE78D62AB31CD20060E7BE /* UIView+Shimmering.swift */,
 				E419EDD92AD5AED400CD51F0 /* UIRefreshControl+Helpers.swift */,
+				E4FDD6692B12164E0032D348 /* UITableView+HeaderSizing.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -911,6 +914,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4FDD66A2B12164E0032D348 /* UITableView+HeaderSizing.swift in Sources */,
 				E419EDD52AD5768A00CD51F0 /* ErrorView.swift in Sources */,
 				E419EDDA2AD5AED400CD51F0 /* UIRefreshControl+Helpers.swift in Sources */,
 				E4CE78D72AB31CD20060E7BE /* UIView+Shimmering.swift in Sources */,
