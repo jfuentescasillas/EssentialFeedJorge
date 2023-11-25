@@ -28,6 +28,14 @@ class FeedSnapshotTests: XCTestCase {
     }
     
     
+    func test_feedWithErrorMessage() {
+        let sut = makeSUT()
+        sut.display(.error(message: "This is a\nmulti-line\nerror message"))
+        
+        record(snapshot: sut.snapshot(), named: "FEED_WITH_ERROR_MESSAGE")
+    }
+    
+    
     // MARK: - Helpers
     private func makeSUT() -> FeedViewController {
         let bundle = Bundle(for: FeedViewController.self)
@@ -68,19 +76,19 @@ class FeedSnapshotTests: XCTestCase {
             
             return
         }
-
+        
         // ../EssentialFeedJorgeiOSTests/FeedSnapshotTests.swift
         let snapshotURL = URL(fileURLWithPath: String(describing: file))
             .deletingLastPathComponent()  // ../EssentialFeedJorgeiOSTests/
             .appendingPathComponent("snapshots")  // ../EssentialFeedJorgeiOSTests/snapshots
             .appendingPathComponent("\(name).png")  // ../EssentialFeedJorgeiOSTests/snapshots/EMPTY_FEED.png
-
+        
         do {
             try FileManager.default.createDirectory(
                 at: snapshotURL.deletingLastPathComponent(),
                 withIntermediateDirectories: true
             )
-
+            
             try snapshotData.write(to: snapshotURL)
         } catch {
             XCTFail("Failed to record snapshot with error: \(error)", file: file, line: line)
@@ -110,7 +118,7 @@ private extension FeedViewController {
             stub.controller = cellController
             return cellController
         }
-
+        
         display(cells)
     }
 }
@@ -119,7 +127,7 @@ private extension FeedViewController {
 private class ImageStub: FeedImageCellControllerDelegate {
     let viewModel: FeedImageViewModel<UIImage>
     weak var controller: FeedImageCellController?
-
+    
     
     init(description: String?, location: String?, image: UIImage?) {
         viewModel = FeedImageViewModel(
@@ -130,11 +138,11 @@ private class ImageStub: FeedImageCellControllerDelegate {
             shouldRetry: image == nil)
     }
     
-
+    
     func didRequestImage() {
         controller?.display(viewModel)
     }
     
-
+    
     func didCancelImageRequest() {}
 }
