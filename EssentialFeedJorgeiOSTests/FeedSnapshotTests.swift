@@ -124,6 +124,7 @@ private extension FeedViewController {
 }
 
 
+// MARK: - Class. ImageStub
 private class ImageStub: FeedImageCellControllerDelegate {
     let viewModel: FeedImageViewModel<UIImage>
     weak var controller: FeedImageCellController?
