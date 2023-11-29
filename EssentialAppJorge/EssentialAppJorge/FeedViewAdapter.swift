@@ -14,10 +14,10 @@ import EssentialFeedJorgeiOS
 // MARK: - Adapter Class
 final class FeedViewAdapter: FeedViewProtocol {
     private weak var controller: FeedViewController?
-    private let imageLoader: FeedImageDataLoaderProtocol
+    private let imageLoader: (URL) -> FeedImageDataLoaderProtocol.Publisher
     
     
-    init(controller: FeedViewController, imageLoader: FeedImageDataLoaderProtocol) {
+    init(controller: FeedViewController, imageLoader: @escaping (URL) -> FeedImageDataLoaderProtocol.Publisher) {
         self.controller = controller
         self.imageLoader = imageLoader
     }

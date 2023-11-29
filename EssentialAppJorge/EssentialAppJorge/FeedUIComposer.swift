@@ -9,6 +9,7 @@
 import UIKit
 import EssentialFeedJorge
 import EssentialFeedJorgeiOS
+import Combine
 
 
 // MARK: - FeedUIComposer Class
@@ -16,14 +17,17 @@ public final class FeedUIComposer {
     private init() {}
     
     
-    public static func feedComposedWith(feedLoader: FeedLoaderProtocol, imageLoader: FeedImageDataLoaderProtocol) -> FeedViewController {
-        let presentationAdapter = FeedLoaderPresentationAdapter(feedLoader: MainQueueDispatchDecorator(decoratee: feedLoader))
+    public static func feedComposedWith(
+        feedLoader: @escaping () -> FeedLoaderProtocol.Publisher,
+        imageLoader: @escaping (URL) -> FeedImageDataLoaderProtocol.Publisher) -> FeedViewController {
+        let presentationAdapter = FeedLoaderPresentationAdapter(feedLoader: feedLoader)
         let feedController = makeFeedViewController(delegate: presentationAdapter, title: FeedPresenter.title)
         
         presentationAdapter.presenter = FeedPresenter(
             feedView: FeedViewAdapter(
                 controller: feedController,
-                imageLoader: MainQueueDispatchDecorator(decoratee: imageLoader)), loadingView: WeakRefVirtualProxy(feedController),
+                imageLoader: imageLoader),
+            loadingView: WeakRefVirtualProxy(feedController),
             errorView: WeakRefVirtualProxy(feedController))
         
         return feedController

@@ -8,33 +8,37 @@
 
 import EssentialFeedJorge
 import EssentialFeedJorgeiOS
+import Combine
 
 
 // MARK: - FeedLoaderPresentationAdapter Class
 final class FeedLoaderPresentationAdapter: FeedViewControllerDelegate {
-    private let feedLoader: FeedLoaderProtocol
+    private let feedLoader: () -> FeedLoaderProtocol.Publisher
+    private var cancellable: Cancellable?
     var presenter: FeedPresenter?
     
     
-    init(feedLoader: FeedLoaderProtocol) {
+    init(feedLoader: @escaping () -> FeedLoaderProtocol.Publisher) {
         self.feedLoader = feedLoader
     }
     
     
-    // MARK: - Delegate Method
-    func didRequestFeedRefresh() {
-        presenter?.didStartLoadingFeed()
+    func didRequestFeedRefresh () {
+        presenter?.didStartLoadingFeed ()
         
-        feedLoader.load { [weak self] result in
-            guard let self else { return }
-            
-            switch result {
-            case let .success(feed):
-                self.presenter?.didFinishLoadingFeed(with: feed)
-                
-            case let .failure(error):
-                self.presenter?.didFinishLoadingFeed(with: error)
-            }
-        }
+        cancellable = feedLoader()
+            .dispatchOnMainQueue()
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    switch completion {
+                    case .finished: break
+                        
+                    case let .failure(error):
+                        self?.presenter?.didFinishLoadingFeed(with: error)
+                    }
+                }, receiveValue: { [weak self] feed in
+                    self?.presenter?.didFinishLoadingFeed(with: feed)
+                }
+            )
     }
 }
