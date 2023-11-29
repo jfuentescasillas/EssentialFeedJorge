@@ -93,7 +93,7 @@ extension Publisher {
 // MARK: - Extension. DispatchQueue
 extension DispatchQueue {
     static var immediateWhenOnMainQueueShceduler: ImmediateWhenOnMainQueueShceduler {
-        ImmediateWhenOnMainQueueShceduler()
+        ImmediateWhenOnMainQueueShceduler.shared
     }
     
     
@@ -110,8 +110,23 @@ extension DispatchQueue {
         }
         
         
+        static let shared = Self()
+        private static let key = DispatchSpecificKey<UInt8>()
+        private static let value = UInt8.max
+        
+        
+        private init() {
+            DispatchQueue.main.setSpecific(key: Self.key, value: Self.value)
+        }
+        
+        
+        private func isMainQueue() -> Bool {
+            DispatchQueue.getSpecific(key: Self.key) == Self.value
+        }
+        
+        
         func schedule(options: DispatchQueue.SchedulerOptions?, _ action: @escaping () -> Void) {
-            guard Thread.isMainThread else {
+            guard isMainQueue() else {
                 return DispatchQueue.main.schedule(options: options, action)
             }
             
