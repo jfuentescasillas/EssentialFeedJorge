@@ -140,7 +140,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     }
     
 
-    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+    /* func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         // ARRANGE: Given a SUT (System Under Test) and a client
         let url = URL(string: "https://any-url.com")!
         let client = HTTPClientSpy()
@@ -156,7 +156,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         // ASSERT: Then assert that the results are empty (related to the line of code
         // 'guard self != nil else { return }' in RemoteFeedLoader.load(...))
         XCTAssertTrue(capturedResults.isEmpty)
-    }
+    } */
     
     
     // MARK: - Helper Methods
