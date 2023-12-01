@@ -543,7 +543,6 @@
 			isa = PBXGroup;
 			children = (
 				E4C62C472B03CA93008E820C /* URLProtocolStub.swift */,
-				E471C5882A83813300148917 /* URLSessionHTTPClientTests.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -583,6 +582,7 @@
 		E4D291972B19CF2800E7E149 /* SharedAPIInfra */ = {
 			isa = PBXGroup;
 			children = (
+				E471C5882A83813300148917 /* URLSessionHTTPClientTests.swift */,
 				E4C62C462B03CA8B008E820C /* Helpers */,
 			);
 			path = SharedAPIInfra;
