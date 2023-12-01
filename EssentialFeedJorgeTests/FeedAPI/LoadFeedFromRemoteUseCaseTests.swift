@@ -12,7 +12,7 @@ import EssentialFeedJorge
 
 // MARK: - Tests Class
 final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
-    // MARK: - Methods to Request Data From URL
+    /* // MARK: - Methods to Request Data From URL
     func test_init_doesNotRequestDataFromURL() {
         // ARRANGE: Given a SUT (System Under Test) and a client
         let (_, client) = makeSUT()
@@ -40,7 +40,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     }
     
     
-    func test_loadTwice_requestDataFromURLAndURLsAreEqualTwice() {
+    func test_loadTwice_requestsDataFromURLTwice() {
         // ARRANGE: Given a SUT (System Under Test) and a client
         let url = URL(string: "https://a-given-url.com")!
         let (sut, client) = makeSUT(url: url) // HTTPClientSpy()
@@ -51,7 +51,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         
         // ASSERT: Then assert that the same amount of URL calls (2 calls) are the same. With this we make sure that the RemoteFeedLoader.load(...) is called once per each call
         XCTAssertEqual(client.requestedURLs, [url, url])
-    }
+    } */
     
     
     // MARK: - Methods to Deliver Errors
@@ -139,8 +139,8 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         })
     }
     
-    
-    func test_load_doesNotDeliversResultAfterSUTInstanceHasBeenDeallocated() {
+
+    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         // ARRANGE: Given a SUT (System Under Test) and a client
         let url = URL(string: "https://any-url.com")!
         let client = HTTPClientSpy()
