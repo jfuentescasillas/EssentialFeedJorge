@@ -52,7 +52,7 @@ class LoadImageCommentsFromRemoteUseCaseTests: XCTestCase {
     
     func test_load_deliversItemsOn2xxHTTPResponseWithJSONItems() {
         let (sut, client) = makeSUT()
-        
+
         let item1 = makeItem(
             id: UUID(),
             message: "a message",
