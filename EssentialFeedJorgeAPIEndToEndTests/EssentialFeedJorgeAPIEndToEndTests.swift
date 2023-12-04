@@ -61,7 +61,7 @@ final class EssentialFeedJorgeAPIEndToEndTests: XCTestCase {
     
 
     private func getFeedResult(file: StaticString = #filePath, line: UInt = #line) -> FeedLoaderProtocol.Result? {
-        let loader = RemoteFeedLoader(url: feedTestServerURL, client: ephemeralClient())
+        let loader = RemoteLoader(url: feedTestServerURL, client: ephemeralClient(), mapper: FeedItemsMapper.map)
         
         trackForMemoryLeaks(loader, file: file, line: line)
         
