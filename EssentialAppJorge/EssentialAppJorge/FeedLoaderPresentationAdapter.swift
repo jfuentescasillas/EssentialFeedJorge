@@ -13,12 +13,12 @@ import Combine
 
 // MARK: - FeedLoaderPresentationAdapter Class
 final class FeedLoaderPresentationAdapter: FeedViewControllerDelegate {
-    private let feedLoader: () -> FeedLoaderProtocol.Publisher
+    private let feedLoader: () -> AnyPublisher<[FeedImage], Error>
     private var cancellable: Cancellable?
     var presenter: FeedPresenter?
     
     
-    init(feedLoader: @escaping () -> FeedLoaderProtocol.Publisher) {
+    init(feedLoader: @escaping () -> AnyPublisher<[FeedImage], Error>) {
         self.feedLoader = feedLoader
     }
     

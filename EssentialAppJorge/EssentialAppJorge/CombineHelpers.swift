@@ -67,7 +67,7 @@ private extension FeedImageDataCacheProtocol {
 
 
 // MARK: - Extension. FeedLoaderProtocol
-public extension FeedLoaderProtocol {
+public extension LocalFeedLoader {
     typealias Publisher = AnyPublisher<[FeedImage], Error>
     
     

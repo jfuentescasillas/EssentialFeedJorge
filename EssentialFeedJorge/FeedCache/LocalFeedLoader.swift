@@ -54,8 +54,8 @@ extension LocalFeedLoader: FeedCacheProtocol {
     
     
 // MARK: - Extension. LocalFeedLoader. Load
-extension LocalFeedLoader: FeedLoaderProtocol {
-    public typealias LoadResult = FeedLoaderProtocol.Result
+extension LocalFeedLoader {
+    public typealias LoadResult = Swift.Result<[FeedImage], Error>
 
     
     public func load(completion: @escaping (LoadResult) -> Void) {

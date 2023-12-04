@@ -5,7 +5,7 @@
 //  Created by jfuentescasillas on 20/11/23.
 //
 
-
+/*
 import EssentialFeedJorge
 
 
@@ -22,3 +22,4 @@ class FeedLoaderStub: FeedLoaderProtocol {
         completion(result)
     }
 }
+*/
