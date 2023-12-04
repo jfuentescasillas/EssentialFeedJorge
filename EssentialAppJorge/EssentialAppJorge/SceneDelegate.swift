@@ -30,11 +30,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         LocalFeedLoader(store: store, currentDate: Date.init)
     }()
     
-    private lazy var remoteFeedLoader = {
+    /*private lazy var remoteFeedLoader = {
         let url = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
         
         return RemoteLoader(url: url, client: httpClient, mapper: FeedItemsMapper.map)
-    }()
+    }()*/
                       
                       
     convenience init(httpClient: HTTPClientProtocol, store: FeedStoreProtocol & FeedImageDataStoreProtocol) {
@@ -69,8 +69,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     private func makeRemoteFeedLoaderWithLocalFallback() -> FeedLoaderProtocol.Publisher {
-        return remoteFeedLoader
+        /*return remoteFeedLoader
             .loadPublisher()
+            .caching(to: localFeedLoader)
+            .fallback(to: localFeedLoader.loadPublisher)*/
+        let remoteURL = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
+        
+        return httpClient
+            .getPublisher(url: remoteURL)
+            .tryMap(FeedItemsMapper.map)
             .caching(to: localFeedLoader)
             .fallback(to: localFeedLoader.loadPublisher)
     }

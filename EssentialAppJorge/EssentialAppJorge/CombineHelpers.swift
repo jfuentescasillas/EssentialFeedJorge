@@ -11,6 +11,26 @@ import Combine
 import EssentialFeedJorge
 
 
+// MARK: - Extension. HTTPClientProtocol
+public extension HTTPClientProtocol {
+    typealias Publisher = AnyPublisher<(Data, HTTPURLResponse), Error>
+
+    
+    func getPublisher(url: URL) -> Publisher {
+        var task: HTTPClientTask?
+
+        
+        return Deferred {
+            Future { completion in
+                task = self.get(from: url, completion: completion)
+            }
+        }
+        .handleEvents(receiveCancel: { task?.cancel() })
+        .eraseToAnyPublisher()
+    }
+}
+
+
 // MARK: - Extension. FeedImageDataLoader
 public extension FeedImageDataLoaderProtocol {
     typealias Publisher = AnyPublisher<Data, Error>
