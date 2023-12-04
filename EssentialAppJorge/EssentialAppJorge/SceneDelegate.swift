@@ -96,7 +96,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             })
     }
 }
-
-
-// MRAK: - Extension. RemoteLoader
-extension RemoteLoader: FeedLoaderProtocol where Resource == [FeedImage] {}
