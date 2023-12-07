@@ -9,16 +9,27 @@
 import Foundation
 
 
+// MARK: - Protocol. ResourceView
+public protocol ResourceViewProtocol {
+    func display(_ viewModel: String)
+}
+
+
+
 public final class LoadResourcePresenter {
-    private let feedView: FeedViewProtocol
+    public typealias Mapper = (String) -> String
+
+    private let resourceView: ResourceViewProtocol
     private let loadingView: FeedLoadingViewProtocol
     private let errorView: FeedErrorViewProtocol
+    private let mapper: Mapper
     
     
-    public init(feedView: FeedViewProtocol, loadingView: FeedLoadingViewProtocol, errorView: FeedErrorViewProtocol) {
-        self.feedView = feedView
+    public init(resourceView: ResourceViewProtocol, loadingView: FeedLoadingViewProtocol, errorView: FeedErrorViewProtocol, mapper: @escaping Mapper) {
+        self.resourceView = resourceView
         self.loadingView = loadingView
         self.errorView = errorView
+        self.mapper = mapper
     }
     
     
@@ -40,8 +51,8 @@ public final class LoadResourcePresenter {
     }
 
     
-    public func didFinishLoadingFeed(with feed: [FeedImage]) {
-        feedView.display(FeedViewModel(feed: feed))
+    public func didFinishLoading(with resource: String) {
+        resourceView.display(mapper(resource))
         loadingView.display(FeedLoadingViewModel(isLoading: false))
     }
 
