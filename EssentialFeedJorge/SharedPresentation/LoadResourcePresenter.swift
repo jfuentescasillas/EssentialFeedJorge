@@ -33,17 +33,6 @@ public final class LoadResourcePresenter {
     }
     
     
-    public static var title: String {
-        let returnTitle = NSLocalizedString(
-            "FEED_VIEW_TITLE",
-            tableName: "Feed",
-            bundle: Bundle(for: FeedPresenter.self),
-            comment: "Title for the feed view")
-        
-        return returnTitle
-    }
-    
-    
     // MARK: - Methods
     public func didStartLoadingFeed() {
         errorView.display(.noError)
