@@ -16,7 +16,7 @@
 		E47AEBB12B10C4DB002A1DD3 /* FeedUIIntegrationTests+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47AEBAB2B10C4DB002A1DD3 /* FeedUIIntegrationTests+Assertions.swift */; };
 		E47AEBB22B10C4DB002A1DD3 /* FeedViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47AEBAA2B10C4DA002A1DD3 /* FeedViewController+TestHelpers.swift */; };
 		E47AEBB32B10C4DB002A1DD3 /* FeedImageCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47AEBA92B10C4DA002A1DD3 /* FeedImageCell+TestHelpers.swift */; };
-		E47AEBB42B10C4DB002A1DD3 /* FeedViewControllerTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47AEBAD2B10C4DB002A1DD3 /* FeedViewControllerTests+Localization.swift */; };
+		E47AEBB42B10C4DB002A1DD3 /* FeedUIIntegrationTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47AEBAD2B10C4DB002A1DD3 /* FeedUIIntegrationTests+Localization.swift */; };
 		E47AEBB52B10C4DB002A1DD3 /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47AEBAC2B10C4DB002A1DD3 /* UIControl+TestHelpers.swift */; };
 		E47AEBB62B10C4DB002A1DD3 /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47AEBA82B10C4DA002A1DD3 /* UIButton+TestHelpers.swift */; };
 		E47AEBB72B10C4DB002A1DD3 /* FeedViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47AEBB02B10C4DB002A1DD3 /* FeedViewControllerTests+LoaderSpy.swift */; };
@@ -79,7 +79,7 @@
 		E47AEBAA2B10C4DA002A1DD3 /* FeedViewController+TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FeedViewController+TestHelpers.swift"; sourceTree = "<group>"; };
 		E47AEBAB2B10C4DB002A1DD3 /* FeedUIIntegrationTests+Assertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FeedUIIntegrationTests+Assertions.swift"; sourceTree = "<group>"; };
 		E47AEBAC2B10C4DB002A1DD3 /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
-		E47AEBAD2B10C4DB002A1DD3 /* FeedViewControllerTests+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FeedViewControllerTests+Localization.swift"; sourceTree = "<group>"; };
+		E47AEBAD2B10C4DB002A1DD3 /* FeedUIIntegrationTests+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FeedUIIntegrationTests+Localization.swift"; sourceTree = "<group>"; };
 		E47AEBAE2B10C4DB002A1DD3 /* UIRefreshControl+TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		E47AEBAF2B10C4DB002A1DD3 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
 		E47AEBB02B10C4DB002A1DD3 /* FeedViewControllerTests+LoaderSpy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FeedViewControllerTests+LoaderSpy.swift"; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 				E47F388A2B14BB19000D6A26 /* UIView+TestHelpers.swift */,
 				E47AEBAB2B10C4DB002A1DD3 /* FeedUIIntegrationTests+Assertions.swift */,
 				E47AEBAA2B10C4DA002A1DD3 /* FeedViewController+TestHelpers.swift */,
-				E47AEBAD2B10C4DB002A1DD3 /* FeedViewControllerTests+Localization.swift */,
+				E47AEBAD2B10C4DB002A1DD3 /* FeedUIIntegrationTests+Localization.swift */,
 				E47AEBAE2B10C4DB002A1DD3 /* UIRefreshControl+TestHelpers.swift */,
 			);
 			path = Helpers;
@@ -324,7 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4CD4BB82B07CAD100BB5140 /* SharedTestHelpers.swift in Sources */,
-				E47AEBB42B10C4DB002A1DD3 /* FeedViewControllerTests+Localization.swift in Sources */,
+				E47AEBB42B10C4DB002A1DD3 /* FeedUIIntegrationTests+Localization.swift in Sources */,
 				E47AEBB92B10C4DB002A1DD3 /* UIImage+TestHelpers.swift in Sources */,
 				E47AEBB52B10C4DB002A1DD3 /* UIControl+TestHelpers.swift in Sources */,
 				E47AEBB72B10C4DB002A1DD3 /* FeedViewControllerTests+LoaderSpy.swift in Sources */,

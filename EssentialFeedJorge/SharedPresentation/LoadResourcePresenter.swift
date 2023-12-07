@@ -35,12 +35,12 @@ public final class LoadResourcePresenter<Resource, View: ResourceViewProtocol> {
     }
     
     
-    private var feedLoadError: String {
+    public static var loadError: String {
         let localizedString = NSLocalizedString(
             "GENERIC_CONNECTION_ERROR",
-            tableName: "Feed",
-            bundle: Bundle(for: FeedPresenter.self),
-            comment: "Error message displayed when we can't load the image feed from the server")
+            tableName: "Shared",
+            bundle: Bundle(for: Self.self),
+            comment: "Error message displayed when we can't load the resource from the server")
         
         return localizedString
     }
@@ -60,7 +60,7 @@ public final class LoadResourcePresenter<Resource, View: ResourceViewProtocol> {
 
     
     public func didFinishLoadingFeed(with error: Error) {
-        errorView.display(.error(message: feedLoadError))
+        errorView.display(.error(message: Self.loadError))
         loadingView.display(FeedLoadingViewModel(isLoading: false))
     }
 }
