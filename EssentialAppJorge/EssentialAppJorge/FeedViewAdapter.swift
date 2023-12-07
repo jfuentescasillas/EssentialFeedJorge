@@ -12,7 +12,7 @@ import EssentialFeedJorgeiOS
 
 
 // MARK: - Adapter Class
-final class FeedViewAdapter: FeedViewProtocol {
+final class FeedViewAdapter: ResourceViewProtocol {
     private weak var controller: FeedViewController?
     private let imageLoader: (URL) -> FeedImageDataLoaderProtocol.Publisher
     
