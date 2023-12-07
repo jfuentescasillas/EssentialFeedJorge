@@ -14,16 +14,11 @@ public protocol FeedViewProtocol {
 }
 
 
-public protocol FeedErrorViewProtocol {
-    func display(_ viewModel: FeedErrorViewModel)
-}
-
-
 // MARK: - FeedPresenter class
 public final class FeedPresenter {
     private let feedView: FeedViewProtocol
     private let loadingView: ResourceLoadingViewProtocol
-    private let errorView: FeedErrorViewProtocol
+    private let errorView: ResourceErrorViewProtocol
     
     private var feedLoadError: String {
         return NSLocalizedString("GENERIC_CONNECTION_ERROR",
@@ -37,7 +32,7 @@ public final class FeedPresenter {
     }
     
     
-    public init(feedView: FeedViewProtocol, loadingView: ResourceLoadingViewProtocol, errorView: FeedErrorViewProtocol) {
+    public init(feedView: FeedViewProtocol, loadingView: ResourceLoadingViewProtocol, errorView: ResourceErrorViewProtocol) {
         self.feedView = feedView
         self.loadingView = loadingView
         self.errorView = errorView

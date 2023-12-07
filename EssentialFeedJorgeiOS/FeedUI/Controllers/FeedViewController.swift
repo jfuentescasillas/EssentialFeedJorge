@@ -115,8 +115,8 @@ extension FeedViewController: ResourceLoadingViewProtocol {
 
 
 // MARK: - Extension. FeedViewController. FeedErrorView
-extension FeedViewController: FeedErrorViewProtocol {
-    public func display(_ viewModel: FeedErrorViewModel) {
+extension FeedViewController: ResourceErrorViewProtocol {
+    public func display(_ viewModel: ResourceErrorViewModel) {
         errorView?.message = viewModel.message
     }
 }

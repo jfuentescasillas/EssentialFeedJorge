@@ -85,7 +85,7 @@ final class LoadResourcePresenterTests: XCTestCase {
     }
     
     
-    private class ViewSpy: ResourceViewProtocol, ResourceLoadingViewProtocol, FeedErrorViewProtocol {
+    private class ViewSpy: ResourceViewProtocol, ResourceLoadingViewProtocol, ResourceErrorViewProtocol {
         typealias ResourceViewModel = String
         
         
@@ -105,14 +105,14 @@ final class LoadResourcePresenterTests: XCTestCase {
         }
         
         
-        // Method of FeedLoadingViewProtocol
+        // Method of ResourceLoadingViewProtocol
         func display(_ viewModel: ResourceLoadingViewModel) {
             messages.insert(.display(isLoading: viewModel.isLoading))
         }
         
         
-        // Method of FeedErrorViewProtocol
-        func display(_ viewModel: FeedErrorViewModel) {
+        // Method of ResourceErrorViewProtocol
+        func display(_ viewModel: ResourceErrorViewModel) {
             messages.insert(.display(errorMessage: viewModel.message))
         }
     }
