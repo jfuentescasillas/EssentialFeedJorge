@@ -107,8 +107,8 @@ extension FeedViewController: UITableViewDataSourcePrefetching {
 
 
 // MARK: - Extension. FeedViewController. FeedLoadingViewProtocol
-extension FeedViewController: FeedLoadingViewProtocol {
-    public func display(_ viewModel: FeedLoadingViewModel) {
+extension FeedViewController: ResourceLoadingViewProtocol {
+    public func display(_ viewModel: ResourceLoadingViewModel) {
         refreshControl?.update(isRefreshing: viewModel.isLoading)
     }
 }
