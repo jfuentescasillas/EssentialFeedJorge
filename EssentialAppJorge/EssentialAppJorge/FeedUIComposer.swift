@@ -20,19 +20,19 @@ public final class FeedUIComposer {
     public static func feedComposedWith(
         feedLoader: @escaping () -> AnyPublisher<[FeedImage], Error>,
         imageLoader: @escaping (URL) -> FeedImageDataLoaderProtocol.Publisher) -> FeedViewController {
-        let presentationAdapter = FeedLoaderPresentationAdapter(feedLoader: feedLoader)
-        let feedController = makeFeedViewController(delegate: presentationAdapter, title: FeedPresenter.title)
-        
-        presentationAdapter.presenter = LoadResourcePresenter(
-            resourceView: FeedViewAdapter(
-                controller: feedController,
-                imageLoader: imageLoader),
-            loadingView: WeakRefVirtualProxy(feedController),
-            errorView: WeakRefVirtualProxy(feedController),
-            mapper: FeedPresenter.map)
-        
-        return feedController
-    }
+            let presentationAdapter = LoadResourcePresentationAdapter<[FeedImage], FeedViewAdapter>(loader: feedLoader)
+            let feedController = makeFeedViewController(delegate: presentationAdapter, title: FeedPresenter.title)
+            
+            presentationAdapter.presenter = LoadResourcePresenter(
+                resourceView: FeedViewAdapter(
+                    controller: feedController,
+                    imageLoader: imageLoader),
+                loadingView: WeakRefVirtualProxy(feedController),
+                errorView: WeakRefVirtualProxy(feedController),
+                mapper: FeedPresenter.map)
+            
+            return feedController
+        }
     
     
     private static func makeFeedViewController(delegate: FeedViewControllerDelegate, title: String) -> FeedViewController {
