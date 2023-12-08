@@ -107,6 +107,7 @@ private extension FeedViewController {
         let cells: [FeedImageCellController] = stubs.map { stub in
             let cellController = FeedImageCellController(delegate: stub)
             stub.controller = cellController
+            
             return cellController
         }
         

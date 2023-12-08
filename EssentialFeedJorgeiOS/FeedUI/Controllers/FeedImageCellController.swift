@@ -40,6 +40,12 @@ public final class FeedImageCellController: FeedImageViewProtocol, ResourceViewP
         cell?.descriptionLabel.text = viewModel.description
         cell?.feedImageView.image = nil
         cell?.onRetry = delegate.didRequestImage
+        cell?.onReuse = { [weak self] in
+            guard let self else { return }
+            
+            self.releaseCellForReuse()
+        }
+        
         delegate.didRequestImage()
         
         return cell!
