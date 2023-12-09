@@ -18,16 +18,16 @@ public protocol FeedImageCellControllerDelegate {
 
 
 // MARK: - FeedImageCellController Class
-public final class FeedImageCellController: FeedImageViewProtocol, ResourceViewProtocol, ResourceLoadingViewProtocol, ResourceErrorViewProtocol {
+public final class FeedImageCellController: ResourceViewProtocol, ResourceLoadingViewProtocol, ResourceErrorViewProtocol {
     public typealias ResourceViewModel = UIImage
     
     
-    private let viewModel: FeedImageViewModel<UIImage>
+    private let viewModel: FeedImageViewModel
     private let delegate: FeedImageCellControllerDelegate
     private var cell: FeedImageTableViewCell?
     
     
-    public init(viewModel: FeedImageViewModel<UIImage>, delegate: FeedImageCellControllerDelegate) {
+    public init(viewModel: FeedImageViewModel, delegate: FeedImageCellControllerDelegate) {
         self.viewModel = viewModel
         self.delegate = delegate
     }
@@ -61,9 +61,6 @@ public final class FeedImageCellController: FeedImageViewProtocol, ResourceViewP
         releaseCellForReuse()
         delegate.didCancelImageRequest()
     }
-    
-    
-    public func display(_ viewModel: FeedImageViewModel<UIImage>) {}
     
     
     public func display(_ viewModel: UIImage) {
