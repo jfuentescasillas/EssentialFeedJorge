@@ -16,15 +16,22 @@ public protocol FeedViewControllerDelegate {
 }
 
 
+public protocol CellControllerProtocol {
+    func view(in tableView: UITableView) -> UITableViewCell
+    func preload()
+    func cancelLoad()
+}
+
+
 // MARK: - FeedViewController Class
 public final class FeedViewController: UITableViewController  {
     public var delegate: FeedViewControllerDelegate?
-    private var tableModel = [FeedImageCellController]() {
+    private var tableModel = [CellControllerProtocol]() {
         didSet {
             tableView.reloadData()
         }
     }
-    private var loadingControllers = [IndexPath: FeedImageCellController]()
+    private var loadingControllers = [IndexPath: CellControllerProtocol]()
     
     
     // MARK: - Outlets in the storyboard
@@ -70,13 +77,13 @@ public final class FeedViewController: UITableViewController  {
     
     
     // MARK: - Custom Methods
-    public func display(_ cellControllers: [FeedImageCellController]) {
+    public func display(_ cellControllers: [CellControllerProtocol]) {
         loadingControllers = [:]
         tableModel = cellControllers
     }
     
     
-    private func cellController(forRowAt indexPath: IndexPath) -> FeedImageCellController {
+    private func cellController(forRowAt indexPath: IndexPath) -> CellControllerProtocol {
         let controller = tableModel[indexPath.row]
         loadingControllers[indexPath] = controller
         
