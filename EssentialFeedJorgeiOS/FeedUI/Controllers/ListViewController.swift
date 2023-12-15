@@ -23,8 +23,8 @@ public protocol CellControllerProtocol {
 }
 
 
-// MARK: - FeedViewController Class
-public final class FeedViewController: UITableViewController  {
+// MARK: - ListViewController Class
+public final class ListViewController: UITableViewController  {
     public var delegate: FeedViewControllerDelegate?
     private var tableModel = [CellControllerProtocol]() {
         didSet {
@@ -98,8 +98,8 @@ public final class FeedViewController: UITableViewController  {
 }
 
 
-// MARK: - Extension. FeedViewController. UITableViewDataSourcePrefetching
-extension FeedViewController: UITableViewDataSourcePrefetching {
+// MARK: - Extension. ListViewController. UITableViewDataSourcePrefetching
+extension ListViewController: UITableViewDataSourcePrefetching {
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { indexPath in
             cellController(forRowAt: indexPath).preload()
@@ -113,16 +113,16 @@ extension FeedViewController: UITableViewDataSourcePrefetching {
 }
 
 
-// MARK: - Extension. FeedViewController. FeedLoadingViewProtocol
-extension FeedViewController: ResourceLoadingViewProtocol {
+// MARK: - Extension. ListViewController. FeedLoadingViewProtocol
+extension ListViewController: ResourceLoadingViewProtocol {
     public func display(_ viewModel: ResourceLoadingViewModel) {
         refreshControl?.update(isRefreshing: viewModel.isLoading)
     }
 }
 
 
-// MARK: - Extension. FeedViewController. FeedErrorView
-extension FeedViewController: ResourceErrorViewProtocol {
+// MARK: - Extension. ListViewController. FeedErrorView
+extension ListViewController: ResourceErrorViewProtocol {
     public func display(_ viewModel: ResourceErrorViewModel) {
         errorView?.message = viewModel.message
     }

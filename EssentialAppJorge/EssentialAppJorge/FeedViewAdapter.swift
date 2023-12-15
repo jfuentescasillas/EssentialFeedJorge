@@ -13,14 +13,14 @@ import EssentialFeedJorgeiOS
 
 // MARK: - Adapter Class
 final class FeedViewAdapter: ResourceViewProtocol {
-    private weak var controller: FeedViewController?
+    private weak var controller: ListViewController?
     private let imageLoader: (URL) -> FeedImageDataLoaderProtocol.Publisher
     
     
     private typealias ImageDataPresentationAdapter = LoadResourcePresentationAdapter<Data, WeakRefVirtualProxy<FeedImageCellController>>
     
     
-    init(controller: FeedViewController, imageLoader: @escaping (URL) -> FeedImageDataLoaderProtocol.Publisher) {
+    init(controller: ListViewController, imageLoader: @escaping (URL) -> FeedImageDataLoaderProtocol.Publisher) {
         self.controller = controller
         self.imageLoader = imageLoader
     }

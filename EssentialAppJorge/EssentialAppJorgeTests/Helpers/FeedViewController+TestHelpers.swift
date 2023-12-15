@@ -10,8 +10,8 @@ import UIKit
 import EssentialFeedJorgeiOS
 
 
-// MARK: - Extension. FeedViewController
-extension FeedViewController {
+// MARK: - Extension. ListViewController
+extension ListViewController {
     var isShowingLoadingIndicator: Bool {
         return refreshControl?.isRefreshing == true
     }
