@@ -49,14 +49,6 @@ final class LoadResourcePresentationAdapter<Resource, View: ResourceViewProtocol
 }
 
 
-// MARK: - Extension. FeedViewControllerDelegate
-extension LoadResourcePresentationAdapter: FeedViewControllerDelegate {
-    func didRequestFeedRefresh() {
-        loadResource()
-    }
-}
-
-
 // MARK: - Extension. FeedImageCellControllerDelegate
 extension LoadResourcePresentationAdapter: FeedImageCellControllerDelegate {
     func didRequestImage() {

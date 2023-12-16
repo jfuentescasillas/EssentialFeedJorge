@@ -11,11 +11,6 @@ import EssentialFeedJorge
 
 
 // MARK: - Protocols
-public protocol FeedViewControllerDelegate {
-    func didRequestFeedRefresh()
-}
-
-
 public protocol CellControllerProtocol {
     func view(in tableView: UITableView) -> UITableViewCell
     func preload()
@@ -25,7 +20,7 @@ public protocol CellControllerProtocol {
 
 // MARK: - ListViewController Class
 public final class ListViewController: UITableViewController  {
-    public var delegate: FeedViewControllerDelegate?
+    public var onRefresh: (() -> Void)?
     private var tableModel = [CellControllerProtocol]() {
         didSet {
             tableView.reloadData()
@@ -55,7 +50,7 @@ public final class ListViewController: UITableViewController  {
     
     // MARK: - Action methods
     @IBAction private func refresh() {
-        delegate?.didRequestFeedRefresh()
+        onRefresh?()
     }
     
     
