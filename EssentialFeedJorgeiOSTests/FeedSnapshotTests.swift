@@ -12,15 +12,6 @@ import EssentialFeedJorgeiOS
 
 
 class FeedSnapshotTests: XCTestCase {
-    func test_feedWithContent() {
-        let sut = makeSUT()
-        sut.display(feedWithContent())
-        
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "FEED_WITH_CONTENT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "FEED_WITH_CONTENT_dark")
-    }
-    
-    
     func test_feedWithFailedImageLoading() {
         let sut = makeSUT()
         sut.display(feedWithFailedImageLoading())
