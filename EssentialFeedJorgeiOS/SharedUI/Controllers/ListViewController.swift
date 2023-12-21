@@ -18,6 +18,12 @@ public protocol CellControllerProtocol {
 }
 
 
+public extension CellControllerProtocol {
+    func preload() {}
+    func cancelLoad() {}
+}
+
+
 // MARK: - ListViewController Class
 public final class ListViewController: UITableViewController  {
     public var onRefresh: (() -> Void)?
