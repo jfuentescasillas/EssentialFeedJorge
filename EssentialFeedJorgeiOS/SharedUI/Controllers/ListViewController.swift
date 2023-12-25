@@ -10,39 +10,27 @@ import UIKit
 import EssentialFeedJorge
 
 
-// MARK: - Protocols
-public protocol CellControllerProtocol {
-    func view(in tableView: UITableView) -> UITableViewCell
-    func preload()
-    func cancelLoad()
-}
-
-
-public extension CellControllerProtocol {
-    func preload() {}
-    func cancelLoad() {}
-}
-
-
 // MARK: - ListViewController Class
 public final class ListViewController: UITableViewController  {
     public var onRefresh: (() -> Void)?
-    private var tableModel = [CellControllerProtocol]() {
-        didSet {
-            tableView.reloadData()
+    private lazy var dataSource: UITableViewDiffableDataSource<Int, CellController> = {
+        .init(tableView: tableView) { (tableView, index, controller) in
+            controller.dataSource.tableView(tableView, cellForRowAt: index)
         }
-    }
-    private var loadingControllers = [IndexPath: CellControllerProtocol]()
+    }()
     
     
     // MARK: - Outlets in the storyboard
-    @IBOutlet private(set) public var errorView: ErrorView?
+    private(set) public var errorView = ErrorView()
     
     
     // MARK: - Life Cycle
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.dataSource = dataSource
+        
+        configureErrorView()
         refresh()
     }
     
@@ -54,47 +42,76 @@ public final class ListViewController: UITableViewController  {
     }
     
     
+    private func configureErrorView() {
+        let container = UIView()
+        container.backgroundColor = .clear
+        container.addSubview(errorView)
+        
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            errorView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: errorView.trailingAnchor),
+            errorView.topAnchor.constraint(equalTo: container.topAnchor),
+            container.bottomAnchor.constraint(equalTo: errorView.bottomAnchor),
+        ])
+        
+        tableView.tableHeaderView = container
+        
+        errorView.onHide = { [weak self] in
+            guard let self else { return }
+            
+            self.tableView.beginUpdates()
+            self.tableView.sizeTableHeaderToFit()
+            self.tableView.endUpdates()
+        }
+    }
+    
+    
+    public override func traitCollectionDidChange(_ previous: UITraitCollection?) {
+        if previous?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
+            tableView.reloadData()
+        }
+    }
+    
+    
+    public override func loadViewIfNeeded() {
+        super.loadViewIfNeeded()
+        
+        tableView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
+    }    
+    
+    
     // MARK: - Action methods
     @IBAction private func refresh() {
         onRefresh?()
     }
-    
-    
-    // MARK: - TableViewDataSource Methods
-    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableModel.count
-    }
-    
-    
-    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cellController(forRowAt: indexPath).view(in: tableView)
-    }
-    
+   
     
     // MARK: - TableViewDelegate Methods
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cancelCellControllerLoad(forRowAt: indexPath)
+        let dl = cellController(at: indexPath)?.delegate
+        dl?.tableView?(tableView, didEndDisplaying: cell, forRowAt: indexPath)
     }
     
     
     // MARK: - Custom Methods
-    public func display(_ cellControllers: [CellControllerProtocol]) {
-        loadingControllers = [:]
-        tableModel = cellControllers
-    }
-    
-    
-    private func cellController(forRowAt indexPath: IndexPath) -> CellControllerProtocol {
-        let controller = tableModel[indexPath.row]
-        loadingControllers[indexPath] = controller
+    public func display(_ sections: [CellController]...) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, CellController>()
+        sections.enumerated().forEach { section, cellControllers in
+            snapshot.appendSections([section])
+            snapshot.appendItems(cellControllers, toSection: section)
+        }
         
-        return controller
+        if #available(iOS 15.0, *) {
+            dataSource.applySnapshotUsingReloadData(snapshot)
+        } else {
+            dataSource.apply(snapshot)
+        }
     }
     
     
-    private func cancelCellControllerLoad(forRowAt indexPath: IndexPath) {
-        loadingControllers[indexPath]?.cancelLoad()
-        loadingControllers[indexPath] = nil
+    private func cellController(at indexPath: IndexPath) -> CellController? {
+        return dataSource.itemIdentifier(for: indexPath)
     }
 }
 
@@ -103,13 +120,17 @@ public final class ListViewController: UITableViewController  {
 extension ListViewController: UITableViewDataSourcePrefetching {
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { indexPath in
-            cellController(forRowAt: indexPath).preload()
+            let dsp = cellController(at: indexPath)?.dataSourcePrefetching
+            dsp?.tableView(tableView, prefetchRowsAt: [indexPath])
         }
     }
     
     
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        indexPaths.forEach(cancelCellControllerLoad)
+        indexPaths.forEach { indexPath in
+            let dsp = cellController(at: indexPath)?.dataSourcePrefetching
+            dsp?.tableView?(tableView, cancelPrefetchingForRowsAt: [indexPath])
+        }
     }
 }
 
@@ -125,6 +146,6 @@ extension ListViewController: ResourceLoadingViewProtocol {
 // MARK: - Extension. ListViewController. FeedErrorView
 extension ListViewController: ResourceErrorViewProtocol {
     public func display(_ viewModel: ResourceErrorViewModel) {
-        errorView?.message = viewModel.message
+        errorView.message = viewModel.message
     }
 }

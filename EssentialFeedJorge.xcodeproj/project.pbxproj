@@ -72,6 +72,7 @@
 		E4ADD1942B31033100B54505 /* IMAGE_COMMENTS_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = E4ADD1922B31033100B54505 /* IMAGE_COMMENTS_dark.png */; };
 		E4ADD1952B31033100B54505 /* IMAGE_COMMENTS_light.png in Resources */ = {isa = PBXBuildFile; fileRef = E4ADD1932B31033100B54505 /* IMAGE_COMMENTS_light.png */; };
 		E4ADD1972B3109DC00B54505 /* ImageCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ADD1962B3109DC00B54505 /* ImageCommentCell.swift */; };
+		E4B10F062B34C4B500353D24 /* CellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B10F052B34C4B500353D24 /* CellController.swift */; };
 		E4B2556B2B0BD0110023BCA3 /* FeedCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B2556A2B0BD0110023BCA3 /* FeedCache.swift */; };
 		E4C62C452B03C8AD008E820C /* HTTPURLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C62C442B03C8AD008E820C /* HTTPURLResponse+StatusCode.swift */; };
 		E4C62C482B03CA93008E820C /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C62C472B03CA93008E820C /* URLProtocolStub.swift */; };
@@ -225,6 +226,7 @@
 		E4ADD1922B31033100B54505 /* IMAGE_COMMENTS_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMAGE_COMMENTS_dark.png; sourceTree = "<group>"; };
 		E4ADD1932B31033100B54505 /* IMAGE_COMMENTS_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMAGE_COMMENTS_light.png; sourceTree = "<group>"; };
 		E4ADD1962B3109DC00B54505 /* ImageCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentCell.swift; sourceTree = "<group>"; };
+		E4B10F052B34C4B500353D24 /* CellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellController.swift; sourceTree = "<group>"; };
 		E4B2556A2B0BD0110023BCA3 /* FeedCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCache.swift; sourceTree = "<group>"; };
 		E4B3FC232ABC902C00C8B737 /* EssentialFeedJorge.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EssentialFeedJorge.xctestplan; sourceTree = "<group>"; };
 		E4C62C442B03C8AD008E820C /* HTTPURLResponse+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+StatusCode.swift"; sourceTree = "<group>"; };
@@ -607,6 +609,7 @@
 			isa = PBXGroup;
 			children = (
 				E4242E092AB0A81100785984 /* ListViewController.swift */,
+				E4B10F052B34C4B500353D24 /* CellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1127,6 +1130,7 @@
 				E4FDD66A2B12164E0032D348 /* UITableView+HeaderSizing.swift in Sources */,
 				E419EDD52AD5768A00CD51F0 /* ErrorView.swift in Sources */,
 				E419EDDA2AD5AED400CD51F0 /* UIRefreshControl+Helpers.swift in Sources */,
+				E4B10F062B34C4B500353D24 /* CellController.swift in Sources */,
 				E4CE78D72AB31CD20060E7BE /* UIView+Shimmering.swift in Sources */,
 				E4D5E2D42AB8A76C003334DB /* UITableView+Dequeueing.swift in Sources */,
 				E4D5E2D62AB8A93A003334DB /* UIImageView+Animations.swift in Sources */,

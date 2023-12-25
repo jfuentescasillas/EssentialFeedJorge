@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,39 +15,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="np1-fQ-loB" customClass="ErrorView" customModule="EssentialFeedJorgeiOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="34"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DmL-HC-95S">
-                                    <rect key="frame" x="8" y="8" width="377" height="18"/>
-                                    <viewLayoutGuide key="safeArea" id="WbF-Cs-WnB"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" red="0.99951404330000004" green="0.41759261489999999" blue="0.4154433012" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <gestureRecognizers/>
-                            <constraints>
-                                <constraint firstItem="DmL-HC-95S" firstAttribute="top" secondItem="np1-fQ-loB" secondAttribute="top" constant="8" id="8Ec-a0-Vz9"/>
-                                <constraint firstAttribute="trailingMargin" secondItem="DmL-HC-95S" secondAttribute="trailing" id="EKI-dz-KaA"/>
-                                <constraint firstAttribute="bottom" secondItem="DmL-HC-95S" secondAttribute="bottom" constant="8" id="qaW-e1-v2k"/>
-                                <constraint firstItem="DmL-HC-95S" firstAttribute="leading" secondItem="np1-fQ-loB" secondAttribute="leading" constant="8" id="tqw-ef-56Z"/>
-                            </constraints>
-                            <connections>
-                                <outlet property="label" destination="DmL-HC-95S" id="W19-Ff-jp8"/>
-                                <outletCollection property="gestureRecognizers" destination="Je6-1L-0eq" appends="YES" id="Cog-2V-IYL"/>
-                            </connections>
-                        </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="Udc-wf-eBf">
-                            <rect key="frame" x="0.0" y="247" width="393" height="16"/>
+                            <rect key="frame" x="0.0" y="213" width="393" height="16"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ImageCommentCell" rowHeight="135" id="auP-GV-YIG" customClass="ImageCommentCell" customModule="EssentialFeedJorgeiOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="84" width="393" height="135"/>
+                                <rect key="frame" x="0.0" y="50" width="393" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="auP-GV-YIG" id="5Y3-dV-f7j">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="135"/>
@@ -60,15 +34,15 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jak-TZ-3aj">
                                                     <rect key="frame" x="2" y="0.0" width="389" height="20.333333333333332"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6n-ij-Krs">
-                                                            <rect key="frame" x="0.0" y="0.0" width="81.333333333333329" height="20.333333333333332"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6n-ij-Krs">
+                                                            <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ckd-Tc-Z36">
-                                                            <rect key="frame" x="89.333333333333343" y="0.0" width="299.66666666666663" height="20.333333333333332"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ckd-Tc-Z36">
+                                                            <rect key="frame" x="87.333333333333343" y="0.0" width="301.66666666666663" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -78,9 +52,9 @@
                                                         <constraint firstItem="Ckd-Tc-Z36" firstAttribute="top" secondItem="jak-TZ-3aj" secondAttribute="top" id="xHS-g0-2kV"/>
                                                     </constraints>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="comment comment comment comment comment comment comment comment comment comment comment comment " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fq9-Tq-24k">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="comment comment comment comment comment comment comment comment comment comment comment comment " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fq9-Tq-24k">
                                                     <rect key="frame" x="2" y="28.333333333333336" width="389" height="96.666666666666657"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -123,16 +97,9 @@
                             <action selector="refresh" destination="sfs-tg-02s" eventType="valueChanged" id="FwZ-EF-Fff"/>
                         </connections>
                     </refreshControl>
-                    <connections>
-                        <outlet property="errorView" destination="np1-fQ-loB" id="na7-QX-xIh"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YUg-Mp-vZb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Je6-1L-0eq">
-                    <connections>
-                        <action selector="hideMessageAnimated" destination="np1-fQ-loB" id="wW7-l2-E6W"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Je6-1L-0eq"/>
             </objects>
             <point key="canvasLocation" x="906.10687022900754" y="12.67605633802817"/>
         </scene>

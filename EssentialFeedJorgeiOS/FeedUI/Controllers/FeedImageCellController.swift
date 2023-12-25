@@ -18,7 +18,7 @@ public protocol FeedImageCellControllerDelegate {
 
 
 // MARK: - FeedImageCellController Class
-public final class FeedImageCellController {
+public final class FeedImageCellController: NSObject {
     public typealias ResourceViewModel = UIImage
     
     
@@ -32,8 +32,15 @@ public final class FeedImageCellController {
         self.delegate = delegate
     }
     
-
+    
+    private func cancelLoad() {
+        releaseCellForReuse()
+        delegate.didCancelImageRequest()
+    }
+    
+    
     private func releaseCellForReuse() {
+        cell?.onReuse = nil
         cell = nil
     }
 }
@@ -62,14 +69,23 @@ extension FeedImageCellController: ResourceErrorViewProtocol {
 
 
 // MARK: - Extension. CellControllerProtocol
-extension FeedImageCellController: CellControllerProtocol {
-    public func view(in tableView: UITableView) -> UITableViewCell {
+extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         cell = tableView.dequeueReusableCell()
         cell?.locationContainer.isHidden = !viewModel.hasLocation
         cell?.locationLabel.text = viewModel.location
         cell?.descriptionLabel.text = viewModel.description
         cell?.feedImageView.image = nil
-        cell?.onRetry = delegate.didRequestImage
+        cell?.onRetry = { [weak self] in
+            guard let self else { return }
+            
+            self.delegate.didRequestImage()
+        }
         cell?.onReuse = { [weak self] in
             guard let self else { return }
             
@@ -82,13 +98,21 @@ extension FeedImageCellController: CellControllerProtocol {
     }
     
     
-    public func preload() {
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        self.cell = cell as? FeedImageTableViewCell
         delegate.didRequestImage()
     }
-    
-    
-    public func cancelLoad() {
-        releaseCellForReuse()
-        delegate.didCancelImageRequest()
+
+
+    public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cancelLoad()
     }
+    
+    
+    public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        cancelLoad()
+    }
+    
+    
+    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {}
 }
