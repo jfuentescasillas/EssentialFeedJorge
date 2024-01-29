@@ -46,6 +46,7 @@ extension FeedUIIntegrationTests {
         // MARK: FeedImageDataLoader
         private struct TaskSpy: FeedImageDataLoaderTask {
             let cancelCallback: () -> Void
+         
             
             func cancel() {
                 cancelCallback()
@@ -72,6 +73,7 @@ extension FeedUIIntegrationTests {
         func completeImageLoading(with imageData: Data = Data(), at index: Int = 0) {
             imageRequests[index].completion(.success(imageData))
         }
+        
         
         func completeImageLoadingWithError(at index: Int = 0) {
             let error = NSError(domain: "an error", code: 0)
