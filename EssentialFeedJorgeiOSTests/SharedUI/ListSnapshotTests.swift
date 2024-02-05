@@ -12,7 +12,7 @@ import EssentialFeedJorgeiOS
 
 
 final class ListSnapshotTests: XCTestCase {
-    func test_emptyLiw5() {
+    func test_emptyList() {
         let sut = makeSUT()
         sut.display(emptyList())
         
