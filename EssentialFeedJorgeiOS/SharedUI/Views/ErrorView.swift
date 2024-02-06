@@ -48,10 +48,11 @@ public final class ErrorView: UIButton {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = NSTextAlignment.center
         
-        var attributes = AttributeContainer()
-        attributes.paragraphStyle = paragraphStyle
-        attributes.font = UIFont.preferredFont(forTextStyle: .body)
-       
+        let attributes = AttributeContainer([
+            .paragraphStyle: paragraphStyle,
+            .font:  UIFont.preferredFont(forTextStyle: .body)
+        ])
+        
         return attributes
     }
     
