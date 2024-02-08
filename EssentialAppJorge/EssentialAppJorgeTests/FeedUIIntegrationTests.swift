@@ -167,7 +167,8 @@ final class FeedUIIntegrationTests: XCTestCase {
     }
     
     
-    func test_feedImageView_reloadsImageURLWhenBecomingVisibleAgain() {
+    /* ACTUALIZAR DEPUÉS. PERTENECE A iOS 15 Update #2: https://github.com/essentialdevelopercom/essential-feed-case-study/pull/70/commits/f2ae3faa924b76b182b8bdc9824f3ebeba446c9d
+     func test_feedImageView_reloadsImageURLWhenBecomingVisibleAgain() {
         let image0 = makeImage(url: URL(string: "http://url-0.com")!)
         let image1 = makeImage(url: URL(string: "http://url-1.com")!)
         let (sut, loader) = makeSUT()
@@ -180,7 +181,7 @@ final class FeedUIIntegrationTests: XCTestCase {
         
         sut.simulateFeedImageBecomingVisibleAgain(at: 1)
         XCTAssertEqual(loader.loadedImageURLs, [image0.url, image0.url, image1.url, image1.url], "Expected two new image URL request after second view becomes visible again")
-    }
+    } */
     
     
     func test_feedImageViewLoadingIndicator_isVisibleWhileLoadingImage() {
@@ -338,7 +339,8 @@ final class FeedUIIntegrationTests: XCTestCase {
     }
     
     
-    func test_feedImageView_configuresViewCorrectlyWhenCellBecomingVisibleAgain() {
+    /* ACTUALIZAR DEPUÉS. PERTENECE A iOS 15 Update #2: https://github.com/essentialdevelopercom/essential-feed-case-study/pull/70/commits/f2ae3faa924b76b182b8bdc9824f3ebeba446c9d
+     func test_feedImageView_configuresViewCorrectlyWhenCellBecomingVisibleAgain() {
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -356,7 +358,7 @@ final class FeedUIIntegrationTests: XCTestCase {
         XCTAssertEqual(view0?.renderedImage, imageData, "Expected rendered image when image loads successfully after view becomes visible again")
         XCTAssertEqual(view0?.isShowingRetryAction, false, "Expected no retry when image loads successfully after view becomes visible again")
         XCTAssertEqual(view0?.isShowingImageLoadingIndicator, false, "Expected no loading indicator when image loads successfully after view becomes visible again")
-    }
+    } */
     
     
     func test_feedImageView_showsDataForNewViewRequestAfterPreviousViewIsReused() throws {

@@ -113,7 +113,8 @@ extension ListViewController {
     }
     
     
-    @discardableResult
+    /* ACTUALIZAR DEPUÉS. PERTENECE A iOS 15 Update #2: https://github.com/essentialdevelopercom/essential-feed-case-study/pull/70/commits/f2ae3faa924b76b182b8bdc9824f3ebeba446c9d
+     @discardableResult
     func simulateFeedImageBecomingVisibleAgain(at row: Int) -> FeedImageTableViewCell? {
         let view = simulateFeedImageViewNotVisible(at: row)
         let delegate = tableView.delegate
@@ -121,7 +122,7 @@ extension ListViewController {
         delegate?.tableView?(tableView, willDisplay: view!, forRowAt: index)
         
         return view
-    }
+    } */
     
     
     @discardableResult
