@@ -363,7 +363,9 @@ final class FeedUIIntegrationTests: XCTestCase {
     } */
     
     
-    func test_feedImageView_showsDataForNewViewRequestAfterPreviousViewIsReused() throws {
+    /* ACTUALIZAR DEPUÉS. PERTENECE A iOS 15 Update #3, 2º link
+     ( https://github.com/essentialdevelopercom/essential-feed-case-study/commit/48be1bea6bec3f9871390d744853b985f6f58912 )
+     func test_feedImageView_showsDataForNewViewRequestAfterPreviousViewIsReused() throws {
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -378,7 +380,7 @@ final class FeedUIIntegrationTests: XCTestCase {
         loader.completeImageLoading(with: imageData, at: 1)
         
         XCTAssertEqual(newView.renderedImage, imageData)
-    }
+    } */
     
     
     func test_feedImageView_doesNotRenderLoadedImagewhenNotVisibleAnymore() {
