@@ -12,6 +12,32 @@ import EssentialFeedJorgeiOS
 
 // MARK: - Extension. ListViewController
 extension ListViewController {
+    public override func loadViewIfNeeded() {
+        super.loadViewIfNeeded()
+        
+        tableView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
+    }
+    
+    
+    func simulateUserInitiatedFeedReload() {
+        refreshControl?.simulatePullToRefresh()
+    }
+    
+    
+    var isShowingLoadingIndicator: Bool {
+        return refreshControl?.isRefreshing == true
+    }
+    
+    var errorMessage: String? {
+        return errorView.message
+    }
+    
+    
+    func simulateErrorViewTap() {
+        errorView.simulateTap()
+    }
+    
+    
     func simulateAppearance() {
         if !isViewLoaded {
             loadViewIfNeeded()
@@ -63,29 +89,10 @@ extension ListViewController {
     }
     
     
-    var isShowingLoadingIndicator: Bool {
-        return refreshControl?.isRefreshing == true
-    }
-    
-    var errorMessage: String? {
-        return errorView.message
-    }
-    
-    
-    func simulateErrorViewTap() {
-        errorView.simulateTap()
-    }
-    
-    
     func renderedFeedImageData(at index: Int) -> Data? {
         return simulateFeedImageViewVisible(at: index)?.renderedImage
     }
 
-    
-    func simulateUserInitiatedFeedReload() {
-        refreshControl?.simulatePullToRefresh()
-    }
-    
     
     func simulateFeedImageViewNearVisible(at row: Int) {
         let ds = tableView.prefetchDataSource

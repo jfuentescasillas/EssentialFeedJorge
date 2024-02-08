@@ -1,5 +1,5 @@
 //
-//  FeedViewController.swift
+//  FeedViewController.swift renamed to ListViewController
 //  EssentialFeedJorgeiOS
 //
 //  Created by jfuentescasillas on 12/09/23.
@@ -63,13 +63,6 @@ public final class ListViewController: UITableViewController  {
             self.tableView.endUpdates()
         }
     }
-    
-    
-    public override func loadViewIfNeeded() {
-        super.loadViewIfNeeded()
-        
-        tableView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
-    }    
     
     
     // MARK: - Action methods
