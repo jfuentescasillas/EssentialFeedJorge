@@ -32,10 +32,10 @@ class FeedUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         XCTAssertEqual(loader.loadFeedCallCount, 1, "Expected a loading request once view is loaded")
         
-        sut.simulateUserInitiatedFeedReload()
+        sut.simulateUserInitiatedReload()
         XCTAssertEqual(loader.loadFeedCallCount, 2, "Expected another loading request once user initiates a reload")
         
-        sut.simulateUserInitiatedFeedReload()
+        sut.simulateUserInitiatedReload()
         XCTAssertEqual(loader.loadFeedCallCount, 3, "Expected yet another loading request once user initiates another reload")
     }
     
@@ -49,7 +49,7 @@ class FeedUIIntegrationTests: XCTestCase {
         loader.completeFeedLoading(at: 0)
         XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once loading completes successfully")
         
-        sut.simulateUserInitiatedFeedReload()
+        sut.simulateUserInitiatedReload()
         XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator once user initiates a reload")
         
         loader.completeFeedLoadingWithError(at: 1)
@@ -70,7 +70,7 @@ class FeedUIIntegrationTests: XCTestCase {
         loader.completeFeedLoading(with: [image0], at: 0)
         assertThat(sut, isRendering: [image0])
         
-        sut.simulateUserInitiatedFeedReload()
+        sut.simulateUserInitiatedReload()
         loader.completeFeedLoading(with: [image0, image1, image2, image3], at: 1)
         assertThat(sut, isRendering: [image0, image1, image2, image3])
     }
@@ -85,8 +85,8 @@ class FeedUIIntegrationTests: XCTestCase {
         loader.completeFeedLoading(with: [image0, image1], at: 0)
         assertThat(sut, isRendering: [image0, image1])
         
-        sut.simulateUserInitiatedFeedReload()
-        loader.completeFeedLoading(with: [], at: 1)        
+        sut.simulateUserInitiatedReload()
+        loader.completeFeedLoading(with: [], at: 1)
         assertThat(sut, isRendering: [])
     }
     
@@ -99,9 +99,24 @@ class FeedUIIntegrationTests: XCTestCase {
         loader.completeFeedLoading(with: [img0], at: 0)
         assertThat(sut, isRendering: [img0])
         
-        sut.simulateUserInitiatedFeedReload()
+        sut.simulateUserInitiatedReload()
         loader.completeFeedLoadingWithError(at: 1)
         assertThat(sut, isRendering: [img0])
+    }
+    
+    
+    func test_loadFeedCompletion_dispatchesFromBackgroundToMainThread() {
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        let exp = expectation(description: "Wait for background queue")
+        
+        DispatchQueue.global().async {
+            loader.completeFeedLoading(at: 0)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1)
     }
     
     
@@ -113,7 +128,7 @@ class FeedUIIntegrationTests: XCTestCase {
         loader.completeFeedLoadingWithError(at: 0)
         XCTAssertEqual(sut.errorMessage, loadError)
         
-        sut.simulateUserInitiatedFeedReload()
+        sut.simulateUserInitiatedReload()
         XCTAssertEqual(sut.errorMessage, nil)
     }
     
@@ -132,6 +147,7 @@ class FeedUIIntegrationTests: XCTestCase {
     }
 
     
+    // MARK: - Image View Tests
     func test_feedImageView_loadsImageURLWhenVisible() {
         let image0 = makeImage(url: URL(string: "http://url-0.com")!)
         let image1 = makeImage(url: URL(string: "http://url-1.com")!)
@@ -392,21 +408,6 @@ class FeedUIIntegrationTests: XCTestCase {
         loader.completeImageLoading(with: anyImageData())
         
         XCTAssertNil(view?.renderedImage, "Expected no rendered image when an image load finishes after the view is not visible anymore")
-    }
-    
-    
-    func test_loadFeedCompletion_dispatchesFromBackgroundToMainThread() {
-        let (sut, loader) = makeSUT()
-        sut.loadViewIfNeeded()
-        
-        let exp = expectation(description: "Wait for background queue")
-        
-        DispatchQueue.global().async {
-            loader.completeFeedLoading(at: 0)
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1)
     }
     
     
