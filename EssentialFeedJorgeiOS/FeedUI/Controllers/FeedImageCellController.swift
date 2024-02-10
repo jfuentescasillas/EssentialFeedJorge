@@ -24,12 +24,14 @@ public final class FeedImageCellController: NSObject {
     
     private let viewModel: FeedImageViewModel
     private let delegate: FeedImageCellControllerDelegate
+    private let selection: () -> Void
     private var cell: FeedImageTableViewCell?
     
     
-    public init(viewModel: FeedImageViewModel, delegate: FeedImageCellControllerDelegate) {
+    public init(viewModel: FeedImageViewModel, delegate: FeedImageCellControllerDelegate, selection: @escaping () -> Void) {
         self.viewModel = viewModel
         self.delegate = delegate
+        self.selection = selection
     }
     
     
@@ -69,8 +71,8 @@ extension FeedImageCellController: ResourceErrorViewProtocol {
 }
 
 
-// MARK: - Extension. CellControllerProtocol
-extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
+// MARK: - Extension. UITableViewDataSource
+extension FeedImageCellController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -97,6 +99,19 @@ extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, U
         
         return cell!
     }
+}
+
+
+// MARK: - Extension. UITableViewDelegate
+extension FeedImageCellController: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cancelLoad()
+    }
+    
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selection()
+    }
     
     
     /* ACTUALIZAR DEPUÉS. PERTENECE A iOS 15 Update #2: https://github.com/essentialdevelopercom/essential-feed-case-study/pull/70/commits/f2ae3faa924b76b182b8bdc9824f3ebeba446c9d
@@ -104,13 +119,11 @@ extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, U
         self.cell = cell as? FeedImageTableViewCell
         delegate.didRequestImage()
     } */
+}
 
 
-    public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cancelLoad()
-    }
-    
-    
+// MARK: - Extension. UITableViewDataSourcePrefetching
+extension FeedImageCellController: UITableViewDataSourcePrefetching {
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
         cancelLoad()
     }
