@@ -36,6 +36,23 @@ extension ListViewController {
     func simulateErrorViewTap() {
         errorView.simulateTap()
     }
+    
+    
+    func numberOfRows(in section: Int) -> Int {
+        tableView.numberOfSections > section ? tableView.numberOfRows(inSection: section) : 0
+    }
+    
+    
+    func cell(row: Int, section: Int) -> UITableViewCell? {
+        guard numberOfRows(in: section) > row else {
+            return nil
+        }
+        
+        let ds = tableView.dataSource
+        let index = IndexPath(row: row, section: section)
+        
+        return ds?.tableView(tableView, cellForRowAt: index)
+    }
 }
     
  
@@ -137,29 +154,22 @@ extension ListViewController {
     
     
     func numberOfRenderedFeedImageViews() -> Int {
-        return tableView.numberOfSections == 0 ? 0 : tableView.numberOfRows(inSection: feedImagesSection)
+        return numberOfRows(in: feedImagesSection)
     }
     
     
     func feedImageView(at row: Int) -> UITableViewCell? {
-        guard numberOfRenderedFeedImageViews() > row else { return nil }
-        
-        let ds = tableView.dataSource
-        let index = IndexPath(row: row, section: feedImagesSection)
-        
-        return ds?.tableView(tableView, cellForRowAt: index)
+        cell(row: row, section: feedImagesSection)
     }
 }
 
 
 extension ListViewController {
-    private var commentsSection: Int {
-        return 0
-    }
+    private var commentsSection: Int { 0 }
 
     
     func numberOfRenderedComments() -> Int {
-        return tableView.numberOfSections == 0 ? 0 :  tableView.numberOfRows(inSection: commentsSection)
+        return numberOfRows(in: commentsSection)
     }
     
     
@@ -179,13 +189,6 @@ extension ListViewController {
     
     
     private func commentView(at row: Int) -> ImageCommentCell? {
-        guard numberOfRenderedComments() > row else {
-            return nil
-        }
-        
-        let ds = tableView.dataSource
-        let index = IndexPath(row: row, section: commentsSection)
-        
-        return ds?.tableView(tableView, cellForRowAt: index) as? ImageCommentCell
+        cell(row: row, section: commentsSection) as? ImageCommentCell
     }
 }
