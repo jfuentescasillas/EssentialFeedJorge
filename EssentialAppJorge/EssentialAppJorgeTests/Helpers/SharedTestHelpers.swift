@@ -28,3 +28,21 @@ func anyNSError() -> NSError {
 func uniqueFeed() -> [FeedImage] {
     return [FeedImage(id: UUID(), description: "any", location: "any", url: anyURL())]
 }
+
+
+private class DummyView: ResourceViewProtocol {
+    func display(_ viewModel: Any) {}
+}
+
+
+var loadError: String {
+    LoadResourcePresenter<Any, DummyView>.loadError
+}
+
+var feedTitle: String {
+    FeedPresenter.title
+}
+
+var commentsTitle: String {
+    ImageCommentsPresenter.title
+}
