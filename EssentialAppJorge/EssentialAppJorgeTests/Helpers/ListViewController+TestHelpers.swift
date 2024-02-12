@@ -189,6 +189,6 @@ extension ListViewController {
     
     
     private func commentView(at row: Int) -> ImageCommentCell? {
-        cell(row: row, section: commentsSection) as? ImageCommentCell
+        return cell(row: row, section: commentsSection) as? ImageCommentCell
     }
 }
