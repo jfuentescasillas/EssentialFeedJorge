@@ -31,9 +31,7 @@ class FeedSnapshotTests: XCTestCase {
     }
     
     
-    /* ACTUALIZACIÓN PENDIENTE
-     
-     func test_feedWithLoadMoreIndicator() {
+    func test_feedWithLoadMoreIndicator() {
         let sut = makeSUT()
         sut.display(feedWithLoadMoreIndicator())
         
@@ -42,7 +40,8 @@ class FeedSnapshotTests: XCTestCase {
     }
     
     
-    func test_feedWithLoadMoreError() {
+    /* ACTUALIZACIÓN PENDIENTE
+     func test_feedWithLoadMoreError() {
         let sut = makeSUT()
         sut.display(feedWithLoadMoreError())
         
@@ -103,8 +102,23 @@ class FeedSnapshotTests: XCTestCase {
         return noImageStubs
     }
     
+    
+    private func feedWithLoadMoreIndicator() -> [CellController] {
+        let stub = feedWithContent().last!
+        let cellController = FeedImageCellController(viewModel: stub.viewModel, delegate: stub, selection: {})
+        stub.controller = cellController
+        
+        let loadMore = LoadMoreCellController()
+        loadMore.display(ResourceLoadingViewModel(isLoading: true))
+       
+        let cellControllers: [CellController] = [CellController(id: UUID(), cellController),
+                                                 CellController(id: UUID(), loadMore)]
+        
+        return cellControllers
+    }
+    
+    
     /* ACTUALIZACIÓN PENDIENTE
-     
      private func feedWithLoadMoreIndicator() -> [CellController] {
          let loadMore = LoadMoreCellController(callback: {})
          loadMore.display(ResourceLoadingViewModel(isLoading: true))
@@ -112,7 +126,7 @@ class FeedSnapshotTests: XCTestCase {
          return feedWith(loadMore: loadMore)
      }
      
-     
+
      private func feedWithLoadMoreError() -> [CellController] {
          let loadMore = LoadMoreCellController(callback: {})
          loadMore.display(ResourceErrorViewModel(message: "This is a multiline\nerror message"))
@@ -120,7 +134,7 @@ class FeedSnapshotTests: XCTestCase {
          return feedWith(loadMore: loadMore)
      }
      
-     
+
      private func feedWith(loadMore: LoadMoreCellController) -> [CellController] {
          let stub = feedWithContent().last!
          let cellController = FeedImageCellController(viewModel: stub.viewModel, delegate: stub, selection: {})
