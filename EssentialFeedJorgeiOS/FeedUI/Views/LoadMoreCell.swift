@@ -24,32 +24,6 @@ public class LoadMoreCell: UITableViewCell {
         return spinner
     }()
     
-    public var isLoading: Bool {
-        get { spinner.isAnimating }
-        set {
-            if newValue {
-                spinner.startAnimating()
-            } else {
-                spinner.stopAnimating()
-            }
-        }
-    }
-    
-/* ACTUALIZACIÓN PENDIENTE
-    private lazy var spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .medium)
-        contentView.addSubview(spinner)
-        
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            spinner.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40)
-        ])
-        
-        return spinner
-    }()
-    
     private lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.textColor = .tertiaryLabel
@@ -84,5 +58,5 @@ public class LoadMoreCell: UITableViewCell {
     public var message: String? {
         get { messageLabel.text }
         set { messageLabel.text = newValue }
-    }*/
+    }
 }

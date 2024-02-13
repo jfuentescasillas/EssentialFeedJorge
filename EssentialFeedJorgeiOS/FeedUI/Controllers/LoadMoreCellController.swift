@@ -32,8 +32,16 @@ extension LoadMoreCellController: ResourceLoadingViewProtocol {
 }
 
 
-/*  ACTUALIZACIÓN PENDIENTE
+// MARK: - Extension. ResourceErrorViewProtocol
+extension LoadMoreCellController: ResourceErrorViewProtocol {
+    public func display(_ viewModel: ResourceErrorViewModel) {
+        cell.message = viewModel.message
+    }
+}
 
+
+/*  ACTUALIZACIÓN PENDIENTE
+ 
 public class LoadMoreCellController: NSObject, UITableViewDataSource, UITableViewDelegate {
    private let cell = LoadMoreCell()
     private let callback: () -> Void
@@ -83,20 +91,4 @@ public class LoadMoreCellController: NSObject, UITableViewDataSource, UITableVie
         
         callback()
     }
-}
-
-
-// MARK: - Extension. ResourceLoadingViewProtocol
-extension LoadMoreCellController: ResourceLoadingViewProtocol {
-    public func display(_ viewModel: ResourceLoadingViewModel) {
-        cell.isLoading = viewModel.isLoading
-    }
-}
-
-
-// MARK: - Extension. ResourceErrorViewProtocol
-extension LoadMoreCellController: ResourceErrorViewProtocol {
-    public func display(_ viewModel: ResourceErrorViewModel) {
-        cell.message = viewModel.message
-    }
-}*/
+} */
