@@ -91,7 +91,7 @@ private extension FeedCacheProtocol {
 // MARK: - Extension. Publisher
 extension Publisher where Output == [FeedImage] {
     func caching(to cache: FeedCacheProtocol) -> AnyPublisher<Output, Failure> {
-        handleEvents(receiveOutput: cache.saveIgnoringResult).eraseToAnyPublisher()
+        return handleEvents(receiveOutput: cache.saveIgnoringResult).eraseToAnyPublisher()
     }
 }
 
@@ -113,7 +113,7 @@ extension Publisher {
 // MARK: - Extension. DispatchQueue
 extension DispatchQueue {
     static var immediateWhenOnMainQueueShceduler: ImmediateWhenOnMainQueueShceduler {
-        ImmediateWhenOnMainQueueShceduler.shared
+        return ImmediateWhenOnMainQueueShceduler.shared
     }
     
     
@@ -122,11 +122,11 @@ extension DispatchQueue {
         typealias SchedulerOptions = DispatchQueue.SchedulerOptions
         
         var now: SchedulerTimeType {
-            DispatchQueue.main.now
+            return DispatchQueue.main.now
         }
         
         var minimumTolerance: SchedulerTimeType.Stride {
-            DispatchQueue.main.minimumTolerance
+            return DispatchQueue.main.minimumTolerance
         }
         
         
@@ -141,7 +141,7 @@ extension DispatchQueue {
         
         
         private func isMainQueue() -> Bool {
-            DispatchQueue.getSpecific(key: Self.key) == Self.value
+            return DispatchQueue.getSpecific(key: Self.key) == Self.value
         }
         
         

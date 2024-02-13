@@ -39,7 +39,7 @@ extension ListViewController {
     
     
     func numberOfRows(in section: Int) -> Int {
-        tableView.numberOfSections > section ? tableView.numberOfRows(inSection: section) : 0
+        return tableView.numberOfSections > section ? tableView.numberOfRows(inSection: section) : 0
     }
     
     
@@ -159,7 +159,7 @@ extension ListViewController {
     
     
     func feedImageView(at row: Int) -> UITableViewCell? {
-        cell(row: row, section: feedImagesSection)
+        return cell(row: row, section: feedImagesSection)
     }
 }
 

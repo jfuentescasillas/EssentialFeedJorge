@@ -26,6 +26,7 @@ class HTTPClientStub: HTTPClientProtocol {
     
     func get(from url: URL, completion: @escaping (HTTPClientProtocol.Result) -> Void) -> HTTPClientTask {
         completion(stub(url))
+       
         return Task()
     }
 }
@@ -33,11 +34,11 @@ class HTTPClientStub: HTTPClientProtocol {
  
 extension HTTPClientStub {
     static var offline: HTTPClientStub {
-        HTTPClientStub(stub: { _ in .failure(NSError(domain: "offline", code: 0)) })
+        return HTTPClientStub(stub: { _ in .failure(NSError(domain: "offline", code: 0)) })
     }
     
     
     static func online(_ stub: @escaping (URL) -> (Data, HTTPURLResponse)) -> HTTPClientStub {
-        HTTPClientStub { url in .success(stub(url)) }
+        return HTTPClientStub { url in .success(stub(url)) }
     }
 }
