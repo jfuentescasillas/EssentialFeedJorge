@@ -69,7 +69,7 @@ public final class ListViewController: UITableViewController  {
     @IBAction private func refresh() {
         onRefresh?()
     }
-   
+    
     
     // MARK: - TableViewDelegate Methods
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -97,7 +97,7 @@ public final class ListViewController: UITableViewController  {
             snapshot.appendSections([section])
             snapshot.appendItems(cellControllers, toSection: section)
         }
-        
+
         if #available(iOS 15.0, *) {
             dataSource.applySnapshotUsingReloadData(snapshot)
         } else {

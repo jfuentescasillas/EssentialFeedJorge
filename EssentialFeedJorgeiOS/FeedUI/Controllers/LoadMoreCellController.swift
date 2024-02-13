@@ -10,16 +10,33 @@ import UIKit
 import EssentialFeedJorge
 
 
-public class LoadMoreCellController: NSObject, UITableViewDataSource {
+public class LoadMoreCellController: NSObject {
     private let cell = LoadMoreCell()
-
+    private let callback: () -> Void
     
+    
+    public init(callback: @escaping () -> Void) {
+        self.callback = callback
+    }
+}
+
+
+// MARK: - Extension. UITableViewDataSource
+extension LoadMoreCellController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return cell
+    }
+}
+
+
+// MARK: - Extension. UITableViewDataSource
+extension LoadMoreCellController: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        callback()
     }
 }
 
