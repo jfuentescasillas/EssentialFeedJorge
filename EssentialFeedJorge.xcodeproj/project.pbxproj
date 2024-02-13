@@ -587,7 +587,6 @@
 			isa = PBXGroup;
 			children = (
 				E4834EA82B2F68670076AAD6 /* ImageCommentCellController.swift */,
-				E4229B262B72978F007C9316 /* LoadMoreCellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -597,7 +596,6 @@
 			children = (
 				E4834EAD2B30FE610076AAD6 /* ImageComments.storyboard */,
 				E4ADD1962B3109DC00B54505 /* ImageCommentCell.swift */,
-				E4229B282B729810007C9316 /* LoadMoreCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -783,6 +781,7 @@
 			isa = PBXGroup;
 			children = (
 				E4FA2DC42AB4690900CFE6CA /* FeedImageCellController.swift */,
+				E4229B262B72978F007C9316 /* LoadMoreCellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -792,6 +791,7 @@
 			children = (
 				E419EDD62AD5ACFF00CD51F0 /* Helpers */,
 				E4F4CAA42AB1DECC00F522EB /* FeedImageTableViewCell.swift */,
+				E4229B282B729810007C9316 /* LoadMoreCell.swift */,
 				E4D5E2CF2AB895A4003334DB /* Feed.storyboard */,
 				E4D5E2D12AB8967B003334DB /* Feed.xcassets */,
 			);
