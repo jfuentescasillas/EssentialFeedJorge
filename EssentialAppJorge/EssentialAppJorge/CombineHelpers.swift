@@ -11,6 +11,19 @@ import Combine
 import EssentialFeedJorge
 
 
+public extension Paginated {
+    var loadMorePublisher: (() -> AnyPublisher<Self, Error>)? {
+        guard let loadMore else { return nil }
+        
+        return {
+            Deferred {
+                Future(loadMore)
+            }.eraseToAnyPublisher()
+        }
+    }
+}
+
+
 // MARK: - Extension. HTTPClientProtocol
 public extension HTTPClientProtocol {
     typealias Publisher = AnyPublisher<(Data, HTTPURLResponse), Error>
