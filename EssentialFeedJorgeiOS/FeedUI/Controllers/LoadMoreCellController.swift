@@ -44,7 +44,7 @@ extension LoadMoreCellController: UITableViewDataSource {
 }
 
 
-// MARK: - Extension. UITableViewDataSource
+// MARK: - Extension. UITableViewDelegate
 extension LoadMoreCellController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay: UITableViewCell, forRowAt indexPath: IndexPath) {
         reloadIfNeeded()

@@ -15,6 +15,7 @@ public class LoadMoreCell: UITableViewCell {
         contentView.addSubview(spinner)
         
         spinner.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             spinner.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -34,6 +35,7 @@ public class LoadMoreCell: UITableViewCell {
         contentView.addSubview(label)
         
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             contentView.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: 8),
