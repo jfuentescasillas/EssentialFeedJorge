@@ -26,17 +26,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .appending(path:"feed-store.sqlite"))
     }()
     
-    
     private lazy var localFeedLoader: LocalFeedLoader = {
         LocalFeedLoader(store: store, currentDate: Date.init)
     }()
     
-                       
     private lazy var navigationController = UINavigationController(
-            rootViewController: FeedUIComposer.feedComposedWith(
-                feedLoader: makeRemoteFeedLoaderWithLocalFallback,
-                imageLoader: makeLocalImageLoaderWithRemoteFallback,
-                selection: showComments)
+        rootViewController: FeedUIComposer.feedComposedWith(
+            feedLoader: makeRemoteFeedLoaderWithLocalFallback,
+            imageLoader: makeLocalImageLoaderWithRemoteFallback,
+            selection: showComments)
     )
     
     
@@ -75,13 +73,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     private func makeRemoteCommentsLoader(url: URL) -> () -> AnyPublisher<[ImageComment], Error> {
-        return { [httpClient] in
+        let publisher = { [httpClient] in
             return httpClient
                 .getPublisher(url: url)
                 .tryMap(ImageCommentsMapper.map)
                 .eraseToAnyPublisher()
         }
+        
+        return publisher
     }
+    
     
     private func makeRemoteFeedLoaderWithLocalFallback() -> AnyPublisher<Paginated<FeedImage>, Error> {
         let publisher = makeRemoteFeedLoader()
@@ -94,10 +95,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     
-    private func makeRemoteLoadMoreLoader(items: [FeedImage], last: FeedImage?) -> AnyPublisher<Paginated<FeedImage>, Error> {
-        let publisher = makeRemoteFeedLoader(after: last)
-            .map { newItems in
-                (items + newItems, newItems.last)
+    private func makeRemoteLoadMoreLoader(last: FeedImage?) -> AnyPublisher<Paginated<FeedImage>, Error> {
+        let publisher = localFeedLoader.loadPublisher()
+            .zip(makeRemoteFeedLoader(after: last))
+            .map { (cachedItems, newItems) in
+                (cachedItems + newItems, newItems.last)
             }.map(makePage)
             .caching(to: localFeedLoader)
         
@@ -122,13 +124,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     private func makePage(items: [FeedImage], last: FeedImage?) -> Paginated<FeedImage> {
-        return Paginated(items: items, loadMorePublisher: last.map { last in
-            { self.makeRemoteLoadMoreLoader(items: items, last: last) }
+        let paginated = Paginated(items: items, loadMorePublisher: last.map { last in
+            { self.makeRemoteLoadMoreLoader(last: last) }
         })
+        
+        return paginated
     }
     
     
- private func makeLocalImageLoaderWithRemoteFallback(url: URL) -> FeedImageDataLoaderProtocol.Publisher {
+    private func makeLocalImageLoaderWithRemoteFallback(url: URL) -> FeedImageDataLoaderProtocol.Publisher {
         let localImageLoader = LocalFeedImageDataLoader(store: store)
         
         return localImageLoader
