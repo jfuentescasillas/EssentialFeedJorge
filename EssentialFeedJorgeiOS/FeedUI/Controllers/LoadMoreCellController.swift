@@ -18,6 +18,13 @@ public class LoadMoreCellController: NSObject {
     public init(callback: @escaping () -> Void) {
         self.callback = callback
     }
+    
+    
+    private func reloadIfNeeded() {
+        guard !cell.isLoading else { return }
+        
+        callback()
+    }
 }
 
 
@@ -36,9 +43,12 @@ extension LoadMoreCellController: UITableViewDataSource {
 // MARK: - Extension. UITableViewDataSource
 extension LoadMoreCellController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard !cell.isLoading else { return }
-
-        callback()
+        reloadIfNeeded()
+    }
+    
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        reloadIfNeeded()
     }
 }
 
