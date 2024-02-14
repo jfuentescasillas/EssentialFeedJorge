@@ -45,15 +45,15 @@ public extension HTTPClientProtocol {
     
     func getPublisher(url: URL) -> Publisher {
         var task: HTTPClientTask?
-
-        
-        return Deferred {
+        let deferred = Deferred {
             Future { completion in
                 task = self.get(from: url, completion: completion)
             }
         }
         .handleEvents(receiveCancel: { task?.cancel() })
         .eraseToAnyPublisher()
+        
+        return deferred
     }
 }
 
@@ -65,23 +65,26 @@ public extension FeedImageDataLoaderProtocol {
     
     func loadImageDataPublisher(from url: URL) -> Publisher {
         var task: FeedImageDataLoaderTask?
-        
-        return Deferred {
+        let deferred = Deferred {
             Future { completion in
                 task = self.loadImageData(from: url, completion: completion)
             }
         }
         .handleEvents(receiveCancel: { task?.cancel() })
         .eraseToAnyPublisher()
+        
+        return deferred
     }
 }
 
 
 extension Publisher where Output == Data {
     func caching(to cache: FeedImageDataCacheProtocol, using url: URL) -> AnyPublisher<Output, Failure> {
-        handleEvents(receiveOutput: { data in
+        let events = handleEvents(receiveOutput: { data in
             cache.saveIgnoringResult(data, for: url)
         }).eraseToAnyPublisher()
+        
+        return events
     }
 }
 
@@ -99,10 +102,12 @@ public extension LocalFeedLoader {
     
     
     func loadPublisher() -> Publisher {
-        return Deferred {
+        let deferred = Deferred {
             Future(self.load)
         }
         .eraseToAnyPublisher()
+        
+        return deferred
     }
 }
 
@@ -112,12 +117,22 @@ private extension FeedCacheProtocol {
     func saveIgnoringResult(_ feed: [FeedImage]) {
         save(feed) { _ in }
     }
+    
+    
+    func saveIgnoringResult(_ page: Paginated<FeedImage>) {
+        saveIgnoringResult(page.items)
+    }
 }
 
 
 // MARK: - Extension. Publisher
-extension Publisher where Output == [FeedImage] {
-    func caching(to cache: FeedCacheProtocol) -> AnyPublisher<Output, Failure> {
+extension Publisher {
+    func caching(to cache: FeedCacheProtocol) -> AnyPublisher<Output, Failure> where Output == [FeedImage] {
+        return handleEvents(receiveOutput: cache.saveIgnoringResult).eraseToAnyPublisher()
+    }
+    
+    
+    func caching(to cache: FeedCacheProtocol) -> AnyPublisher<Output, Failure> where Output == Paginated<FeedImage> {
         return handleEvents(receiveOutput: cache.saveIgnoringResult).eraseToAnyPublisher()
     }
 }
