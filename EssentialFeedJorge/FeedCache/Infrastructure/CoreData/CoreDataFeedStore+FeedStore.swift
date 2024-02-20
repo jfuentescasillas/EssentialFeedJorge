@@ -27,7 +27,7 @@ extension CoreDataFeedStore: FeedStoreProtocol {
                 let managedCache = try ManagedCache.newUniqueInstance(in: context)
                 managedCache.timestamp = timestamp
                 managedCache.feed = ManagedFeedImage.images(from: feed, in: context)
-               
+                
                 try context.save()
             })
         }
@@ -36,13 +36,9 @@ extension CoreDataFeedStore: FeedStoreProtocol {
     
     public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
         perform { context in
-            do {
-                try ManagedCache.find(in: context).map(context.delete).map(context.save)
-                
-                completion(.success(()))
-            } catch {
-                completion(.failure(error))
-            }
+            completion(Result {
+                try ManagedCache.deleteCache(in: context)
+            })
         }
     }
 }
