@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E426B5692B85014500CD6EC3 /* NullStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E426B5682B85014500CD6EC3 /* NullStore.swift */; };
 		E42AA1D92B10A7D400829170 /* SceneDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42AA1D82B10A7D400829170 /* SceneDelegateTests.swift */; };
 		E458A41C2B752E1400FF1816 /* CommentsUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E458A41B2B752E1400FF1816 /* CommentsUIIntegrationTests.swift */; };
 		E458A41E2B752E9600FF1816 /* CommentsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E458A41D2B752E9600FF1816 /* CommentsUIComposer.swift */; };
@@ -68,6 +69,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E426B5682B85014500CD6EC3 /* NullStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullStore.swift; sourceTree = "<group>"; };
 		E42AA1D82B10A7D400829170 /* SceneDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateTests.swift; sourceTree = "<group>"; };
 		E458A41B2B752E1400FF1816 /* CommentsUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUIIntegrationTests.swift; sourceTree = "<group>"; };
 		E458A41D2B752E9600FF1816 /* CommentsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUIComposer.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				E47AEBA02B10C4AB002A1DD3 /* WeakRefVirtualProxy.swift */,
 				E48705CF2B06257400C231DB /* LaunchScreen.storyboard */,
 				E48705D22B06257400C231DB /* Info.plist */,
+				E426B5682B85014500CD6EC3 /* NullStore.swift */,
 			);
 			path = EssentialAppJorge;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 			files = (
 				E48705C92B06257400C231DB /* ViewController.swift in Sources */,
 				E47AEBA22B10C4AB002A1DD3 /* FeedUIComposer.swift in Sources */,
+				E426B5692B85014500CD6EC3 /* NullStore.swift in Sources */,
 				E4A880112B176C41000188B3 /* CombineHelpers.swift in Sources */,
 				E48705C52B06257400C231DB /* AppDelegate.swift in Sources */,
 				E458A41E2B752E9600FF1816 /* CommentsUIComposer.swift in Sources */,
