@@ -155,3 +155,66 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             })
     }
 }
+
+
+/*  // Code used in Logging, Profiling, and Optimizing Infrastructure Services
+ private func makeLocalImageLoaderWithRemoteFallback(url: URL) -> FeedImageDataLoaderProtocol.Publisher {
+     let localImageLoader = LocalFeedImageDataLoader(store: store)
+     
+     return localImageLoader
+         .loadImageDataPublisher(from: url)
+         .logCacheMisses(url: url, logger: logger)
+         .fallback(to: { [httpClient, logger] in
+             httpClient
+                 .getPublisher(url: url)
+                 .logError(url: url, logger: logger)
+                 .logElapsedTime(url: url, logger: logger)
+                 .tryMap(FeedImageDataMapper.map)
+                 .caching(to: localImageLoader, using: url)
+         })
+ }
+}
+
+
+// MARK: - Extension. Publisher
+extension Publisher {
+ func logCacheMisses(url: URL, logger: Logger) -> AnyPublisher<Output, Failure> {
+     let publisher = handleEvents(
+         receiveCompletion: { result in
+             if case .failure = result {
+                 logger.trace("Cache miss for url: \(url)")
+             }
+         }).eraseToAnyPublisher()
+     
+     return publisher
+ }
+ 
+ 
+ func logError(url: URL, logger: Logger) -> AnyPublisher<Output, Failure> {
+     let publisher = handleEvents(
+         receiveCompletion: { result in
+             if case let .failure(error) = result {
+                 logger.trace("Failed to load url: \(url) with error: \(error.localizedDescription)")
+             }
+         }).eraseToAnyPublisher()
+     
+     return publisher
+ }
+ 
+ 
+ func logElapsedTime(url: URL, logger: Logger) -> AnyPublisher<Output, Failure> {
+     var startTime = CACurrentMediaTime()
+     let publisher = handleEvents(
+         receiveSubscription: { _ in
+             logger.trace("Started loading url: \(url)")
+             startTime = CACurrentMediaTime ()
+         },
+         receiveCompletion: { result in
+             let elapsed = CACurrentMediaTime() - startTime
+             logger.trace("Finished loading url: \(url) in \(elapsed) seconds")
+         }).eraseToAnyPublisher()
+     
+     return publisher
+ }
+}
+ */
