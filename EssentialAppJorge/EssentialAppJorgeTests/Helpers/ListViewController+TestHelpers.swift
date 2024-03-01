@@ -12,10 +12,54 @@ import EssentialFeedJorgeiOS
 
 // MARK: - Extension. ListViewController
 extension ListViewController {
-    public override func loadViewIfNeeded() {
-        super.loadViewIfNeeded()
+    func simulateAppearance() {
+        if !isViewLoaded {
+            loadViewIfNeeded()
+            prepareForFirstAppearance()
+        }
         
-        tableView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
+        beginAppearanceTransition(true, animated: false)
+        endAppearanceTransition()
+    }
+    
+    
+    private func prepareForFirstAppearance() {
+        setSmallFrameToPreventRenderingCells()
+        replaceRefreshControlWithFakeForiOS17PlusSupport()
+    }
+    
+    
+    private func setSmallFrameToPreventRenderingCells() {
+        tableView.frame = CGRect(x: 0, y: 0, width: 390, height: 1)
+    }
+    
+    
+    private func replaceRefreshControlWithFakeForiOS17PlusSupport() {
+        let fakeRefreshControl = FakeUIRefreshControl()
+        
+        refreshControl?.allTargets.forEach { target in
+            refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach { action in
+                fakeRefreshControl.addTarget(target, action: Selector(action), for: .valueChanged)
+            }
+        }
+        
+        refreshControl = fakeRefreshControl
+    }
+    
+    
+    private class FakeUIRefreshControl: UIRefreshControl {
+        private var _isRefreshing: Bool = false
+        override var isRefreshing: Bool { _isRefreshing }
+        
+        
+        override func beginRefreshing() {
+            _isRefreshing = true
+        }
+        
+        
+        override func endRefreshing() {
+            _isRefreshing = false
+        }
     }
     
     
@@ -57,40 +101,6 @@ extension ListViewController {
     
  
 extension ListViewController {
-    private func setSmallFrameToPreventRenderingCells() {
-        tableView.frame = CGRect(x: 0, y: 0, width: 390, height: 1)
-    }
-    
-    
-    private func replaceRefreshControlWithFakeForiOS17PlusSupport() {
-        let fakeRefreshControl = FakeUIRefreshControl()
-        
-        refreshControl?.allTargets.forEach { target in
-            refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach { action in
-                fakeRefreshControl.addTarget(target, action: Selector(action), for: .valueChanged)
-            }
-        }
-        
-        refreshControl = fakeRefreshControl
-    }
-    
-    
-    private class FakeUIRefreshControl: UIRefreshControl {
-        private var _isRefreshing = false
-        override var isRefreshing: Bool { _isRefreshing }
-        
-        
-        override func beginRefreshing() {
-            _isRefreshing = true
-        }
-        
-        
-        override func endRefreshing() {
-            _isRefreshing = false
-        }
-    }
-    
-    
     func simulateLoadMoreFeedAction() {
         guard let view = loadMoreFeedCell() else { return }
         
@@ -165,8 +175,7 @@ extension ListViewController {
     }
     
     
-    /* ACTUALIZAR DEPUÉS. PERTENECE A iOS 15 Update #2: https://github.com/essentialdevelopercom/essential-feed-case-study/pull/70/commits/f2ae3faa924b76b182b8bdc9824f3ebeba446c9d
-     @discardableResult
+    @discardableResult
     func simulateFeedImageBecomingVisibleAgain(at row: Int) -> FeedImageTableViewCell? {
         let view = simulateFeedImageViewNotVisible(at: row)
         let delegate = tableView.delegate
@@ -174,7 +183,7 @@ extension ListViewController {
         delegate?.tableView?(tableView, willDisplay: view!, forRowAt: index)
         
         return view
-    } */
+    }
     
     
     @discardableResult

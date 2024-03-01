@@ -116,11 +116,10 @@ extension FeedImageCellController: UITableViewDelegate {
     }
     
     
-    /* ACTUALIZAR DEPUÉS. PERTENECE A iOS 15 Update #2: https://github.com/essentialdevelopercom/essential-feed-case-study/pull/70/commits/f2ae3faa924b76b182b8bdc9824f3ebeba446c9d
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.cell = cell as? FeedImageTableViewCell
         delegate.didRequestImage()
-    } */
+    }
 }
 
 

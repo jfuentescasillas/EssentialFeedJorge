@@ -13,6 +13,7 @@ import EssentialFeedJorge
 // MARK: - ListViewController Class
 public final class ListViewController: UITableViewController  {
     public var onRefresh: (() -> Void)?
+    private var onViewIsAppearing: ((ListViewController) -> Void)?
     private lazy var dataSource: UITableViewDiffableDataSource<Int, CellController> = {
         .init(tableView: tableView) { (tableView, index, controller) in
             controller.dataSource.tableView(tableView, cellForRowAt: index)
@@ -30,7 +31,17 @@ public final class ListViewController: UITableViewController  {
         
         configureTableView()
         configureTraitCollectionObservers()
-        refresh()
+        onViewIsAppearing = { vc in
+            vc.onViewIsAppearing = nil
+            vc.refresh()
+        }
+    }
+    
+    
+    public override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        
+        onViewIsAppearing?(self)
     }
     
     

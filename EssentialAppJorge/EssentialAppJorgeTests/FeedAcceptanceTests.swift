@@ -92,18 +92,21 @@ class FeedAcceptanceTests: XCTestCase {
     
     // MARK: - Helpers
     private func launch(httpClient: HTTPClientStub = .offline, store: InMemoryFeedStore = .empty) -> ListViewController {
-        let sut = SceneDelegate(httpClient: httpClient, store: store)
-        sut.window = UIWindow(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+        let sut = SceneDelegate(httpClient: httpClient, store: store, scheduler: .immediateOnMainQueue)
+        sut.window = UIWindow(frame: CGRect(x: 0, y: 0, width: 390, height: 1))
         sut.configWindow()
         
         let nav = sut.window?.rootViewController as? UINavigationController
         
-        return nav?.topViewController as! ListViewController
+        let vc = nav?.topViewController as! ListViewController
+        vc.simulateAppearance()
+                
+        return vc
     }
     
     
     private func enterBackground(with store: InMemoryFeedStore) {
-        let sut = SceneDelegate(httpClient: HTTPClientStub.offline, store: store)
+        let sut = SceneDelegate(httpClient: HTTPClientStub.offline, store: store, scheduler: .immediateOnMainQueue)
         sut.sceneWillResignActive(UIApplication.shared.connectedScenes.first!)
     }
     
@@ -115,8 +118,10 @@ class FeedAcceptanceTests: XCTestCase {
         RunLoop.current.run(until: Date())
         
         let nav = feed.navigationController
+        let vc = nav?.topViewController as! ListViewController
+        vc.simulateAppearance()
         
-        return nav?.topViewController as! ListViewController
+        return vc
     }
     
     
@@ -185,7 +190,8 @@ class FeedAcceptanceTests: XCTestCase {
     private func makeSecondFeedPageData() -> Data {
         let serializedData = try! JSONSerialization.data(withJSONObject: ["items": [
             ["id": "166FCDD7-C9F4-420A-B2D6-CE2EAFA3D82F", "image": "http://feed.com/image-2"],
-        ]])
+        ]]
+        )
         
         return serializedData
     }

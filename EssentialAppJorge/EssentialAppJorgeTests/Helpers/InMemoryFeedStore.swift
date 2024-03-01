@@ -24,34 +24,31 @@ class InMemoryFeedStore {
  
 // MARK: - Extension. FeedStoreProtocol
 extension InMemoryFeedStore: FeedStoreProtocol {
-    func deleteCachedFeed(completion: @escaping FeedStoreProtocol.DeletionCompletion) {
+    func deleteCachedFeed() throws {
         feedCache = nil
-        completion(.success(()))
     }
     
     
-    func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping FeedStoreProtocol.InsertionCompletion) {
+    func insert(_ feed: [LocalFeedImage], timestamp: Date) throws {
         feedCache = CachedFeed(feed: feed, timestamp: timestamp)
-        completion(.success(()))
     }
     
     
-    func retrieve(completion: @escaping FeedStoreProtocol.RetrievalCompletion) {
-        completion(.success(feedCache))
+    func retrieve() throws -> CachedFeed? {
+        return feedCache
     }
 }
    
  
 // MARK: - Extension. FeedImageDataStoreProtocol
 extension InMemoryFeedStore: FeedImageDataStoreProtocol {
-    func insert(_ data: Data, for url: URL, completion: @escaping (FeedImageDataStoreProtocol.InsertionResult) -> Void) {
+    func insert(_ data: Data, for url: URL) {
         feedImageDataCache[url] = data
-        completion(.success(()))
     }
     
     
-    func retrieve(dataForURL url: URL, completion: @escaping (FeedImageDataStoreProtocol.RetrievalResult) -> Void) {
-        completion(.success(feedImageDataCache[url]))
+    func retrieve(dataForURL url: URL) throws -> Data? {
+        return feedImageDataCache[url]
     }
 }
    
