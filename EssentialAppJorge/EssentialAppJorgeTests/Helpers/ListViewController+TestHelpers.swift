@@ -189,7 +189,6 @@ extension ListViewController {
     @discardableResult
     func simulateFeedImageViewNotVisible(at row: Int) -> FeedImageTableViewCell? {
         let view = simulateFeedImageViewVisible(at: row)
-        
         let delegate = tableView.delegate
         let index = IndexPath(row: row, section: feedImagesSection)
         delegate?.tableView?(tableView, didEndDisplaying: view!, forRowAt: index)
