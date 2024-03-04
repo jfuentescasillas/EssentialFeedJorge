@@ -130,5 +130,7 @@ extension FeedImageCellController: UITableViewDataSourcePrefetching {
     }
     
     
-    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {}
+    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        delegate.didRequestImage()
+    }
 }

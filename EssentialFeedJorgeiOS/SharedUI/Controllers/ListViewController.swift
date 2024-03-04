@@ -112,7 +112,7 @@ public final class ListViewController: UITableViewController  {
         if #available(iOS 15.0, *) {
             dataSource.applySnapshotUsingReloadData(snapshot)
         } else {
-            dataSource.apply(snapshot)
+            dataSource.apply(snapshot, animatingDifferences: false)
         }
     }
     
