@@ -64,6 +64,7 @@ extension FeedImageCellController: ResourceLoadingViewProtocol {
 }
 
 
+// MARK: - Extension. ResourceErrorViewProtocol
 extension FeedImageCellController: ResourceErrorViewProtocol {
     public func display(_ viewModel: ResourceErrorViewModel) {
         cell?.feedImageRetryButton.isHidden = viewModel.message == nil
