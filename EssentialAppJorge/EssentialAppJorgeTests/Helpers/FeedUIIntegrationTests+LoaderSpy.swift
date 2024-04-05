@@ -18,7 +18,6 @@ extension FeedUIIntegrationTests {
     class LoaderSpy {
         // MARK: Feed Loader
         private var feedRequests = [PassthroughSubject<Paginated<FeedImage>, Error>]()
-
         var loadFeedCallCount: Int {
             return feedRequests.count
         }
@@ -77,11 +76,9 @@ extension FeedUIIntegrationTests {
         
         // MARK: FeedImageDataLoader
         private var imageRequests = [(url: URL, publisher: PassthroughSubject<Data, Error>)]()
-        
         var loadedImageURLs: [URL] {
             return imageRequests.map { $0.url }
-        }
-        
+        }        
         private(set) var cancelledImageURLs = [URL]()
         
         

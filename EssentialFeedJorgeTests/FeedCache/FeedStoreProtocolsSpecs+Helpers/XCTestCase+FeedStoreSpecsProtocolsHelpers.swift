@@ -149,7 +149,8 @@ extension FeedStoreSpecsProtocol where Self: XCTestCase {
 }
 
 
-// MARK: - Extension. FeedStoreSpecsProtocol. Discardables & expect(_ sut...)
+// MARK: - Extension. FeedStoreSpecsProtocol. 
+// Discardables & expect(_ sut...)
 extension FeedStoreSpecsProtocol where Self: XCTestCase {
     @discardableResult
     func insert(_ cache: (feed: [LocalFeedImage], timestamp: Date), to sut: FeedStoreProtocol) -> Error? {

@@ -97,7 +97,6 @@ class FeedAcceptanceTests: XCTestCase {
         sut.configWindow()
         
         let nav = sut.window?.rootViewController as? UINavigationController
-        
         let vc = nav?.topViewController as! ListViewController
         vc.simulateAppearance()
                 
@@ -180,8 +179,7 @@ class FeedAcceptanceTests: XCTestCase {
         let serializedData = try! JSONSerialization.data(withJSONObject: ["items": [
             ["id": "2AB2AE66-A4B7-4A16-B374-51BBAC8DB086", "image": "http://feed.com/image-0"],
             ["id": "A28F5FE3-27A7-44E9-8DF5-53742D0E4A5A", "image": "http://feed.com/image-1"]
-        ]]
-        )
+        ]])
         
         return serializedData
     }
@@ -190,8 +188,7 @@ class FeedAcceptanceTests: XCTestCase {
     private func makeSecondFeedPageData() -> Data {
         let serializedData = try! JSONSerialization.data(withJSONObject: ["items": [
             ["id": "166FCDD7-C9F4-420A-B2D6-CE2EAFA3D82F", "image": "http://feed.com/image-2"],
-        ]]
-        )
+        ]])
         
         return serializedData
     }

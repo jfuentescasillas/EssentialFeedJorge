@@ -12,11 +12,7 @@ import EssentialFeedJorge
 
 class NullStore: FeedStoreProtocol {
     func deleteCachedFeed() throws {}
-    
-    
     func insert(_ feed: [LocalFeedImage], timestamp: Date) throws {}
-    
-    
     func retrieve() throws -> CachedFeed? { .none }
 }
 

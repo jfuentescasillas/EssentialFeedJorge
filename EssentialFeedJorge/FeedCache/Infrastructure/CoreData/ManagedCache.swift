@@ -11,7 +11,7 @@ import CoreData
 
 // MARK: - ManagedCache class
 @objc(ManagedCache)
-internal class ManagedCache: NSManagedObject {
+class ManagedCache: NSManagedObject {
     @NSManaged var timestamp: Date
     @NSManaged var feed: NSOrderedSet
 }
@@ -19,7 +19,7 @@ internal class ManagedCache: NSManagedObject {
 
 // MARK: - Extension. ManagedCache
 extension ManagedCache {
-    internal static func find(in context: NSManagedObjectContext) throws -> ManagedCache? {
+    static func find(in context: NSManagedObjectContext) throws -> ManagedCache? {
         let request = NSFetchRequest<ManagedCache>(entityName: entity().name!)
         request.returnsObjectsAsFaults = false
         
@@ -39,7 +39,7 @@ extension ManagedCache {
     }
     
     
-    internal var localFeed: [LocalFeedImage] {
+    var localFeed: [LocalFeedImage] {
         return feed.compactMap { ($0 as? ManagedFeedImage)?.local }
     }
 }

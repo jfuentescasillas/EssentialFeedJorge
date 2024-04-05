@@ -46,22 +46,19 @@ final class ImageCommentsSnapshotTests: XCTestCase {
                 model: ImageCommentViewModel(
                     message: "The East Side Gallery is an open-air gallery in Berlin. It consists of a series of murals painted directly on a 1,316 m long remnant of the Berlin Wall, located near the centre of Berlin, on Mühlenstraße in Friedrichshain-Kreuzberg. The gallery has official status as a Denkmal, or heritage-protected landmark.",
                     date: "1 year ago",
-                    username: "A very very extremely long username"
-                )
+                    username: "A very very extremely long username")
             ),
             ImageCommentCellController(
                 model: ImageCommentViewModel(
                     message: "East Side Gallery\nMemorial in Berlin, Germany",
                     date: "10 days ago",
-                    username: "A username"
-                )
+                    username: "A username")
             ),
             ImageCommentCellController(
                 model: ImageCommentViewModel(
                     message: "Chido carnal",
                     date: "5 hours ago",
-                    username: "Another username"
-                )
+                    username: "Another username")
             )
         ]
         

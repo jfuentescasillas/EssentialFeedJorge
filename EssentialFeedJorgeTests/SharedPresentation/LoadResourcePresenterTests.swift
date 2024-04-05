@@ -74,9 +74,7 @@ final class LoadResourcePresenterTests: XCTestCase {
     private typealias SUT = LoadResourcePresenter<String, ViewSpy>
     
     
-    private func makeSUT(mapper: @escaping SUT.Mapper = { _ in "any" },
-                         file: StaticString = #file,
-                         line: UInt = #line) -> (sut: SUT, view: ViewSpy) {
+    private func makeSUT(mapper: @escaping SUT.Mapper = { _ in "any" }, file: StaticString = #file, line: UInt = #line) -> (sut: SUT, view: ViewSpy) {
         let view = ViewSpy()
         let sut = SUT(resourceView: view, loadingView: view, errorView: view, mapper: mapper)
         
