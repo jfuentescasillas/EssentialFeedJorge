@@ -21,4 +21,4 @@ jobs:
       run: sudo xcode-select -switch /Applications/Xcode_14.3.1.app
 
     - name: Buil and test
-      run: xcodebuild clean build test -project EssentialFeedJorge.xcodeproj -scheme "CI" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      run: xcodebuild clean build test -project EssentialFeedJorge.xcodeproj -scheme "CI_iOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
